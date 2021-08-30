@@ -4,13 +4,14 @@ import { useNavigation } from '@react-navigation/native'
 import { IconButton, Colors } from 'react-native-paper'
 import styles from '../../globalStyles'
 import { firebase } from '../../firebase/config'
-import { User, ColorScheme } from '../../routes/navigation/Navigation'
+import { ColorScheme } from '../../routes/navigation/Navigation'
 import { colors } from 'theme'
+import { UserDataContext } from '../../context/UserDataContext'
 
 export default function Home() {
   const navigation = useNavigation()
   const [token, setToken] = useState('')
-  const { userData } = useContext(User)
+  const { userData } = useContext(UserDataContext)
   const { scheme } = useContext(ColorScheme)
 
   useLayoutEffect(() => {

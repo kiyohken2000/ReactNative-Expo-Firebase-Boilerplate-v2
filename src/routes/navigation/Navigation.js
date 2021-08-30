@@ -7,6 +7,7 @@ import * as Notifications from 'expo-notifications'
 import { useColorScheme } from 'react-native'
 import { DefaultTheme, DarkTheme } from '@react-navigation/native'
 import {decode, encode} from 'base-64'
+import { UserDataContext } from '../../context/UserDataContext'
 if (!global.btoa) { global.btoa = encode }
 if (!global.atob) { global.atob = decode }
 
@@ -14,7 +15,6 @@ import { LoginNavigator } from './stacks'
 import TabNavigator from './tabs'
 // import DrawerNavigator from './drawer'
 
-export const User = createContext();
 export const ColorScheme = createContext();
 
 Notifications.setNotificationHandler({
@@ -27,12 +27,8 @@ Notifications.setNotificationHandler({
 
 export default function App() {
   const [loading, setLoading] = useState(true)
-  const [userData, setUser] = useState(null)
+  const [userData, setUserData] = useState(null)
   const scheme = useColorScheme()
-
-  const user = {
-    userData, setUser,
-  }
 
   const navigationProps = {
     headerTintColor: 'white',
@@ -54,7 +50,7 @@ export default function App() {
           .onSnapshot(function(document) {
             const userData = document.data()
             setLoading(false)
-            setUser(userData)
+            setUserData(userData)
           })
       } else {
         setLoading(false)
@@ -86,9 +82,9 @@ export default function App() {
     <ColorScheme.Provider value={colorScheme}>
       <NavigationContainer theme={scheme === 'dark' ? DarkTheme : DefaultTheme}>
         { userData ? (
-          <User.Provider value={user}>
+          <UserDataContext.Provider value={{userData, setUserData}}>
             <TabNavigator/>
-          </User.Provider>
+          </UserDataContext.Provider>
           ) : (
           <LoginNavigator/>
         )}

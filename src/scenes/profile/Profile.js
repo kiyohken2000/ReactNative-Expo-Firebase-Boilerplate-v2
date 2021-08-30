@@ -6,12 +6,13 @@ import { Restart } from 'fiction-expo-restart'
 import { Avatar } from 'react-native-elements'
 import Dialog from "react-native-dialog"
 import Spinner from 'react-native-loading-spinner-overlay'
-import { User, ColorScheme } from '../../routes/navigation/Navigation'
+import { ColorScheme } from '../../routes/navigation/Navigation'
 import { useNavigation } from '@react-navigation/native'
 import { colors } from 'theme'
+import { UserDataContext } from '../../context/UserDataContext'
 
 export default function Profile() {
-  const { userData } = useContext(User)
+  const { userData } = useContext(UserDataContext)
   const { scheme } = useContext(ColorScheme)
   const navigation = useNavigation()
   const [visible, setVisible] = useState(false)

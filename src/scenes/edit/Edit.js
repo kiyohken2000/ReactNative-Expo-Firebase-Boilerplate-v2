@@ -7,12 +7,13 @@ import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view
 import * as ImagePicker from 'expo-image-picker'
 import * as ImageManipulator from 'expo-image-manipulator'
 import Constants from 'expo-constants'
-import { User, ColorScheme } from '../../routes/navigation/Navigation'
+import { ColorScheme } from '../../routes/navigation/Navigation'
 import { useNavigation } from '@react-navigation/native'
 import { colors } from 'theme'
+import { UserDataContext } from '../../context/UserDataContext'
 
 export default function Edit() {
-  const { userData } = useContext(User)
+  const { userData } = useContext(UserDataContext)
   const { scheme } = useContext(ColorScheme)
   const navigation = useNavigation()
   const [fullName, setFullName] = useState('')
