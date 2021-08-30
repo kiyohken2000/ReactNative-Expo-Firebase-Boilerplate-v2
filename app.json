@@ -1,9 +1,13 @@
 {
   "expo": {
-    "name": "react-native-boilerplate",
-    "slug": "react-native-boilerplate",
+    "name": "reactnative-expo-firebase-boilerplate-v2",
+    "slug": "reactnative-expo-firebase-boilerplate-v2",
     "privacy": "public",
-    "platforms": ["ios", "android", "web"],
+    "platforms": [
+      "ios",
+      "android",
+      "web"
+    ],
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/logo-sm.png",
@@ -13,15 +17,38 @@
       "backgroundColor": "#ffffff"
     },
     "updates": {
-      "fallbackToCacheTimeout": 0
+      "enabled": true,
+      "fallbackToCacheTimeout": 10000
     },
     "assetBundlePatterns": ["**/*"],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "reactnative.expo.firebase.boilerplate",
+      "buildNumber": "1.0.0",
+      "infoPlist": {
+        "NSPhotoLibraryUsageDescription": "Use the photo library to change your avatar."
+      },
+      "userInterfaceStyle": "automatic"
+    },
+    "android": {
+      "package": "reactnative.expo.firebase.boilerplate",
+      "versionCode": 1,
+      "userInterfaceStyle": "automatic",
+      "permissions": [
+        "VIBRATE",
+        "CAMERA"
+      ]
     },
     "packagerOpts": {
       "config": "metro.config.js",
-      "sourceExts": ["js", "jsx", "svg", "ts", "tsx"]
-    }
+      "sourceExts": [
+        "js",
+        "jsx",
+        "svg",
+        "ts",
+        "tsx"
+      ]
+    },
+    "description": ""
   }
 }

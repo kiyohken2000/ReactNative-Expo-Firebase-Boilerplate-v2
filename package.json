@@ -18,17 +18,28 @@
     "@react-navigation/stack": "^5.12.8",
     "@reduxjs/toolkit": "^1.5.1",
     "axios": "^0.21.1",
+    "base-64": "^1.0.0",
     "expo": "^42.0.0",
     "expo-asset": "~8.3.3",
     "expo-cli": "^3.20.0",
     "expo-font": "~9.2.1",
+    "expo-image-manipulator": "~9.2.2",
+    "expo-image-picker": "~10.2.2",
+    "expo-notifications": "~0.12.3",
+    "fiction-expo-restart": "^1.1.0",
+    "firebase": "8.2.3",
     "global": "^4.4.0",
     "moment": "^2.24.0",
     "prop-types": "^15.7.2",
     "react": "16.13.1",
     "react-dom": "16.13.1",
     "react-native": "https://github.com/expo/react-native/archive/sdk-42.0.0.tar.gz",
+    "react-native-dialog": "^8.2.0",
+    "react-native-elements": "^3.4.2",
     "react-native-gesture-handler": "~1.10.2",
+    "react-native-keyboard-aware-scroll-view": "^0.9.4",
+    "react-native-loading-spinner-overlay": "^2.0.0",
+    "react-native-paper": "^4.9.2",
     "react-native-reanimated": "~2.2.0",
     "react-native-safe-area-context": "3.2.0",
     "react-native-screens": "~3.4.0",
@@ -66,17 +77,6 @@
     "semi": false,
     "singleQuote": true,
     "bracketSpacing": true
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged"
-    }
-  },
-  "jest": {
-    "preset": "jest-expo",
-    "transformIgnorePatterns": [
-      "node_modules/(?!(jest-)?react-native|react-clone-referenced-element|@react-native-community|expo(nent)?|@expo(nent)?/.*|react-navigation|@react-navigation/.*|@unimodules/.*|unimodules|sentry-expo|native-base|@sentry/.*)"
-    ]
   },
   "lint-staged": {
     "*.{js,jsx}": [

@@ -1,48 +1,82 @@
-import React from 'react'
-import PropTypes from 'prop-types'
-import {
-  StyleSheet, Text, View, StatusBar,
-} from 'react-native'
-import Button from 'components/Button'
+import React, { useEffect, useState, useContext, useLayoutEffect } from 'react'
+import { Text, View, ScrollView, StatusBar, StyleSheet, TouchableOpacity } from 'react-native'
+import { useNavigation } from '@react-navigation/native'
+import { IconButton, Colors } from 'react-native-paper'
+import styles from '../../globalStyles'
+import { firebase } from '../../firebase/config'
+import { User, ColorScheme } from '../../routes/navigation/Navigation'
 import { colors } from 'theme'
 
-const styles = StyleSheet.create({
-  root: {
-    flex: 1,
-    flexDirection: 'column',
-    alignItems: 'center',
-    justifyContent: 'center',
-    backgroundColor: colors.lightGrayPurple,
+export default function Home() {
+  const navigation = useNavigation()
+  const [token, setToken] = useState('')
+  const { userData } = useContext(User)
+  const { scheme } = useContext(ColorScheme)
+
+  useLayoutEffect(() => {
+    navigation.setOptions({
+      headerRight: () => (
+        <IconButton
+          icon="cast"
+          color={Colors.blue500}
+          size={24}
+          onPress={() => alert('Tapped header button')}
+        />
+      ),
+    });
+  }, [navigation]);
+
+  useEffect(() => {
+    firebase.firestore()
+      .collection('tokens')
+      .doc(userData.id)
+      .get().then((doc) => {
+        if (doc.exists) {
+          console.log("Document data:", doc.data());
+          const data = doc.data()
+          setToken(data)
+        } else {
+          console.log("No such document!");
+        }
+      }).catch((error) => {
+        console.log("Error getting document:", error);
+      });
+  }, []);
+
+  return (
+    <View style={styles.container}>
+      <StatusBar barStyle="light-content" />
+        <ScrollView style={styles.main}>
+          <View style={scheme === 'dark'?style.darkContent: style.lightContent}>
+            <Text style={[styles.field, {color: scheme === 'dark'? colors.white: colors.primaryText}]}>Mail:</Text>
+            <Text style={[styles.title, {color: scheme === 'dark'? colors.white: colors.primaryText}]}>{userData.email}</Text>
+            <Text style={[styles.field, {color: scheme === 'dark'? colors.white: colors.primaryText}]}>Expo push token:</Text>
+            <Text style={[styles.title, {color: scheme === 'dark'? colors.white: colors.primaryText}]}>{token.token}</Text>
+          </View>
+          <TouchableOpacity
+            style={[styles.button, {backgroundColor:colors.primary}]}
+            onPress={() => navigation.navigate('Detail', { data: userData, from: 'Home', title: userData.email})}
+          >
+            <Text style={styles.buttonText}>Go to Detail</Text>
+          </TouchableOpacity>
+        </ScrollView>
+    </View>
+  )
+}
+
+const style = StyleSheet.create({
+  lightContent: {
+    backgroundColor: colors.lightyellow,
+    padding: 20,
+    borderRadius: 20,
+    marginLeft: 30,
+    marginRight: 30,
   },
-  title: {
-    fontSize: 24,
-    marginBottom: 20,
+  darkContent: {
+    backgroundColor: colors.gray,
+    padding: 20,
+    borderRadius: 20,
+    marginLeft: 30,
+    marginRight: 30,
   },
 })
-
-const Home = ({ navigation }) => (
-  <View style={styles.root}>
-    <StatusBar barStyle="light-content" />
-    <Text style={styles.title}>Home</Text>
-    <Button
-      title="Go to Details"
-      color="white"
-      backgroundColor={colors.lightPurple}
-      onPress={() => {
-        navigation.navigate('Details', { from: 'Home' })
-      }}
-    />
-  </View>
-)
-
-Home.propTypes = {
-  navigation: PropTypes.shape({
-    navigate: PropTypes.func,
-  }),
-}
-
-Home.defaultProps = {
-  navigation: { navigate: () => null },
-}
-
-export default Home

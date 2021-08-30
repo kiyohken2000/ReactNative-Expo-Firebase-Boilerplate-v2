@@ -1,73 +1,189 @@
-<img src='https://github.com/WataruMaeda/react-native-boilerplate/blob/master/__DELELE_ME__/banner.svg' width='400'>
+# React Native Expo with Firebase V2
 
-<img src='https://github.com/WataruMaeda/react-native-boilerplate/blob/master/__DELELE_ME__/demo.gif' width='32%'>
+- [Expo link](https://expo.io/@votepurchase/reactnative-expo-firebase-boilerplate-v2)
 
-- [Expo link](https://expo.io/@wataru/react-native-boilerplate)
+## Screens
 
-## About
+<img src='https://github.com/kiyohken2000/ReactNative-Expo-Firebase-Boilerplate-v2/blob/master/__DELELE_ME__/img1.jpg' width='80%'>
 
-We spend a large amount of time to setup a project; changing file structure, installing libraries, create reusable components and so on. The purpose of using the project is to minimize the redundant effort to setup a project from scratch. In the boilerplate, it contains only commonly-used libraries and the all setup done for you.
+## Infrastructure
 
-## What's included
-
-#### Navigation
-
-At the default, you can see 3 types of navigation; stack, tab, and drawer. Here in the [code](https://github.com/WataruMaeda/react-native-boilerplate/tree/master/src/routes/navigation), files are separated by the navigation types. If you don't need drawer navigation for example, you can the remove drawer file and replace the import status [here](https://github.com/WataruMaeda/react-native-boilerplate/blob/master/src/routes/navigation/Navigation.js#L2) to tab or stack navigator.
-
-#### Authentication
-
-If your app requires authorization, you need to implement login, signup function. After the user login or logout, the navigation flow should be different. In this case, the route should be switched by the login status. In the [route](https://github.com/WataruMaeda/react-native-boilerplate/blob/master/src/routes/Routes.js#L14-L19), you can set the different navigation changed by login status.
-
-#### Redux
-
-We are using [Redux Toolkit](https://redux-toolkit.js.org/) to simplify the redux setup and minimize boilerplates. 
-Redux can contain global state of the app. This is very useful but on the other hand, it takes time to setup if you are not familiar with it. In the boilerplate, you see [slices file](https://github.com/WataruMaeda/react-native-boilerplate/blob/master/src/slices/app.slice.js) which contains actions and reducers in a file. Please follow the [quick start tutorials](https://redux-toolkit.js.org/tutorials/quick-start) to see how store is setup; and how to use Redux state and actions in React Components.
-
-#### Assets
-
-Images, icons and fonts are controlled under [theme](https://github.com/WataruMaeda/react-native-boilerplate/tree/master/src/theme). If you add new assets, you need to import the new assets in each files to access the assets from theme. Also, assets preloading is implemented as well. You can also use svg file in the boilerplate. All the assets are ready to use by importing theme.
-
-#### Absolute path
-
-If your project structure become complicated and has a lot of nested folders, you will have problem with relative paths. In the boilerplate, you can use absolute paths. You can write simple import statement i.e 'components/Button'. No more ../../../components/Button. The configuration is written in `babel.config.js`.
-
-#### Code formatting, fixing and testing on pre commit
-
-It's very important to keep code clean to maintain readability and productivity. In the boilerplate, Eslint, Prettier and Jest configuration are done. It's continuously checking and format your code while you coding (Please enable "Format on Save" option if you prefer to format code after save change). After you submit changes, pre commit script will run to handle checking and formatting your code, run test. If the 3 steps are passed, you will be able to push the change.
+- React Native 
+- Expo
+- Firebase(Authentication, Firestore, Cloud Storage)
 
 ## Libraries
 
-- [expo](https://github.com/expo/expo)
-- [react-navigation 5.x](https://github.com/react-navigation/react-navigation)
-- [redux](https://github.com/reduxjs/redux)
-- [redux-toolkit](https://redux-toolkit.js.org/)
-- [redux-logger](https://github.com/LogRocket/redux-logger)
-- [moment](https://github.com/moment/moment)
-- [axios](https://github.com/axios/axios)
-- [react-native-vector-icons](https://github.com/oblador/react-native-vector-icons)
-- [react-native-svg](https://github.com/react-native-community/react-native-svg)
+- Expo
+- axios
+- react-navigation
+- expo-constants
+- expo-image-manipulator
+- expo-image-picker
+- expo-notifications
+- firebase
+- react-native-elements
+- react-native-svg
+- react-native-vector-icons
 
-## Libraries for development
+## Features
 
-- [eslint](https://github.com/eslint/eslint)
-- [prettier](https://github.com/prettier/prettier)
-- [jest](https://jestjs.io/)
-- [pre commit](https://github.com/observing/pre-commit)
+- Bottom tab and Stack navigation
+- Registration with E-mail & Password
+- Login with E-mail and Password
+- Deleting an account
+- Handling persisted login credentials
+- Writing to Firestore Database
+- Reading from Firestore Database
+- Uploading images to Cloud Storage
+- Update user profile
+- Dynamic switching of dark themes by device appearance
+- Retrieving Expo push tokens and saving them to Firestore
 
-## How to Use
+## Difference from v1
 
-1. Download zip or click "Use this template"
-2. Update `app.json`
+[reactnative-expo-firebase-boilerplate v1](https://github.com/kiyohken2000/reactnative-expo-firebase-boilerplate)
+
+- use Context API
+- Adjustment style file
+
+## How to use
+
+### 1. Install
 
 ```
- "name": "your-app-name",
- "slug": "your-app-name",
+git clone https://github.com/kiyohken2000/ReactNative-Expo-Firebase-Boilerplate-v2.git
+cd reactnative-expo-firebase-boilerplate
+yarn install
 ```
 
-3. `yarn install` or `npm install`
-4. If you haven't setup expo, please follow the [instruction](https://expo.io/learn) to complete setup
-5. In terminal, `expo start`
+### 2. Setting up Firebase
+
+**Step 1: Create a Google Firebase Account**
+
+- Go to [https://console.firebase.google.com/](https://console.firebase.google.com/)
+- Sign up an account and create a new project
+- Put in your project name, click "Continue".
+- Google Analytics can be enabled or disabled.
+- Click "Create Project" it is going to take a while before it says "Your new project is ready", click "Continue."
+
+**Step 2: Configure Firebase Console Sign-In Methods**
+
+- On "Project Overview", click the "Authentication" on the left sidebar.
+- Click on the second tab where it said "Sign-In method"
+- Enable all the Sign-in method you would like to enable. For now, we will enable the "Email/Password" option.
+
+<img src='https://github.com/kiyohken2000/ReactNative-Expo-Firebase-Boilerplate-v2/blob/master/__DELELE_ME__/img3.png' width='80%'>
+
+**Step 3: Configure Firebase Console Firestore**
+
+- We will then click the "Cloud Firestore" on the left to create a database.
+- Select the "Start in test mode" option, click "next."
+- Select the "Cloud Firestore location", click "Enable"
+- Create the "users" and "tokens" collections. An empty document is fine.
+
+<img src='https://github.com/kiyohken2000/ReactNative-Expo-Firebase-Boilerplate-v2/blob/master/__DELELE_ME__/img4.png' width='80%'>
+
+***Security Rules***
+
+```
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    function isLogin() {
+      return request.auth.uid != null;
+    }
+    match /{document=**} {
+      allow read, write: if isLogin();
+    }
+  }
+}
+```
+
+**Step 4: Create a folder in Cloud Storage**
+
+- Next. Click Storage on the left.
+- Create an empty "avatar" folder.
+- Upload the image file "icon.png" of your choice. This is the default icon for app users.
+
+<img src='https://github.com/kiyohken2000/ReactNative-Expo-Firebase-Boilerplate-v2/blob/master/__DELELE_ME__/img5.png' width='80%'>
+
+***Security Rules***
+
+```
+rules_version = '2';
+service firebase.storage {
+  match /b/{bucket}/o {
+    match /{allPaths=**} {
+      allow read, write: if request.auth != null;
+    }
+  }
+}
+```
+
+**Step 5: Copy the API Key**
+
+- On the Project Overview, click on the "Web" icon since we are building on Expo.
+- Then give it a name, click "Register app".
+- It will show you the Firebase configuration, copy the SDK keys, we will use it in the next step.
+
+<img src='https://github.com/kiyohken2000/ReactNative-Expo-Firebase-Boilerplate-v2/blob/master/__DELELE_ME__/img2.png' width='80%'>
+
+**Step 6: Connect Firebase**
+
+- Write the copied API Key in your app.
+
+`src\firebase\config.js`
+
+```javascript
+import * as firebase from 'firebase'
+import "firebase/auth"
+import "firebase/firestore"
+import "firebase/storage"
+
+const firebaseConfig = {
+  apiKey: "Your API Key",
+  authDomain: "Your API Key",
+  projectId: "Your API Key",
+  storageBucket: "Your API Key",
+  messagingSenderId: "Your API Key",
+  appId: "Your API Key",
+  measurementId: "Your API Key"
+};
+
+if (!firebase.apps.length) {
+  firebase.initializeApp(firebaseConfig);
+}
+
+export { firebase };
+```
+
+### 3. Update app.json and default avatar
+
+Replace the name and Slug with yours.
+
+```
+"name": "your-app-name",
+"slug": "your-app-name",
+```
+
+**src\scenes\registration\Registration.js**
+
+```javascript
+const data = {
+  id: uid,
+  email,
+  fullName,
+  avatar: 'Your default icon URL',
+};
+```
+
+### 4. Run Your App
+
+```
+expo start
+```
 
 ## Licence
 
-This project is available under the MIT license. See the [LICENSE](https://github.com/WataruMaeda/react-native-boilerplate/blob/master/LICENSE) file for more info.
+This project is available under the MIT license. See the [LICENSE](https://github.com/kiyohken2000/ReactNative-Expo-Firebase-Boilerplate-v2/blob/master/LICENSE) file for more info.
