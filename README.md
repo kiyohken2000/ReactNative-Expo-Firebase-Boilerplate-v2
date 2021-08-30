@@ -55,7 +55,7 @@
 
 ```
 git clone https://github.com/kiyohken2000/ReactNative-Expo-Firebase-Boilerplate-v2.git
-cd reactnative-expo-firebase-boilerplate
+cd ReactNative-Expo-Firebase-Boilerplate-v2
 yarn install
 ```
 

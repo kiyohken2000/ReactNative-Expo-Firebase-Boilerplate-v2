@@ -6,9 +6,9 @@ import { colors } from 'theme'
 import * as Notifications from 'expo-notifications'
 import { useColorScheme } from 'react-native'
 import { DefaultTheme, DarkTheme } from '@react-navigation/native'
-import {decode, encode} from 'base-64'
 import { UserDataContext } from '../../context/UserDataContext'
 import { ColorSchemeContext } from '../../context/ColorSchemeContext'
+import { decode, encode } from 'base-64'
 if (!global.btoa) { global.btoa = encode }
 if (!global.atob) { global.atob = decode }
 

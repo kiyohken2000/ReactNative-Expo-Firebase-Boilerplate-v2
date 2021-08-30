@@ -22,13 +22,13 @@ export default function Home() {
           icon="cast"
           color={Colors.blue500}
           size={24}
-          onPress={() => headerButton()}
+          onPress={() => headerButtonPress()}
         />
       ),
     });
   }, [navigation]);
 
-  const headerButton = () => {
+  const headerButtonPress = () => {
     alert('Tapped header button')
   }
 
