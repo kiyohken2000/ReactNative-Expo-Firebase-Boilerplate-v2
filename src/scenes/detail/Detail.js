@@ -1,21 +1,22 @@
 import React, { useEffect, useState, useContext } from 'react'
-import { Text, View, ScrollView, StatusBar, StyleSheet, TouchableOpacity } from 'react-native'
+import { Text, View, ScrollView, StyleSheet, TouchableOpacity } from 'react-native'
 import styles from '../../globalStyles'
+import SafareaBar from '../../components/SafareaBar'
 import { useNavigation } from '@react-navigation/native'
 import { useRoute } from '@react-navigation/native'
-import { ColorScheme } from '../../routes/navigation/Navigation'
 import { colors } from 'theme'
 import { HomeTitleContext } from '../../routes/navigation/stacks/HomeTitleContext'
+import { ColorSchemeContext } from '../../context/ColorSchemeContext'
 import { useFocusEffect } from '@react-navigation/native'
 
 export default function Detail() {
   const navigation = useNavigation()
   const route = useRoute()
-  const { setTitle } = useContext(HomeTitleContext)
   const from = route.params.from
   const userData = route.params.data
   const title = route.params.title
-  const { scheme } = useContext(ColorScheme)
+  const { setTitle } = useContext(HomeTitleContext)
+  const { scheme } = useContext(ColorSchemeContext)
 
   useFocusEffect(() => {
     setTitle(title)
@@ -23,7 +24,7 @@ export default function Detail() {
 
   return (
     <View style={styles.container}>
-      <StatusBar barStyle="light-content" />
+      <SafareaBar />
         <ScrollView style={styles.main}>
           <View style={scheme === 'dark'?style.darkContent: style.lightContent}>
             <Text style={[styles.field, {color: scheme === 'dark'? colors.white: colors.primaryText}]}>{userData.id}</Text>
@@ -46,14 +47,16 @@ const style = StyleSheet.create({
   lightContent: {
     backgroundColor: colors.lightyellow,
     padding: 20,
-    borderRadius: 20,
+    borderRadius: 5,
+    marginTop: 30,
     marginLeft: 30,
     marginRight: 30,
   },
   darkContent: {
     backgroundColor: colors.gray,
     padding: 20,
-    borderRadius: 20,
+    borderRadius: 5,
+    marginTop: 30,
     marginLeft: 30,
     marginRight: 30,
   },

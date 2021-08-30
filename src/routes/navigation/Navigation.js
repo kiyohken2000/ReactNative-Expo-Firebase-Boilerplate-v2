@@ -1,5 +1,5 @@
 import 'react-native-gesture-handler'
-import React, { useEffect, useState, createContext } from 'react'
+import React, { useEffect, useState } from 'react'
 import { NavigationContainer } from '@react-navigation/native'
 import { firebase } from '../../firebase/config'
 import { colors } from 'theme'
@@ -8,14 +8,13 @@ import { useColorScheme } from 'react-native'
 import { DefaultTheme, DarkTheme } from '@react-navigation/native'
 import {decode, encode} from 'base-64'
 import { UserDataContext } from '../../context/UserDataContext'
+import { ColorSchemeContext } from '../../context/ColorSchemeContext'
 if (!global.btoa) { global.btoa = encode }
 if (!global.atob) { global.atob = decode }
 
 import { LoginNavigator } from './stacks'
 import TabNavigator from './tabs'
 // import DrawerNavigator from './drawer'
-
-export const ColorScheme = createContext();
 
 Notifications.setNotificationHandler({
   handleNotification: async () => ({
@@ -26,20 +25,24 @@ Notifications.setNotificationHandler({
 });
 
 export default function App() {
+  const colorScheme = useColorScheme()
   const [loading, setLoading] = useState(true)
   const [userData, setUserData] = useState(null)
-  const scheme = useColorScheme()
+  const [scheme, setScheme] = useState(colorScheme)
+  const [navigationProps, setNavigationProps] = useState(null)
 
-  const navigationProps = {
+  const navigationCurrentProps = {
     headerTintColor: 'white',
     headerStyle: { 
-      backgroundColor: scheme === 'dark' ? colors.dark : colors.darkPurple
+      backgroundColor: colorScheme === 'dark' ? colors.dark : colors.darkPurple
     },
     headerTitleStyle: { fontSize: 18 },
   }
-  const colorScheme = {
-    scheme, navigationProps
-  }
+
+  useEffect(() => {
+    setScheme(colorScheme)
+    setNavigationProps(navigationCurrentProps)
+  }, [colorScheme]);
 
   useEffect(() => {
     const usersRef = firebase.firestore().collection('users');
@@ -58,7 +61,7 @@ export default function App() {
     });
   }, []);
 
-   (async () => {
+  (async () => {
     const { status: existingStatus } = await Notifications.getPermissionsAsync()
     let finalStatus = existingStatus;
     if (existingStatus !== "granted") {
@@ -79,8 +82,8 @@ export default function App() {
   }
 
   return (
-    <ColorScheme.Provider value={colorScheme}>
-      <NavigationContainer theme={scheme === 'dark' ? DarkTheme : DefaultTheme}>
+    <ColorSchemeContext.Provider value={{scheme, navigationProps}}>
+      <NavigationContainer theme={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
         { userData ? (
           <UserDataContext.Provider value={{userData, setUserData}}>
             <TabNavigator/>
@@ -89,6 +92,6 @@ export default function App() {
           <LoginNavigator/>
         )}
       </NavigationContainer>
-    </ColorScheme.Provider>
+    </ColorSchemeContext.Provider>
   )
 }

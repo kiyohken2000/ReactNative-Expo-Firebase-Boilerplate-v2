@@ -23,6 +23,7 @@
 - expo-notifications
 - firebase
 - react-native-elements
+- react-native-paper
 - react-native-svg
 - react-native-vector-icons
 
@@ -38,6 +39,7 @@
 - Uploading images to Cloud Storage
 - Update user profile
 - Dynamic switching of dark themes by device appearance
+- Dynamic header title
 - Retrieving Expo push tokens and saving them to Firestore
 
 ## Difference from v1

@@ -1,19 +1,20 @@
 import React, { useState, useContext } from 'react'
-import { Text, View, StatusBar, Image, TextInput, TouchableOpacity } from 'react-native'
+import { Text, View, Image, TextInput, TouchableOpacity } from 'react-native'
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 import styles from '../../globalStyles'
+import SafareaBar from '../../components/SafareaBar'
 import { firebase } from '../../firebase/config'
 import Spinner from 'react-native-loading-spinner-overlay'
 import { useNavigation } from '@react-navigation/native'
 import { colors } from 'theme'
-import { ColorScheme } from '../../routes/navigation/Navigation'
+import { ColorSchemeContext } from '../../context/ColorSchemeContext'
 
 export default function Login() {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [spinner, setSpinner] = useState(false)
   const navigation = useNavigation()
-  const { scheme } = useContext(ColorScheme)
+  const { scheme } = useContext(ColorSchemeContext)
 
   const onFooterLinkPress = () => {
     navigation.navigate('Registration')
@@ -50,7 +51,7 @@ export default function Login() {
 
   return (
     <View style={styles.container}>
-      <StatusBar barStyle="light-content" />
+      <SafareaBar />
       <KeyboardAwareScrollView
         style={styles.main}
         keyboardShouldPersistTaps="always"

@@ -1,7 +1,7 @@
 import React, { useState, useContext } from 'react'
 import { createStackNavigator } from '@react-navigation/stack'
-import { ColorScheme } from '../Navigation'
 import { HomeTitleContext } from './HomeTitleContext'
+import { ColorSchemeContext } from '../../../context/ColorSchemeContext'
 
 // ------------------------------------
 // Scenes
@@ -24,7 +24,7 @@ const Stack = createStackNavigator()
 // ------------------------------------
 
 export const LoginNavigator = () => {
-  const { navigationProps } = useContext(ColorScheme)
+  const { navigationProps } = useContext(ColorSchemeContext)
   return (
     <Stack.Navigator headerMode="screen" screenOptions={navigationProps}>
       <Stack.Screen
@@ -40,7 +40,7 @@ export const LoginNavigator = () => {
 }
 
 export const HomeNavigator = () => {
-  const { navigationProps } = useContext(ColorScheme)
+  const { navigationProps } = useContext(ColorSchemeContext)
   const [title, setTitle] = useState('default title')
   return (
     <HomeTitleContext.Provider
@@ -69,7 +69,7 @@ export const HomeNavigator = () => {
 }
 
 export const ProfileNavigator = () => {
-  const { navigationProps } = useContext(ColorScheme)
+  const { navigationProps } = useContext(ColorSchemeContext)
   return (
     <Stack.Navigator headerMode="screen" screenOptions={navigationProps}>
       <Stack.Screen

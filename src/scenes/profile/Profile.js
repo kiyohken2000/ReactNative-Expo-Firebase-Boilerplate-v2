@@ -1,19 +1,20 @@
 import React, { useState, useContext } from 'react'
-import { Text, View, TouchableOpacity, StatusBar, ScrollView } from 'react-native'
+import { Text, View, TouchableOpacity, ScrollView } from 'react-native'
 import styles from '../../globalStyles'
+import SafareaBar from '../../components/SafareaBar'
 import { firebase } from '../../firebase/config'
 import { Restart } from 'fiction-expo-restart'
 import { Avatar } from 'react-native-elements'
 import Dialog from "react-native-dialog"
 import Spinner from 'react-native-loading-spinner-overlay'
-import { ColorScheme } from '../../routes/navigation/Navigation'
+import { ColorSchemeContext } from '../../context/ColorSchemeContext'
 import { useNavigation } from '@react-navigation/native'
 import { colors } from 'theme'
 import { UserDataContext } from '../../context/UserDataContext'
 
 export default function Profile() {
   const { userData } = useContext(UserDataContext)
-  const { scheme } = useContext(ColorScheme)
+  const { scheme } = useContext(ColorSchemeContext)
   const navigation = useNavigation()
   const [visible, setVisible] = useState(false)
   const [spinner, setSpinner] = useState(false)
@@ -52,7 +53,7 @@ export default function Profile() {
   
   return (
     <View style={styles.container}>
-      <StatusBar barStyle="light-content" />
+      <SafareaBar />
       <ScrollView style={styles.main}>
         <View style={styles.avatar}>
           <Avatar

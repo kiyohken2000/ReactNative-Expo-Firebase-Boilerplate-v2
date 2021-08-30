@@ -1,18 +1,19 @@
 import React, { useEffect, useState, useContext, useLayoutEffect } from 'react'
-import { Text, View, ScrollView, StatusBar, StyleSheet, TouchableOpacity } from 'react-native'
+import { Text, View, ScrollView, StyleSheet, TouchableOpacity } from 'react-native'
 import { useNavigation } from '@react-navigation/native'
 import { IconButton, Colors } from 'react-native-paper'
+import SafareaBar from '../../components/SafareaBar'
 import styles from '../../globalStyles'
 import { firebase } from '../../firebase/config'
-import { ColorScheme } from '../../routes/navigation/Navigation'
 import { colors } from 'theme'
 import { UserDataContext } from '../../context/UserDataContext'
+import { ColorSchemeContext } from '../../context/ColorSchemeContext'
 
 export default function Home() {
   const navigation = useNavigation()
   const [token, setToken] = useState('')
   const { userData } = useContext(UserDataContext)
-  const { scheme } = useContext(ColorScheme)
+  const { scheme } = useContext(ColorSchemeContext)
 
   useLayoutEffect(() => {
     navigation.setOptions({
@@ -21,11 +22,15 @@ export default function Home() {
           icon="cast"
           color={Colors.blue500}
           size={24}
-          onPress={() => alert('Tapped header button')}
+          onPress={() => headerButton()}
         />
       ),
     });
   }, [navigation]);
+
+  const headerButton = () => {
+    alert('Tapped header button')
+  }
 
   useEffect(() => {
     firebase.firestore()
@@ -46,7 +51,7 @@ export default function Home() {
 
   return (
     <View style={styles.container}>
-      <StatusBar barStyle="light-content" />
+      <SafareaBar />
         <ScrollView style={styles.main}>
           <View style={scheme === 'dark'?style.darkContent: style.lightContent}>
             <Text style={[styles.field, {color: scheme === 'dark'? colors.white: colors.primaryText}]}>Mail:</Text>
@@ -69,14 +74,16 @@ const style = StyleSheet.create({
   lightContent: {
     backgroundColor: colors.lightyellow,
     padding: 20,
-    borderRadius: 20,
+    borderRadius: 5,
+    marginTop: 30,
     marginLeft: 30,
     marginRight: 30,
   },
   darkContent: {
     backgroundColor: colors.gray,
     padding: 20,
-    borderRadius: 20,
+    borderRadius: 5,
+    marginTop: 30,
     marginLeft: 30,
     marginRight: 30,
   },

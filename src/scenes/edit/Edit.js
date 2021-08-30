@@ -1,20 +1,21 @@
 import React, { useState, useEffect, useContext } from 'react'
-import { Text, View, StatusBar, TextInput, TouchableOpacity, StyleSheet } from 'react-native'
+import { Text, View, TextInput, TouchableOpacity, StyleSheet } from 'react-native'
 import styles from '../../globalStyles'
+import SafareaBar from '../../components/SafareaBar'
 import { firebase } from '../../firebase/config'
 import { Avatar } from 'react-native-elements'
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 import * as ImagePicker from 'expo-image-picker'
 import * as ImageManipulator from 'expo-image-manipulator'
 import Constants from 'expo-constants'
-import { ColorScheme } from '../../routes/navigation/Navigation'
 import { useNavigation } from '@react-navigation/native'
 import { colors } from 'theme'
 import { UserDataContext } from '../../context/UserDataContext'
+import { ColorSchemeContext } from '../../context/ColorSchemeContext'
 
 export default function Edit() {
   const { userData } = useContext(UserDataContext)
-  const { scheme } = useContext(ColorScheme)
+  const { scheme } = useContext(ColorSchemeContext)
   const navigation = useNavigation()
   const [fullName, setFullName] = useState('')
   const [progress, setProgress] = useState('')
@@ -85,8 +86,9 @@ export default function Edit() {
     <View style={styles.container}>
       <KeyboardAwareScrollView
         style={styles.main}
-        keyboardShouldPersistTaps="always">
-        <StatusBar barStyle="light-content" />
+        keyboardShouldPersistTaps="always"
+      >
+        <SafareaBar />
           <View style={styles.avatar}>
             <Avatar
               size="xlarge"
