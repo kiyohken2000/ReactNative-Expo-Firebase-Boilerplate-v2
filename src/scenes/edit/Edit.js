@@ -19,7 +19,7 @@ export default function Edit() {
   const navigation = useNavigation()
   const [fullName, setFullName] = useState('')
   const [progress, setProgress] = useState('')
-  const [avatar, setAvatar] = useState('')
+  const [avatar, setAvatar] = useState(userData.avatar)
 
   useEffect(() => {
     setAvatar(userData.avatar)

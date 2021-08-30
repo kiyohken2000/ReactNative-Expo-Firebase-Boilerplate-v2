@@ -1,6 +1,6 @@
 import React, { useState, useContext } from 'react'
 import { createStackNavigator } from '@react-navigation/stack'
-import { HomeTitleContext } from './HomeTitleContext'
+import { HomeTitleContext } from '../../../context/HomeTitleContext'
 import { ColorSchemeContext } from '../../../context/ColorSchemeContext'
 
 // ------------------------------------

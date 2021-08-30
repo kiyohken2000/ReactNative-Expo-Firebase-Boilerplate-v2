@@ -15,13 +15,13 @@
 ## Libraries
 
 - Expo
+- firebase
 - axios
 - react-navigation
 - expo-constants
 - expo-image-manipulator
 - expo-image-picker
 - expo-notifications
-- firebase
 - react-native-elements
 - react-native-paper
 - react-native-svg

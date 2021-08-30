@@ -5,7 +5,7 @@ import SafareaBar from '../../components/SafareaBar'
 import { useNavigation } from '@react-navigation/native'
 import { useRoute } from '@react-navigation/native'
 import { colors } from 'theme'
-import { HomeTitleContext } from '../../routes/navigation/stacks/HomeTitleContext'
+import { HomeTitleContext } from '../../context/HomeTitleContext'
 import { ColorSchemeContext } from '../../context/ColorSchemeContext'
 import { useFocusEffect } from '@react-navigation/native'
 
