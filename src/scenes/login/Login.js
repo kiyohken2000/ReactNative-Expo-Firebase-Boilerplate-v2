@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react'
+import React, { useState, useContext, useEffect } from 'react'
 import { Text, View, Image, TextInput, TouchableOpacity } from 'react-native'
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 import styles from '../../globalStyles'
@@ -19,6 +19,10 @@ export default function Login() {
   const onFooterLinkPress = () => {
     navigation.navigate('Registration')
   }
+
+  useEffect(() => {
+    console.log('Login screen')
+  }, [])
 
   const onLoginPress = () => {
     setSpinner(true)

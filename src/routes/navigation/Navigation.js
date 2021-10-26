@@ -45,6 +45,7 @@ export default function App() {
   }, [colorScheme]);
 
   useEffect(() => {
+    console.log('fetch user data')
     const usersRef = firebase.firestore().collection('users');
     firebase.auth().onAuthStateChanged(user => {
       if (user) {
@@ -61,19 +62,22 @@ export default function App() {
     });
   }, []);
 
-  (async () => {
-    const { status: existingStatus } = await Notifications.getPermissionsAsync()
-    let finalStatus = existingStatus;
-    if (existingStatus !== "granted") {
-      const { status } = await Notifications.requestPermissionsAsync();
-      finalStatus = status;
-    }
-    if (finalStatus !== "granted") {
-      return;
-    }
-    const token = await Notifications.getExpoPushTokenAsync();
-    await firebase.firestore().collection("tokens").doc(userData.id).set({ token: token.data, id: userData.id })
-  })();
+  useEffect(() => {
+    (async () => {
+      console.log('get push token')
+      const { status: existingStatus } = await Notifications.getPermissionsAsync()
+      let finalStatus = existingStatus;
+      if (existingStatus !== "granted") {
+        const { status } = await Notifications.requestPermissionsAsync();
+        finalStatus = status;
+      }
+      if (finalStatus !== "granted") {
+        return;
+      }
+      const token = await Notifications.getExpoPushTokenAsync();
+      await firebase.firestore().collection("tokens").doc(userData.id).set({ token: token.data, id: userData.id })
+    })();
+  }, [userData])
 
   if (loading) {
     return (

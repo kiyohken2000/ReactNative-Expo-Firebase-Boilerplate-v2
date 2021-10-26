@@ -1,9 +1,8 @@
-import React, { useState, useContext } from 'react'
+import React, { useState, useContext, useEffect } from 'react'
 import { Text, View, TouchableOpacity, ScrollView } from 'react-native'
 import styles from '../../globalStyles'
 import SafareaBar from '../../components/SafareaBar'
 import { firebase } from '../../firebase/config'
-import { Restart } from 'fiction-expo-restart'
 import { Avatar } from 'react-native-elements'
 import Dialog from "react-native-dialog"
 import Spinner from 'react-native-loading-spinner-overlay'
@@ -13,11 +12,15 @@ import { colors } from 'theme'
 import { UserDataContext } from '../../context/UserDataContext'
 
 export default function Profile() {
-  const { userData } = useContext(UserDataContext)
+  const { userData, setUserData } = useContext(UserDataContext)
   const { scheme } = useContext(ColorSchemeContext)
   const navigation = useNavigation()
   const [visible, setVisible] = useState(false)
   const [spinner, setSpinner] = useState(false)
+
+  useEffect(() => {
+    console.log('Profile screen')
+  }, [])
 
   const goDetail = () => {
     navigation.navigate('Edit', { userData: userData })
@@ -25,7 +28,7 @@ export default function Profile() {
 
   const signOut = () => {
     firebase.auth().signOut()
-    Restart()
+    setUserData(null)
   }
 
   const showDialog = () => {

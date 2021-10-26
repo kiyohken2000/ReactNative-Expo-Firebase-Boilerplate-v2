@@ -22,6 +22,7 @@ export default function Edit() {
   const [avatar, setAvatar] = useState(userData.avatar)
 
   useEffect(() => {
+    console.log('Edit screen')
     setAvatar(userData.avatar)
     setFullName(userData.fullName)
   },[])

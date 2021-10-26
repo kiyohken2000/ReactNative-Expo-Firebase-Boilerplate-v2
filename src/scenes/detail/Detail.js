@@ -22,6 +22,10 @@ export default function Detail() {
     setTitle(title)
   });
 
+  useEffect(() => {
+    console.log('Detail screen')
+  }, [])
+
   return (
     <View style={styles.container}>
       <SafareaBar />

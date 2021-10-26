@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react'
+import React, { useState, useContext, useEffect } from 'react'
 import { Image, Text, TextInput, TouchableOpacity, View, Linking } from 'react-native'
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 import styles from '../../globalStyles'
@@ -17,6 +17,10 @@ export default function Registration() {
   const [spinner, setSpinner] = useState(false)
   const navigation = useNavigation()
   const { scheme } = useContext(ColorSchemeContext)
+
+  useEffect(() => {
+    console.log('Registration screen')
+  }, [])
 
   const onFooterLinkPress = () => {
     navigation.navigate('Login')
@@ -37,7 +41,7 @@ export default function Registration() {
           id: uid,
           email,
           fullName,
-          avatar: 'https://firebasestorage.googleapis.com/v0/b/reactnative-expo-boilerplate.appspot.com/o/icon.png?alt=media&token=7f2812b7-e1d9-48e3-9720-e79d6650cea5',
+          avatar: 'https://firebasestorage.googleapis.com/v0/b/expo-boilerplate-v2.appspot.com/o/icon.png?alt=media&token=505f30e6-6702-410a-84e7-f66b3ff60daf',
         };
         const usersRef = firebase.firestore().collection('users')
         usersRef

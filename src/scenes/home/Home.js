@@ -33,6 +33,7 @@ export default function Home() {
   }
 
   useEffect(() => {
+    console.log('Home screen')
     firebase.firestore()
       .collection('tokens')
       .doc(userData.id)
@@ -56,8 +57,12 @@ export default function Home() {
           <View style={scheme === 'dark'?style.darkContent: style.lightContent}>
             <Text style={[styles.field, {color: scheme === 'dark'? colors.white: colors.primaryText}]}>Mail:</Text>
             <Text style={[styles.title, {color: scheme === 'dark'? colors.white: colors.primaryText}]}>{userData.email}</Text>
-            <Text style={[styles.field, {color: scheme === 'dark'? colors.white: colors.primaryText}]}>Expo push token:</Text>
-            <Text style={[styles.title, {color: scheme === 'dark'? colors.white: colors.primaryText}]}>{token.token}</Text>
+            {token?
+              <>
+                <Text style={[styles.field, {color: scheme === 'dark'? colors.white: colors.primaryText}]}>Expo push token:</Text>
+                <Text style={[styles.title, {color: scheme === 'dark'? colors.white: colors.primaryText}]}>{token.token}</Text>
+              </>:null
+            }
           </View>
           <TouchableOpacity
             style={[styles.button, {backgroundColor:colors.primary}]}

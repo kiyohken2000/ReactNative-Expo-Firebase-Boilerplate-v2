@@ -26,7 +26,6 @@
     "expo-image-manipulator": "~9.2.2",
     "expo-image-picker": "~10.2.2",
     "expo-notifications": "~0.12.3",
-    "fiction-expo-restart": "^1.1.0",
     "firebase": "8.2.3",
     "global": "^4.4.0",
     "moment": "^2.24.0",
