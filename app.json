@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "rnfbblv2",
-    "slug": "rnfbblv2",
+    "name": "reactnative-expo-firebase-boilerplate-v2",
+    "slug": "reactnative-expo-firebase-boilerplate-v2",
     "privacy": "public",
     "platforms": [
       "ios",
