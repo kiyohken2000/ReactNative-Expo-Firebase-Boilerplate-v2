@@ -21,7 +21,7 @@ export default function Login() {
   }
 
   useEffect(() => {
-    console.log('Login screen')
+    console.log('Login screen, ログイン画面')
   }, [])
 
   const onLoginPress = () => {
