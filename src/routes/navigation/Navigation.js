@@ -37,7 +37,7 @@ export default function App() {
       backgroundColor: colorScheme === 'dark' ? colors.dark : colors.darkPurple
     },
     headerTitleStyle: { fontSize: 18 },
-    headerMode: 'screen'
+    headerMode: 'float'
   }
 
   useEffect(() => {

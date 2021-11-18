@@ -12,12 +12,14 @@ import Home from '../../../scenes/home'
 import Detail from '../../../scenes/detail'
 import Profile from '../../../scenes/profile'
 import Edit from '../../../scenes/edit'
+import Post from '../../../scenes/post'
 
 // ------------------------------------
 // Constants
 // ------------------------------------
 
 const Stack = createStackNavigator()
+const RootStack = createStackNavigator();
 
 // ------------------------------------
 // Navigators
@@ -52,15 +54,27 @@ export const HomeNavigator = () => {
       <HomeTitleContext.Consumer>
         {(ctx) => (
           <Stack.Navigator screenOptions={navigationProps}>
-            <Stack.Screen
-              name="Home"
-              component={Home}
-            />
-            <Stack.Screen
-              name="Detail"
-              component={Detail}
-              options={{ title: ctx.title }}
-            />
+            <RootStack.Group>
+              <Stack.Screen
+                name="Home"
+                component={Home}
+              />
+              <Stack.Screen
+                name="Detail"
+                component={Detail}
+                options={{ title: ctx.title }}
+              />
+            </RootStack.Group>
+            <RootStack.Group
+              screenOptions={{
+                presentation: 'modal',
+                headerShown: false
+              }}>
+              <RootStack.Screen
+                name="Post"
+                component={Post}
+              />
+            </RootStack.Group>
           </Stack.Navigator>
       )}
       </HomeTitleContext.Consumer>
@@ -72,14 +86,26 @@ export const ProfileNavigator = () => {
   const { navigationProps } = useContext(ColorSchemeContext)
   return (
     <Stack.Navigator screenOptions={navigationProps}>
-      <Stack.Screen
-        name="Profile"
-        component={Profile}
-      />
-      <Stack.Screen
-        name="Edit"
-        component={Edit}
-      />
+      <RootStack.Group>
+        <Stack.Screen
+          name="Profile"
+          component={Profile}
+        />
+        <Stack.Screen
+          name="Edit"
+          component={Edit}
+        />
+      </RootStack.Group>
+      <RootStack.Group
+        screenOptions={{
+          presentation: 'modal',
+          headerShown: false
+        }}>
+        <RootStack.Screen
+          name="Post"
+          component={Post}
+        />
+      </RootStack.Group>
     </Stack.Navigator>
   )
 }

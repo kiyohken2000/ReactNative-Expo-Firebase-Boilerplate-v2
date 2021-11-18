@@ -23,9 +23,13 @@ const TabNavigator = () => {
           // paddingTop: 5,
         }
       }}
-      screenOptions={{
-        headerShown: false
+      defaultScreenOptions={{
+        headerShown:false,
+        headerTransparent:true
       }}
+      screenOptions={({ route }) => ({
+        headerShown: false,
+      })}
       initialRouteName="HomeTab"
       swipeEnabled={false}
     >

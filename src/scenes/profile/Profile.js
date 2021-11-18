@@ -78,6 +78,12 @@ export default function Profile() {
           <Text style={styles.buttonText}>Edit</Text>
         </TouchableOpacity>
         <TouchableOpacity
+          style={[styles.button, {backgroundColor:colors.tertiary}]}
+          onPress={() => navigation.navigate('Post', { data: userData, from: 'Profile Screen' })}
+        >
+          <Text style={styles.buttonText}>Opne Modal</Text>
+        </TouchableOpacity>
+        <TouchableOpacity
           style={[styles.button, {backgroundColor:colors.secondary}]}
           onPress={showDialog}
         >

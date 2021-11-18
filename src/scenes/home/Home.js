@@ -33,22 +33,19 @@ export default function Home() {
   }
 
   useEffect(() => {
-    console.log('Home screen')
-    firebase.firestore()
+    const tokenListner = firebase.firestore()
       .collection('tokens')
       .doc(userData.id)
-      .get().then((doc) => {
+      .onSnapshot(function(doc) {
         if (doc.exists) {
-          console.log("Document data:", doc.data());
           const data = doc.data()
           setToken(data)
         } else {
           console.log("No such document!");
         }
-      }).catch((error) => {
-        console.log("Error getting document:", error);
-      });
-  }, []);
+      })
+      return () => tokenListner()
+  }, [])
 
   return (
     <View style={styles.container}>
@@ -69,6 +66,12 @@ export default function Home() {
             onPress={() => navigation.navigate('Detail', { data: userData, from: 'Home', title: userData.email})}
           >
             <Text style={styles.buttonText}>Go to Detail</Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            style={[styles.button, {backgroundColor:colors.tertiary}]}
+            onPress={() => navigation.navigate('Post', { data: userData, from: 'Home Screen' })}
+          >
+            <Text style={styles.buttonText}>Opne Modal</Text>
           </TouchableOpacity>
         </ScrollView>
     </View>
