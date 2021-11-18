@@ -1,18 +1,19 @@
 import React, { useState, useContext, useEffect } from 'react'
 import { Text, View, TouchableOpacity, ScrollView } from 'react-native'
-import styles from '../../globalStyles'
-import SafareaBar from '../../components/SafareaBar'
-import { firebase } from '../../firebase/config'
 import { Avatar } from 'react-native-elements'
 import Dialog from "react-native-dialog"
 import Spinner from 'react-native-loading-spinner-overlay'
+import styles from '../../globalStyles'
+import SafareaBar from '../../components/SafareaBar'
+import { Restart } from '../../components/Restart'
+import { firebase } from '../../firebase/config'
 import { ColorSchemeContext } from '../../context/ColorSchemeContext'
+import { UserDataContext } from '../../context/UserDataContext'
 import { useNavigation } from '@react-navigation/native'
 import { colors } from 'theme'
-import { UserDataContext } from '../../context/UserDataContext'
 
 export default function Profile() {
-  const { userData, setUserData } = useContext(UserDataContext)
+  const { userData } = useContext(UserDataContext)
   const { scheme } = useContext(ColorSchemeContext)
   const navigation = useNavigation()
   const [visible, setVisible] = useState(false)
@@ -28,7 +29,7 @@ export default function Profile() {
 
   const signOut = () => {
     firebase.auth().signOut()
-    setUserData(null)
+    Restart()
   }
 
   const showDialog = () => {
