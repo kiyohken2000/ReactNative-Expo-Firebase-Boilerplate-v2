@@ -2,7 +2,6 @@ import 'react-native-gesture-handler'
 import React, { useEffect, useState } from 'react'
 import { NavigationContainer } from '@react-navigation/native'
 import { firebase } from '../../firebase/config'
-import { colors } from 'theme'
 import * as Notifications from 'expo-notifications'
 import { useColorScheme } from 'react-native'
 import { DefaultTheme, DarkTheme } from '@react-navigation/native'
@@ -29,20 +28,9 @@ export default function App() {
   const [loading, setLoading] = useState(true)
   const [userData, setUserData] = useState(null)
   const [scheme, setScheme] = useState(colorScheme)
-  const [navigationProps, setNavigationProps] = useState(null)
-
-  const navigationCurrentProps = {
-    headerTintColor: 'white',
-    headerStyle: { 
-      backgroundColor: colorScheme === 'dark' ? colors.dark : colors.darkPurple
-    },
-    headerTitleStyle: { fontSize: 18 },
-    headerMode: 'float'
-  }
 
   useEffect(() => {
     setScheme(colorScheme)
-    setNavigationProps(navigationCurrentProps)
   }, [colorScheme]);
 
   useEffect(() => {
@@ -87,7 +75,7 @@ export default function App() {
   }
 
   return (
-    <ColorSchemeContext.Provider value={{scheme, navigationProps}}>
+    <ColorSchemeContext.Provider value={{scheme}}>
       <NavigationContainer theme={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
         { userData ? (
           <UserDataContext.Provider value={{userData, setUserData}}>

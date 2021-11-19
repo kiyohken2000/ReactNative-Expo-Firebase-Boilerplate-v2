@@ -6,6 +6,8 @@
 
 <img src='https://github.com/kiyohken2000/ReactNative-Expo-Firebase-Boilerplate-v2/blob/master/__DELELE_ME__/img1.jpg' width='80%'>
 
+<img src='https://github.com/kiyohken2000/ReactNative-Expo-Firebase-Boilerplate-v2/blob/master/__DELELE_ME__/img6.jpg' width='80%'>
+
 ## Infrastructure
 
 - React Native 
@@ -29,7 +31,7 @@
 
 ## Features
 
-- Bottom tab and Stack navigation
+- BottomTab, TopTab, Modal and Stack navigation
 - Registration with E-mail & Password
 - Login with E-mail and Password
 - Deleting an account
@@ -135,15 +137,10 @@ service firebase.storage {
 
 - Write the copied API Key in your app.
 
-`src\firebase\config.js`
+`src\config.js`
 
 ```javascript
-import * as firebase from 'firebase'
-import "firebase/auth"
-import "firebase/firestore"
-import "firebase/storage"
-
-const firebaseConfig = {
+const firebaseKey = {
   apiKey: "Your API Key",
   authDomain: "Your API Key",
   projectId: "Your API Key",
@@ -152,12 +149,6 @@ const firebaseConfig = {
   appId: "Your API Key",
   measurementId: "Your API Key"
 };
-
-if (!firebase.apps.length) {
-  firebase.initializeApp(firebaseConfig);
-}
-
-export { firebase };
 ```
 
 ### 3. Update app.json and default avatar
@@ -169,15 +160,10 @@ Replace the name and Slug with yours.
 "slug": "your-app-name",
 ```
 
-**src\scenes\registration\Registration.js**
+`src\config.js`
 
 ```javascript
-const data = {
-  id: uid,
-  email,
-  fullName,
-  avatar: 'Your default icon URL',
-};
+const defaultAvatar = 'Your default icon URL'
 ```
 
 ### 4. Run Your App

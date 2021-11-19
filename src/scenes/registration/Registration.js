@@ -8,6 +8,7 @@ import Spinner from 'react-native-loading-spinner-overlay'
 import { useNavigation } from '@react-navigation/native'
 import { colors } from 'theme'
 import { ColorSchemeContext } from '../../context/ColorSchemeContext'
+import { defaultAvatar, eulaLink } from '../../config'
 
 export default function Registration() {
   const [fullName, setFullName] = useState('')
@@ -41,7 +42,7 @@ export default function Registration() {
           id: uid,
           email,
           fullName,
-          avatar: 'https://firebasestorage.googleapis.com/v0/b/expo-boilerplate-v2.appspot.com/o/icon.png?alt=media&token=505f30e6-6702-410a-84e7-f66b3ff60daf',
+          avatar: defaultAvatar,
         };
         const usersRef = firebase.firestore().collection('users')
         usersRef
@@ -118,7 +119,7 @@ export default function Registration() {
         <View style={styles.footerView}>
           <Text style={[styles.footerText, {color: scheme === 'dark'? colors.white: colors.primaryText}]}>Already got an account? <Text onPress={onFooterLinkPress} style={styles.footerLink}>Log in</Text></Text>
         </View>
-        <Text style={styles.link} onPress={ ()=>{ Linking.openURL('https://github.com/kiyohken2000/ReactNative-Expo-Firebase-Boilerplate-v2')}}>Require agree EULA</Text>
+        <Text style={styles.link} onPress={ ()=>{ Linking.openURL(eulaLink)}}>Require agree EULA</Text>
       </KeyboardAwareScrollView>
       <Spinner
         visible={spinner}
