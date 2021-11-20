@@ -7,7 +7,7 @@ import { FollowerNavigator } from '../stacks/FollowerNavigator'
 
 const Tab = createMaterialTopTabNavigator()
 
-export const FolloFollowerNavigator = () => {
+export const FollowFollowerNavigator = () => {
   return (
     <Tab.Navigator
       initialRouteName="FollowTab"
