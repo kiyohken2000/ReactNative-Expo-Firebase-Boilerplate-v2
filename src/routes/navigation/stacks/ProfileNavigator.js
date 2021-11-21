@@ -2,6 +2,7 @@ import React, { useContext } from 'react'
 import { createStackNavigator } from '@react-navigation/stack'
 import { ColorSchemeContext } from '../../../context/ColorSchemeContext'
 import { lightProps, darkProps } from './navigationProps/navigationProps'
+import HeaderStyle from './headerComponents/HeaderStyle'
 
 import Profile from '../../../scenes/profile'
 import Edit from '../../../scenes/edit'
@@ -19,10 +20,16 @@ export const ProfileNavigator = () => {
         <Stack.Screen
           name="Profile"
           component={Profile}
+          options={({ navigation }) => ({
+            headerBackground: () => <HeaderStyle />,
+          })}
         />
         <Stack.Screen
           name="Edit"
           component={Edit}
+          options={({ navigation }) => ({
+            headerBackground: () => <HeaderStyle />,
+          })}
         />
       </RootStack.Group>
       <RootStack.Group

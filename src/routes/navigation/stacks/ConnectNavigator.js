@@ -2,6 +2,7 @@ import React, { useContext } from 'react'
 import { createStackNavigator } from '@react-navigation/stack'
 import { ColorSchemeContext } from '../../../context/ColorSchemeContext'
 import { lightProps, darkProps } from './navigationProps/navigationProps'
+import HeaderStyle from './headerComponents/HeaderStyle'
 
 import { FollowFollowerNavigator } from '../toptabs/followfollowerNavigator'
 import Post from '../../../scenes/post'
@@ -18,6 +19,9 @@ export const ConnectNavigator = () => {
         <Stack.Screen
           name="Connect"
           component={FollowFollowerNavigator}
+          options={({ navigation }) => ({
+            headerBackground: () => <HeaderStyle />,
+          })}
         />
       </RootStack.Group>
       <RootStack.Group

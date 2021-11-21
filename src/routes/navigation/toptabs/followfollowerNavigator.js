@@ -1,9 +1,9 @@
 import React from 'react'
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs'
-import { navigationProps, screenOptions } from './navigationProps/navigationProps'
+import { screenOptions } from './navigationProps/navigationProps'
 
-import { FollowNavigator } from '../stacks/FollowNavigator'
-import { FollowerNavigator } from '../stacks/FollowerNavigator'
+import { FollowNavigator } from '../stacks/topTabStacks/FollowNavigator'
+import { FollowerNavigator } from '../stacks/topTabStacks/FollowerNavigator'
 
 const Tab = createMaterialTopTabNavigator()
 

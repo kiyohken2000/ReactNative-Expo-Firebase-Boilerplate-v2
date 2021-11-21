@@ -2,6 +2,7 @@ import React, { useContext } from 'react'
 import { createStackNavigator } from '@react-navigation/stack'
 import { ColorSchemeContext } from '../../../context/ColorSchemeContext'
 import { lightProps, darkProps } from './navigationProps/navigationProps'
+import HeaderStyle from './headerComponents/HeaderStyle'
 
 import Login from '../../../scenes/login'
 import Registration from '../../../scenes/registration'
@@ -16,10 +17,16 @@ export const LoginNavigator = () => {
       <Stack.Screen
         name="Login"
         component={Login}
+        options={({ navigation }) => ({
+          headerBackground: () => <HeaderStyle />,
+        })}
       />
       <Stack.Screen
         name="Registration"
         component={Registration}
+        options={({ navigation }) => ({
+          headerBackground: () => <HeaderStyle />,
+        })}
       />
     </Stack.Navigator>
   )

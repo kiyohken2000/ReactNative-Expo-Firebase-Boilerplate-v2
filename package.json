@@ -26,6 +26,7 @@
     "expo-font": "~10.0.3",
     "expo-image-manipulator": "~10.1.2",
     "expo-image-picker": "~11.0.3",
+    "expo-linear-gradient": "~10.0.3",
     "expo-notifications": "~0.13.3",
     "expo-updates": "~0.10.15",
     "firebase": "8.2.3",
