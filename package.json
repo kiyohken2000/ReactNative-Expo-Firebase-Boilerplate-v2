@@ -11,6 +11,7 @@
     "test": "node_modules/.bin/jest --passWithNoTests"
   },
   "dependencies": {
+    "@react-native-async-storage/async-storage": "~1.15.0",
     "@react-native-community/masked-view": "0.1.10",
     "@react-navigation/bottom-tabs": "^6.0.9",
     "@react-navigation/drawer": "^6.1.8",
@@ -46,6 +47,7 @@
     "react-native-reanimated": "~2.2.0",
     "react-native-safe-area-context": "3.3.2",
     "react-native-screens": "~3.8.0",
+    "react-native-storage": "^1.0.1",
     "react-native-svg": "12.1.1",
     "react-native-svg-transformer": "^0.14.3",
     "react-native-tab-view": "^3.1.1",
