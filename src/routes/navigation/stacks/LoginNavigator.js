@@ -18,14 +18,14 @@ export const LoginNavigator = () => {
         name="Login"
         component={Login}
         options={({ navigation }) => ({
-          headerBackground: () => <HeaderStyle />,
+          headerBackground: scheme === 'dark' ? null: () => <HeaderStyle />,
         })}
       />
       <Stack.Screen
         name="Registration"
         component={Registration}
         options={({ navigation }) => ({
-          headerBackground: () => <HeaderStyle />,
+          headerBackground: scheme === 'dark' ? null: () => <HeaderStyle />,
         })}
       />
     </Stack.Navigator>

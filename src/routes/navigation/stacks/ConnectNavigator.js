@@ -20,7 +20,7 @@ export const ConnectNavigator = () => {
           name="Connect"
           component={FollowFollowerNavigator}
           options={({ navigation }) => ({
-            headerBackground: () => <HeaderStyle />,
+            headerBackground: scheme === 'dark' ? null: () => <HeaderStyle />,
           })}
         />
       </RootStack.Group>

@@ -10,7 +10,4 @@ const HeaderStyle = () => (
   />
 )
 
-HeaderStyle.propTypes = {}
-HeaderStyle.defaultProps = {}
-
 export default HeaderStyle

@@ -21,14 +21,14 @@ export const ProfileNavigator = () => {
           name="Profile"
           component={Profile}
           options={({ navigation }) => ({
-            headerBackground: () => <HeaderStyle />,
+            headerBackground: scheme === 'dark' ? null: () => <HeaderStyle />,
           })}
         />
         <Stack.Screen
           name="Edit"
           component={Edit}
           options={({ navigation }) => ({
-            headerBackground: () => <HeaderStyle />,
+            headerBackground: scheme === 'dark' ? null: () => <HeaderStyle />,
           })}
         />
       </RootStack.Group>

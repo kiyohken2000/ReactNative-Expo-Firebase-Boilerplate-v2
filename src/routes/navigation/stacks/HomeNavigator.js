@@ -31,7 +31,7 @@ export const HomeNavigator = () => {
                 name="Home"
                 component={Home}
                 options={({ navigation }) => ({
-                  headerBackground: () => <HeaderStyle />,
+                   headerBackground: scheme === 'dark' ? null: () => <HeaderStyle />,
                 })}
               />
               <Stack.Screen
@@ -39,7 +39,7 @@ export const HomeNavigator = () => {
                 component={Detail}
                 options={{ 
                   title: ctx.title,
-                  headerBackground: () => <HeaderStyle />,
+                  headerBackground: scheme === 'dark' ? null: () => <HeaderStyle />,
                 }}
               />
             </RootStack.Group>
