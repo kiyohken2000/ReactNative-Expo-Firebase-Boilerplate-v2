@@ -60,7 +60,7 @@
   "devDependencies": {
     "babel-eslint": "^10.1.0",
     "babel-plugin-module-resolver": "^4.0.0",
-    "babel-preset-expo": "9.0.1",
+    "babel-preset-expo": "9.0.2",
     "braces": ">=2.3.1",
     "eslint": "^6.8.0",
     "eslint-config-airbnb": "^18.1.0",
