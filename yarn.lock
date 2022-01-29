@@ -7970,6 +7970,17 @@ expo-asset@~8.4.4:
     path-browserify "^1.0.0"
     url-parse "^1.4.4"
 
+expo-asset@~8.4.6:
+  version "8.4.6"
+  resolved "https://registry.yarnpkg.com/expo-asset/-/expo-asset-8.4.6.tgz#1c40e9badac66dbd3d2be2810711937e5b9b09bd"
+  integrity sha512-Kpzcmmf1lceHnZkAdJOvq7l7SU/hCL59vAj2xUZS66U6lFkUf7LNEA/NzILA56loCd4cka5ShYlWs+BMchyFDQ==
+  dependencies:
+    blueimp-md5 "^2.10.0"
+    invariant "^2.2.4"
+    md5-file "^3.2.3"
+    path-browserify "^1.0.0"
+    url-parse "^1.4.4"
+
 expo-cli@^3.20.0:
   version "3.28.0"
   resolved "https://registry.yarnpkg.com/expo-cli/-/expo-cli-3.28.0.tgz#946a19846e7a9e3f3d40e37e1f2a12c3e111e358"
@@ -8167,10 +8178,10 @@ expo-updates-interface@~0.5.0:
   resolved "https://registry.yarnpkg.com/expo-updates-interface/-/expo-updates-interface-0.5.0.tgz#30b05b9e190b3e2662d7cc26cd84d305d7ab4217"
   integrity sha512-3Yhip5LQ6x1nQ/2Xm/uP3Oeann7YkaBwsdUpxbcMtn2Ayucuu9U7r9ltwzBFxC4RWebfhXGJZ5+gx85y0leGXQ==
 
-expo-updates@~0.11.2:
-  version "0.11.2"
-  resolved "https://registry.yarnpkg.com/expo-updates/-/expo-updates-0.11.2.tgz#7b3bd1662a538232e03ee77d4e3e7fbac89de941"
-  integrity sha512-75zH4G2CXXdKdr2pozHBoHlP6ftchtTRNn5dtXqJIroEEYstTTP4DN5s3MR3mJN+D1rgPdx9+p4aUPAfrTsDPA==
+expo-updates@~0.11.5:
+  version "0.11.5"
+  resolved "https://registry.yarnpkg.com/expo-updates/-/expo-updates-0.11.5.tgz#a62349a954c97032646182092e6d3df480e3a7e3"
+  integrity sha512-mG6IMlwg+OSnZFZo8U4pk72lDEbTppNjCnCKJdNtTLz0qRoGW8jcSjmNg6Se5uOHe2DAV/LMUR0t/m7hnoaOfQ==
   dependencies:
     "@expo/config" "^6.0.6"
     "@expo/config-plugins" "^4.0.2"
