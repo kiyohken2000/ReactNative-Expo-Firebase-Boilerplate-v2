@@ -5,7 +5,6 @@ import { lightProps, darkProps } from './navigationProps/navigationProps'
 import HeaderStyle from './headerComponents/HeaderStyle'
 
 import { FollowFollowerNavigator } from '../toptabs/followfollowerNavigator'
-import Post from '../../../scenes/post'
 
 const Stack = createStackNavigator()
 const RootStack = createStackNavigator()
@@ -22,16 +21,6 @@ export const ConnectNavigator = () => {
           options={({ navigation }) => ({
             headerBackground: scheme === 'dark' ? null: () => <HeaderStyle />,
           })}
-        />
-      </RootStack.Group>
-      <RootStack.Group
-        screenOptions={{
-          presentation: 'modal',
-          headerShown: false
-        }}>
-        <RootStack.Screen
-          name="Post"
-          component={Post}
         />
       </RootStack.Group>
     </Stack.Navigator>

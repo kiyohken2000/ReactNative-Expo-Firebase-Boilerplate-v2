@@ -6,7 +6,6 @@ import HeaderStyle from './headerComponents/HeaderStyle'
 
 import Profile from '../../../scenes/profile'
 import Edit from '../../../scenes/edit'
-import Post from '../../../scenes/post'
 
 const Stack = createStackNavigator()
 const RootStack = createStackNavigator()
@@ -30,16 +29,6 @@ export const ProfileNavigator = () => {
           options={({ navigation }) => ({
             headerBackground: scheme === 'dark' ? null: () => <HeaderStyle />,
           })}
-        />
-      </RootStack.Group>
-      <RootStack.Group
-        screenOptions={{
-          presentation: 'modal',
-          headerShown: false
-        }}>
-        <RootStack.Screen
-          name="Post"
-          component={Post}
         />
       </RootStack.Group>
     </Stack.Navigator>

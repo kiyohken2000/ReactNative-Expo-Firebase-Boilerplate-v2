@@ -7,7 +7,6 @@ import HeaderStyle from './headerComponents/HeaderStyle'
 
 import Home from '../../../scenes/home'
 import Detail from '../../../scenes/detail'
-import Post from '../../../scenes/post'
 
 const Stack = createStackNavigator()
 const RootStack = createStackNavigator()
@@ -41,16 +40,6 @@ export const HomeNavigator = () => {
                   title: ctx.title,
                   headerBackground: scheme === 'dark' ? null: () => <HeaderStyle />,
                 }}
-              />
-            </RootStack.Group>
-            <RootStack.Group
-              screenOptions={{
-                presentation: 'modal',
-                headerShown: false
-              }}>
-              <RootStack.Screen
-                name="Post"
-                component={Post}
               />
             </RootStack.Group>
           </Stack.Navigator>
