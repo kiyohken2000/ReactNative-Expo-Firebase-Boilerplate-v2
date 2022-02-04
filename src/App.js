@@ -3,6 +3,8 @@ import { View } from 'react-native'
 import { Provider } from 'react-redux'
 import store from 'utils/store'
 import 'utils/ignore'
+import { ColorSchemeContextProvider } from './context/ColorSchemeContext'
+import { UserDataContextProvider } from './context/UserDataContext'
 
 // assets
 import { imageAssets } from 'theme/images'
@@ -29,7 +31,11 @@ const App = () => {
   if (!didLoad) return <View />
   return (
     <Provider store={store}>
-      <Router />
+      <ColorSchemeContextProvider>
+        <UserDataContextProvider>
+          <Router />
+        </UserDataContextProvider>
+      </ColorSchemeContextProvider>
     </Provider>
   )
 }

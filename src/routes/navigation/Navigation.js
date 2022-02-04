@@ -1,13 +1,12 @@
 import 'react-native-gesture-handler'
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useContext } from 'react'
 import { NavigationContainer } from '@react-navigation/native'
 import { firebase } from '../../firebase/config'
 import * as Notifications from 'expo-notifications'
-import { useColorScheme } from 'react-native'
 import { DefaultTheme, DarkTheme } from '@react-navigation/native'
-import { UserDataContext } from '../../context/UserDataContext'
-import { ColorSchemeContext } from '../../context/ColorSchemeContext'
 import { decode, encode } from 'base-64'
+import { ColorSchemeContext } from '../../context/ColorSchemeContext'
+import { UserDataContext } from '../../context/UserDataContext'
 if (!global.btoa) { global.btoa = encode }
 if (!global.atob) { global.atob = decode }
 
@@ -24,14 +23,9 @@ Notifications.setNotificationHandler({
 });
 
 export default function App() {
-  const colorScheme = useColorScheme()
   const [loading, setLoading] = useState(true)
-  const [userData, setUserData] = useState(null)
-  const [scheme, setScheme] = useState(colorScheme)
-
-  useEffect(() => {
-    setScheme(colorScheme)
-  }, [colorScheme]);
+  const { scheme } = useContext(ColorSchemeContext)
+  const { userData, setUserData } = useContext(UserDataContext)
 
   useEffect(() => {
     console.log('fetch user data')
@@ -75,16 +69,12 @@ export default function App() {
   }
 
   return (
-    <ColorSchemeContext.Provider value={{scheme}}>
-      <NavigationContainer theme={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
-        { userData ? (
-          <UserDataContext.Provider value={{userData, setUserData}}>
-            <TabNavigator/>
-          </UserDataContext.Provider>
-          ) : (
-          <LoginNavigator/>
-        )}
-      </NavigationContainer>
-    </ColorSchemeContext.Provider>
+    <NavigationContainer theme={scheme === 'dark' ? DarkTheme : DefaultTheme}>
+      { userData ? (
+        <TabNavigator/>
+        ) : (
+        <LoginNavigator/>
+      )}
+    </NavigationContainer>
   )
 }
