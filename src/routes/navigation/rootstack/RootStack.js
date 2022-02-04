@@ -1,5 +1,5 @@
 import React, { useState, useContext, useEffect } from "react";
-import { createStackNavigator } from '@react-navigation/stack'
+import { createStackNavigator, TransitionPresets } from '@react-navigation/stack'
 import TabNavigator from "../tabs/Tabs";
 import { ModalStacks } from "../stacks/ModalStacks/ModalStacks";
 import * as Notifications from 'expo-notifications'
@@ -50,6 +50,9 @@ export default function RootStack() {
         screenOptions={{
           presentation: 'modal',
           headerShown: false,
+          gestureEnabled: true,
+          cardOverlayEnabled: true,
+          ...TransitionPresets.ModalPresentationIOS,
         }}
       >
         <Stack.Screen
