@@ -79,7 +79,15 @@ export default function Profile() {
         </TouchableOpacity>
         <TouchableOpacity
           style={[styles.button, {backgroundColor:colors.tertiary}]}
-          onPress={() => navigation.navigate('Post', { data: userData, from: 'Profile Screen' })}
+          onPress={() => {
+            navigation.navigate('ModalStacks', {
+              screen: 'Post',
+              params: {
+                data: userData,
+                from: 'Profile screen'
+              }
+            })
+          }}
         >
           <Text style={styles.buttonText}>Opne Modal</Text>
         </TouchableOpacity>

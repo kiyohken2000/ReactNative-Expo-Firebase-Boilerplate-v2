@@ -2,9 +2,10 @@ import React, { useState, useEffect, useContext } from 'react'
 import { Text, View, StyleSheet, TouchableOpacity } from 'react-native'
 import styles from '../../globalStyles'
 import SafareaBar from '../../components/SafareaBar'
-import { useRoute } from '@react-navigation/native'
+import { useRoute, useFocusEffect, useNavigation } from '@react-navigation/native'
 import { colors } from 'theme'
 import { ColorSchemeContext } from '../../context/ColorSchemeContext'
+import { HomeTitleContext } from '../../context/HomeTitleContext'
 import { storage } from '../../components/Storage'
 import moment from 'moment'
 
@@ -14,11 +15,17 @@ export default function Post() {
   const from = route.params.from
   const { scheme } = useContext(ColorSchemeContext)
   const [date, setDate] = useState('')
+  const { setTitle } = useContext(HomeTitleContext)
+  const navigation = useNavigation()
 
   useEffect(() => {
     console.log('Post screen')
     loadStorage()
   }, [])
+
+  useFocusEffect(() => {
+    setTitle(userData.fullName)
+  });
 
   const loadStorage = async() => {
     try {
@@ -78,6 +85,12 @@ export default function Post() {
           onPress={() => onRemovePress()}
         >
           <Text style={styles.buttonText}>Remove Date</Text>
+        </TouchableOpacity>
+        <TouchableOpacity
+          style={[styles.button, {backgroundColor:colors.tertiary}]}
+          onPress={() => navigation.navigate('Print')}
+        >
+          <Text style={styles.buttonText}>Go to Print</Text>
         </TouchableOpacity>
       </View>
     </View>

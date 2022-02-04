@@ -23,7 +23,15 @@ export default function Follow() {
         <Text style={[styles.field, {color: scheme === 'dark'? colors.white: colors.primaryText}]}>Follow Screen</Text>
         <TouchableOpacity
           style={[styles.button, {backgroundColor:colors.tertiary}]}
-          onPress={() => navigation.navigate('Post', { data: userData, from: 'Follow Screen' })}
+          onPress={() => {
+            navigation.navigate('ModalStacks', {
+              screen: 'Post',
+              params: {
+                data: userData,
+                from: 'Follow screen'
+              }
+            })
+          }}
         >
           <Text style={styles.buttonText}>Opne Modal</Text>
         </TouchableOpacity>

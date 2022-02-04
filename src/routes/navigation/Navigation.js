@@ -13,6 +13,7 @@ if (!global.atob) { global.atob = decode }
 import { LoginNavigator } from './stacks'
 import TabNavigator from './tabs'
 // import DrawerNavigator from './drawer'
+import RootStack from './rootstack/RootStack'
 
 Notifications.setNotificationHandler({
   handleNotification: async () => ({
@@ -71,7 +72,7 @@ export default function App() {
   return (
     <NavigationContainer theme={scheme === 'dark' ? DarkTheme : DefaultTheme}>
       { userData ? (
-        <TabNavigator/>
+        <RootStack/>
         ) : (
         <LoginNavigator/>
       )}

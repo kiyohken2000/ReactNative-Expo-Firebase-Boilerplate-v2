@@ -69,7 +69,15 @@ export default function Home() {
           </TouchableOpacity>
           <TouchableOpacity
             style={[styles.button, {backgroundColor:colors.tertiary}]}
-            onPress={() => navigation.navigate('Post', { data: userData, from: 'Home Screen' })}
+            onPress={() => {
+              navigation.navigate('ModalStacks', {
+                screen: 'Post',
+                params: {
+                  data: userData,
+                  from: 'Home screen'
+                }
+              })
+            }}
           >
             <Text style={styles.buttonText}>Opne Modal</Text>
           </TouchableOpacity>
