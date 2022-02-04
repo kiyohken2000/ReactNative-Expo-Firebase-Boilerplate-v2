@@ -13,7 +13,7 @@ if (!global.atob) { global.atob = decode }
 
 export default function Initial() {
   const dispatch = useDispatch()
-  const { userData, setUserData } = useContext(UserDataContext)
+  const { setUserData } = useContext(UserDataContext)
   const { scheme } = useContext(ColorSchemeContext)
 
   useEffect(() => {

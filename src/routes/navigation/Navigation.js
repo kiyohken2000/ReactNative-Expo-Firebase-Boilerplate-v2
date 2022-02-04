@@ -6,21 +6,19 @@ import { ColorSchemeContext } from '../../context/ColorSchemeContext'
 import { UserDataContext } from '../../context/UserDataContext'
 
 import { LoginNavigator } from './stacks'
-import TabNavigator from './tabs'
-// import DrawerNavigator from './drawer'
 import RootStack from './rootstack/RootStack'
 
 export default function App() {
   const { scheme } = useContext(ColorSchemeContext)
-  const { userData, setUserData } = useContext(UserDataContext)
+  const { userData } = useContext(UserDataContext)
 
   return (
     <NavigationContainer theme={scheme === 'dark' ? DarkTheme : DefaultTheme}>
-      { userData ? (
+      {userData?
         <RootStack/>
-        ) : (
+        :
         <LoginNavigator/>
-      )}
+      }
     </NavigationContainer>
   )
 }

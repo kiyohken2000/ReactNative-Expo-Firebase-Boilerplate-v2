@@ -5,6 +5,7 @@ import { ModalStacks } from "../stacks/ModalStacks/ModalStacks";
 import * as Notifications from 'expo-notifications'
 import { firebase } from "../../../firebase/config";
 import { UserDataContext } from "../../../context/UserDataContext";
+import * as Device from 'expo-device';
 
 const Stack = createStackNavigator()
 
@@ -17,10 +18,12 @@ Notifications.setNotificationHandler({
 });
 
 export default function RootStack() {
-  const { userData, setUserData } = useContext(UserDataContext)
+  const { userData } = useContext(UserDataContext)
 
   useEffect(() => {
     (async () => {
+      const isDevice = Device.isDevice
+      if(!isDevice) return
       console.log('get push token')
       const { status: existingStatus } = await Notifications.getPermissionsAsync()
       let finalStatus = existingStatus;
