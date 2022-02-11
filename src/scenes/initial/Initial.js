@@ -35,7 +35,7 @@ export default function Initial() {
   }, []);
 
   return (
-    <View style={styles.container}>
+    <View style={[styles.container, {backgroundColor: scheme === 'dark'? colors.dark: colors.white}]}>
       <Text style={[styles.title, {color: scheme === 'dark'? colors.white: colors.primaryText}]}>loading</Text>
     </View>
   )
