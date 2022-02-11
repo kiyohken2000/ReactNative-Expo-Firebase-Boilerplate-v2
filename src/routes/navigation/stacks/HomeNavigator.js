@@ -9,7 +9,6 @@ import Home from '../../../scenes/home'
 import Detail from '../../../scenes/detail'
 
 const Stack = createStackNavigator()
-const RootStack = createStackNavigator()
 
 export const HomeNavigator = () => {
   const { scheme } = useContext(ColorSchemeContext)
@@ -25,23 +24,21 @@ export const HomeNavigator = () => {
       <HomeTitleContext.Consumer>
         {(ctx) => (
           <Stack.Navigator screenOptions={navigationProps}>
-            <RootStack.Group>
-              <Stack.Screen
-                name="Home"
-                component={Home}
-                options={({ navigation }) => ({
-                   headerBackground: scheme === 'dark' ? null: () => <HeaderStyle />,
-                })}
-              />
-              <Stack.Screen
-                name="Detail"
-                component={Detail}
-                options={{ 
-                  title: ctx.title,
-                  headerBackground: scheme === 'dark' ? null: () => <HeaderStyle />,
-                }}
-              />
-            </RootStack.Group>
+            <Stack.Screen
+              name="Home"
+              component={Home}
+              options={({ navigation }) => ({
+                headerBackground: scheme === 'dark' ? null: () => <HeaderStyle />,
+              })}
+            />
+            <Stack.Screen
+              name="Detail"
+              component={Detail}
+              options={{ 
+                title: ctx.title,
+                headerBackground: scheme === 'dark' ? null: () => <HeaderStyle />,
+              }}
+            />
           </Stack.Navigator>
       )}
       </HomeTitleContext.Consumer>
