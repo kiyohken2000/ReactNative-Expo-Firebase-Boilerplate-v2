@@ -36,7 +36,7 @@ export default function Home() {
     const tokenListner = firebase.firestore()
       .collection('tokens')
       .doc(userData.id)
-      .onSnapshot(function(doc) {
+      .onSnapshot(function (doc) {
         if (doc.exists) {
           const data = doc.data()
           setToken(data)
@@ -44,44 +44,44 @@ export default function Home() {
           console.log("No such document!");
         }
       })
-      return () => tokenListner()
+    return () => tokenListner()
   }, [])
 
   return (
     <View style={styles.container}>
       <SafareaBar />
-        <ScrollView style={styles.main}>
-          <View style={scheme === 'dark'?style.darkContent: style.lightContent}>
-            <Text style={[styles.field, {color: scheme === 'dark'? colors.white: colors.primaryText}]}>Mail:</Text>
-            <Text style={[styles.title, {color: scheme === 'dark'? colors.white: colors.primaryText}]}>{userData.email}</Text>
-            {token?
-              <>
-                <Text style={[styles.field, {color: scheme === 'dark'? colors.white: colors.primaryText}]}>Expo push token:</Text>
-                <Text style={[styles.title, {color: scheme === 'dark'? colors.white: colors.primaryText}]}>{token.token}</Text>
-              </>:null
-            }
-          </View>
-          <TouchableOpacity
-            style={[styles.button, {backgroundColor:colors.primary}]}
-            onPress={() => navigation.navigate('Detail', { data: userData, from: 'Home', title: userData.email})}
-          >
-            <Text style={styles.buttonText}>Go to Detail</Text>
-          </TouchableOpacity>
-          <TouchableOpacity
-            style={[styles.button, {backgroundColor:colors.tertiary}]}
-            onPress={() => {
-              navigation.navigate('ModalStacks', {
-                screen: 'Post',
-                params: {
-                  data: userData,
-                  from: 'Home screen'
-                }
-              })
-            }}
-          >
-            <Text style={styles.buttonText}>Opne Modal</Text>
-          </TouchableOpacity>
-        </ScrollView>
+      <ScrollView style={styles.main}>
+        <View style={scheme === 'dark' ? style.darkContent : style.lightContent}>
+          <Text style={[styles.field, { color: scheme === 'dark' ? colors.white : colors.primaryText }]}>Mail:</Text>
+          <Text style={[styles.title, { color: scheme === 'dark' ? colors.white : colors.primaryText }]}>{userData.email}</Text>
+          {token ?
+            <>
+              <Text style={[styles.field, { color: scheme === 'dark' ? colors.white : colors.primaryText }]}>Expo push token:</Text>
+              <Text style={[styles.title, { color: scheme === 'dark' ? colors.white : colors.primaryText }]}>{token.token}</Text>
+            </> : null
+          }
+        </View>
+        <TouchableOpacity
+          style={[styles.button, { backgroundColor: colors.primary }]}
+          onPress={() => navigation.navigate('Detail', { data: userData, from: 'Home', title: userData.email })}
+        >
+          <Text style={styles.buttonText}>Go to Detail</Text>
+        </TouchableOpacity>
+        <TouchableOpacity
+          style={[styles.button, { backgroundColor: colors.tertiary }]}
+          onPress={() => {
+            navigation.navigate('ModalStacks', {
+              screen: 'Post',
+              params: {
+                data: userData,
+                from: 'Home screen'
+              }
+            })
+          }}
+        >
+          <Text style={styles.buttonText}>Open Modal</Text>
+        </TouchableOpacity>
+      </ScrollView>
     </View>
   )
 }

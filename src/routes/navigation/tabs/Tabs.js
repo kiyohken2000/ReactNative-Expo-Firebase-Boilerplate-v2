@@ -23,8 +23,8 @@ const TabNavigator = () => {
         }
       }}
       defaultScreenOptions={{
-        headerShown:false,
-        headerTransparent:true
+        headerShown: false,
+        headerTransparent: true
       }}
       screenOptions={({ route }) => ({
         headerShown: false,

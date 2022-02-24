@@ -46,15 +46,15 @@ export default function Profile() {
     await collectionRef.collection('tokens').doc(userData.id).delete()
     await collectionRef.collection('users').doc(userData.id).delete()
     const user = firebase.auth().currentUser
-    user.delete().then(function() {
+    user.delete().then(function () {
       setSpinner(false)
       firebase.auth().signOut()
-    }).catch(function(error) {
+    }).catch(function (error) {
       setSpinner(false)
       console.log(error)
     });
   }
-  
+
   return (
     <View style={styles.container}>
       <SafareaBar />
@@ -67,18 +67,18 @@ export default function Profile() {
             source={{ uri: userData.avatar }}
           />
         </View>
-        <Text style={[styles.field, {color: scheme === 'dark'? colors.white: colors.primaryText}]}>Name:</Text>
-        <Text style={[styles.title, {color: scheme === 'dark'? colors.white: colors.primaryText}]}>{userData.fullName}</Text>
-        <Text style={[styles.field, {color: scheme === 'dark'? colors.white: colors.primaryText}]}>Mail:</Text>
-        <Text style={[styles.title, {color: scheme === 'dark'? colors.white: colors.primaryText}]}>{userData.email}</Text>
+        <Text style={[styles.field, { color: scheme === 'dark' ? colors.white : colors.primaryText }]}>Name:</Text>
+        <Text style={[styles.title, { color: scheme === 'dark' ? colors.white : colors.primaryText }]}>{userData.fullName}</Text>
+        <Text style={[styles.field, { color: scheme === 'dark' ? colors.white : colors.primaryText }]}>Mail:</Text>
+        <Text style={[styles.title, { color: scheme === 'dark' ? colors.white : colors.primaryText }]}>{userData.email}</Text>
         <TouchableOpacity
-          style={[styles.button, {backgroundColor:colors.primary}]}
+          style={[styles.button, { backgroundColor: colors.primary }]}
           onPress={goDetail}
         >
           <Text style={styles.buttonText}>Edit</Text>
         </TouchableOpacity>
         <TouchableOpacity
-          style={[styles.button, {backgroundColor:colors.tertiary}]}
+          style={[styles.button, { backgroundColor: colors.tertiary }]}
           onPress={() => {
             navigation.navigate('ModalStacks', {
               screen: 'Post',
@@ -89,10 +89,10 @@ export default function Profile() {
             })
           }}
         >
-          <Text style={styles.buttonText}>Opne Modal</Text>
+          <Text style={styles.buttonText}>Open Modal</Text>
         </TouchableOpacity>
         <TouchableOpacity
-          style={[styles.button, {backgroundColor:colors.secondary}]}
+          style={[styles.button, { backgroundColor: colors.secondary }]}
           onPress={showDialog}
         >
           <Text style={styles.buttonText}>Account delete</Text>
@@ -107,7 +107,7 @@ export default function Profile() {
           Do you want to delete this account? You cannot undo this action.
         </Dialog.Description>
         <Dialog.Button label="Cancel" onPress={handleCancel} />
-        <Dialog.Button label="Delete" onPress={accountDelete}  />
+        <Dialog.Button label="Delete" onPress={accountDelete} />
       </Dialog.Container>
       <Spinner
         visible={spinner}
