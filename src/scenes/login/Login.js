@@ -8,6 +8,11 @@ import Spinner from 'react-native-loading-spinner-overlay'
 import { useNavigation } from '@react-navigation/native'
 import { colors } from 'theme'
 import { ColorSchemeContext } from '../../context/ColorSchemeContext'
+import { LogBox } from 'react-native';
+
+// To ignore a useless warning in terminal.
+// https://stackoverflow.com/questions/44603362/setting-a-timer-for-a-long-period-of-time-i-e-multiple-minutes
+LogBox.ignoreLogs(['Setting a timer']);
 
 export default function Login() {
   const [email, setEmail] = useState('')
@@ -65,7 +70,7 @@ export default function Login() {
           source={require('../../../assets/icon.png')}
         />
         <TextInput
-          style={[styles.input, {backgroundColor: scheme === 'dark'? colors.darkInput: colors.white, color: scheme === 'dark'? colors.white: colors.primaryText }]}
+          style={[styles.input, { backgroundColor: scheme === 'dark' ? colors.darkInput : colors.white, color: scheme === 'dark' ? colors.white : colors.primaryText }]}
           placeholder='E-mail'
           placeholderTextColor="#aaaaaa"
           onChangeText={(text) => setEmail(text)}
@@ -75,7 +80,7 @@ export default function Login() {
           keyboardType={'email-address'}
         />
         <TextInput
-          style={[styles.input, {backgroundColor: scheme === 'dark'? colors.darkInput: colors.white, color: scheme === 'dark'? colors.white: colors.primaryText }]}
+          style={[styles.input, { backgroundColor: scheme === 'dark' ? colors.darkInput : colors.white, color: scheme === 'dark' ? colors.white : colors.primaryText }]}
           placeholderTextColor="#aaaaaa"
           secureTextEntry
           placeholder='Password'
@@ -85,12 +90,12 @@ export default function Login() {
           autoCapitalize="none"
         />
         <TouchableOpacity
-          style={[styles.button, {backgroundColor:colors.primary}]}
+          style={[styles.button, { backgroundColor: colors.primary }]}
           onPress={() => onLoginPress()}>
           <Text style={styles.buttonText}>Log in</Text>
         </TouchableOpacity>
         <View style={styles.footerView}>
-          <Text style={[styles.footerText, {color: scheme === 'dark'? colors.white: colors.primaryText}]}>Don't have an account? <Text onPress={onFooterLinkPress} style={styles.footerLink}>Sign up</Text></Text>
+          <Text style={[styles.footerText, { color: scheme === 'dark' ? colors.white : colors.primaryText }]}>Don't have an account? <Text onPress={onFooterLinkPress} style={styles.footerLink}>Sign up</Text></Text>
         </View>
       </KeyboardAwareScrollView>
       <Spinner
