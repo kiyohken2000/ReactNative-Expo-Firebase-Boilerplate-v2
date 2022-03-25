@@ -8,6 +8,8 @@ import { firebase } from '../../firebase/config';
 import styles from '../../globalStyles'
 import { decode, encode } from 'base-64'
 import { colors } from 'theme'
+import { onAuthStateChanged } from 'firebase/auth';
+import { auth } from '../../firebase/config';
 if (!global.btoa) { global.btoa = encode }
 if (!global.atob) { global.atob = decode }
 
@@ -17,9 +19,8 @@ export default function Initial() {
   const { scheme } = useContext(ColorSchemeContext)
 
   useEffect(() => {
-    console.log('fetch user data')
-    const usersRef = firebase.firestore().collection('users');
-    firebase.auth().onAuthStateChanged(user => {
+    onAuthStateChanged(auth, (user) => {
+      const usersRef = firebase.firestore().collection('users');
       if (user) {
         usersRef
           .doc(user.uid)

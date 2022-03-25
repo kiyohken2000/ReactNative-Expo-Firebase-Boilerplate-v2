@@ -9,6 +9,8 @@ import { useNavigation } from '@react-navigation/native'
 import { colors } from 'theme'
 import { ColorSchemeContext } from '../../context/ColorSchemeContext'
 import { LogBox } from 'react-native';
+import { signInWithEmailAndPassword } from 'firebase/auth'
+import { auth } from '../../firebase/config'
 
 // To ignore a useless warning in terminal.
 // https://stackoverflow.com/questions/44603362/setting-a-timer-for-a-long-period-of-time-i-e-multiple-minutes
@@ -29,33 +31,22 @@ export default function Login() {
     console.log('Login screen, ログイン画面')
   }, [])
 
-  const onLoginPress = () => {
-    setSpinner(true)
-    firebase
-      .auth()
-      .signInWithEmailAndPassword(email, password)
-      .then((response) => {
-        const uid = response.user.uid
-        const usersRef = firebase.firestore().collection('users')
-        usersRef
-          .doc(uid)
-          .get()
-          .then(firestoreDocument => {
-            if (!firestoreDocument.exists) {
-              setSpinner(false)
-              alert("User does not exist anymore.")
-              return;
-            }
-          })
-          .catch(error => {
-            setSpinner(false)
-            alert(error)
-          });
-      })
-      .catch(error => {
+  const onLoginPress = async() => {
+    try {
+      setSpinner(true)
+      const response = await signInWithEmailAndPassword(auth, email, password)
+      const uid = response.user.uid
+      const usersRef = firebase.firestore().collection('users')
+      const firestoreDocument = await usersRef.doc(uid).get()
+      if (!firestoreDocument.exists) {
         setSpinner(false)
-        alert(error)
-      })
+        alert("User does not exist anymore.")
+        return;
+      }
+    } catch(error) {
+      setSpinner(false)
+      alert(error)
+    }
   }
 
   return (

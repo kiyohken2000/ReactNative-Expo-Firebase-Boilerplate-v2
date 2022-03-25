@@ -11,6 +11,8 @@ import { ColorSchemeContext } from '../../context/ColorSchemeContext'
 import { UserDataContext } from '../../context/UserDataContext'
 import { useNavigation } from '@react-navigation/native'
 import { colors } from 'theme'
+import { signOut, deleteUser } from 'firebase/auth'
+import { auth } from '../../firebase/config'
 
 export default function Profile() {
   const { userData } = useContext(UserDataContext)
@@ -27,9 +29,14 @@ export default function Profile() {
     navigation.navigate('Edit', { userData: userData })
   }
 
-  const signOut = () => {
-    firebase.auth().signOut()
-    Restart()
+  const onSignOutPress = () => {
+    signOut(auth)
+    .then(() => {
+      Restart()
+    })
+    .catch((error) => {
+      console.log(error.message);
+    });
   }
 
   const showDialog = () => {
@@ -45,11 +52,17 @@ export default function Profile() {
     const collectionRef = firebase.firestore()
     await collectionRef.collection('tokens').doc(userData.id).delete()
     await collectionRef.collection('users').doc(userData.id).delete()
-    const user = firebase.auth().currentUser
-    user.delete().then(function () {
+    const user = auth.currentUser
+    deleteUser(user).then(() => {
       setSpinner(false)
-      firebase.auth().signOut()
-    }).catch(function (error) {
+      signOut(auth)
+      .then(() => {
+        console.log('user deleted')
+      })
+      .catch((error) => {
+        console.log(error.message);
+      });
+    }).catch((error) => {
       setSpinner(false)
       console.log(error)
     });
@@ -98,7 +111,7 @@ export default function Profile() {
           <Text style={styles.buttonText}>Account delete</Text>
         </TouchableOpacity>
         <View style={styles.footerView}>
-          <Text onPress={signOut} style={styles.footerLink}>Sign out</Text>
+          <Text onPress={onSignOutPress} style={styles.footerLink}>Sign out</Text>
         </View>
       </ScrollView>
       <Dialog.Container visible={visible}>

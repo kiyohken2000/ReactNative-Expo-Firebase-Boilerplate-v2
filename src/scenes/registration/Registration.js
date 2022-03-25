@@ -9,6 +9,8 @@ import { useNavigation } from '@react-navigation/native'
 import { colors } from 'theme'
 import { ColorSchemeContext } from '../../context/ColorSchemeContext'
 import { defaultAvatar, eulaLink } from '../../config'
+import { createUserWithEmailAndPassword } from 'firebase/auth';
+import { auth } from '../../firebase/config'
 
 export default function Registration() {
   const [fullName, setFullName] = useState('')
@@ -33,9 +35,7 @@ export default function Registration() {
       return
     }
     setSpinner(true)
-    firebase
-      .auth()
-      .createUserWithEmailAndPassword(email, password)
+      createUserWithEmailAndPassword(auth, email, password)
       .then((response) => {
         const uid = response.user.uid
         const data = {

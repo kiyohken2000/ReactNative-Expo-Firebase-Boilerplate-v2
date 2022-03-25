@@ -11,8 +11,7 @@ import moment from 'moment'
 
 export default function Post() {
   const route = useRoute()
-  const userData = route.params.data
-  const from = route.params.from
+  const { data, from } = route.params
   const { scheme } = useContext(ColorSchemeContext)
   const [date, setDate] = useState('')
   const { setTitle } = useContext(HomeTitleContext)
@@ -24,19 +23,16 @@ export default function Post() {
   }, [])
 
   useFocusEffect(() => {
-    setTitle(userData.fullName)
+    setTitle(data.fullName)
   });
 
   const loadStorage = async() => {
     try {
-      await storage
-      .load({key: 'date'})
-      .then(data => {
-        setDate(data)
-      })
+      const result = await storage.load({key: 'date'})
+      setDate(result)
     } catch (e) {
-      const data = {date: 'no data'}
-      setDate(data)
+      const result = {date: 'no data'}
+      setDate(result)
     }
   }
 
@@ -68,7 +64,7 @@ export default function Post() {
     <View style={[styles.container, scheme === 'dark'?style.darkContent:style.lightContent, ]}>
       <SafareaBar />
       <Text style={[styles.field, {color: scheme === 'dark'? colors.white: colors.primaryText}]}>Post Screen</Text>
-      <Text style={[styles.title, {color: scheme === 'dark'? colors.white: colors.primaryText}]}>{userData.email}</Text>
+      <Text style={[styles.title, {color: scheme === 'dark'? colors.white: colors.primaryText}]}>{data.email}</Text>
       <Text style={[styles.field, {color: scheme === 'dark'? colors.white: colors.primaryText}]}>from</Text>
       <Text style={[styles.title, {color: scheme === 'dark'? colors.white: colors.primaryText}]}>{from}</Text>
       <Text style={[styles.field, {color: scheme === 'dark'? colors.white: colors.primaryText}]}>Latest save date</Text>
