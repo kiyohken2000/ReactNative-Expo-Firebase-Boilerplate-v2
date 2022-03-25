@@ -63,7 +63,7 @@ export default function Home() {
         </View>
         <TouchableOpacity
           style={[styles.button, { backgroundColor: colors.primary }]}
-          onPress={() => navigation.navigate('Detail', { data: userData, from: 'Home', title: userData.email })}
+          onPress={() => navigation.navigate('Detail', { userData: userData, from: 'Home', title: userData.email })}
         >
           <Text style={styles.buttonText}>Go to Detail</Text>
         </TouchableOpacity>

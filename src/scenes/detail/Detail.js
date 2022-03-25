@@ -12,9 +12,7 @@ import { useFocusEffect } from '@react-navigation/native'
 export default function Detail() {
   const navigation = useNavigation()
   const route = useRoute()
-  const from = route.params.from
-  const userData = route.params.data
-  const title = route.params.title
+  const { from, userData, title } = route.params
   const { setTitle } = useContext(HomeTitleContext)
   const { scheme } = useContext(ColorSchemeContext)
 
