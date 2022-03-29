@@ -12,8 +12,6 @@ const TabNavigator = () => {
   return (
     <Tab.Navigator
       options={{
-        tabBarActiveTintColor: colors.lightPurple,
-        tabBarInactiveTintColor: colors.gray,
         tabBarStyle: {
           // backgroundColor: 'white',
           // borderTopColor: 'gray',
@@ -28,6 +26,8 @@ const TabNavigator = () => {
       }}
       screenOptions={({ route }) => ({
         headerShown: false,
+        tabBarActiveTintColor: colors.lightPurple,
+        tabBarInactiveTintColor: colors.gray,
       })}
       initialRouteName="HomeTab"
       swipeEnabled={false}
