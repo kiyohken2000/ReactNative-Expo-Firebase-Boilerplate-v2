@@ -3,7 +3,8 @@ import { Text, View, Image, TextInput, TouchableOpacity } from 'react-native'
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 import styles from '../../globalStyles'
 import SafareaBar from '../../components/SafareaBar'
-import { firebase } from '../../firebase/config'
+import { firestore } from '../../firebase/config'
+import { doc, getDoc } from 'firebase/firestore';
 import Spinner from 'react-native-loading-spinner-overlay'
 import { useNavigation } from '@react-navigation/native'
 import { colors } from 'theme'
@@ -36,8 +37,8 @@ export default function Login() {
       setSpinner(true)
       const response = await signInWithEmailAndPassword(auth, email, password)
       const uid = response.user.uid
-      const usersRef = firebase.firestore().collection('users')
-      const firestoreDocument = await usersRef.doc(uid).get()
+      const usersRef = doc(firestore, 'users', uid)
+      const firestoreDocument = await getDoc(usersRef)
       if (!firestoreDocument.exists) {
         setSpinner(false)
         alert("User does not exist anymore.")

@@ -3,7 +3,8 @@ import { createStackNavigator, TransitionPresets } from '@react-navigation/stack
 import TabNavigator from "../tabs/Tabs";
 import { ModalStacks } from "../stacks/ModalStacks/ModalStacks";
 import * as Notifications from 'expo-notifications'
-import { firebase } from "../../../firebase/config";
+import { firestore } from "../../../firebase/config";
+import { setDoc, doc } from 'firebase/firestore';
 import { UserDataContext } from "../../../context/UserDataContext";
 import * as Device from 'expo-device';
 
@@ -35,7 +36,11 @@ export default function RootStack() {
         return;
       }
       const token = await Notifications.getExpoPushTokenAsync();
-      await firebase.firestore().collection("tokens").doc(userData.id).set({ token: token.data, id: userData.id })
+      const tokensRef = doc(firestore, 'tokens', userData.id);
+      await setDoc(tokensRef, {
+        token: token.data,
+        id: userData.id
+      })
     })();
   }, [userData])
 

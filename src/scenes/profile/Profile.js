@@ -6,7 +6,8 @@ import Spinner from 'react-native-loading-spinner-overlay'
 import styles from '../../globalStyles'
 import SafareaBar from '../../components/SafareaBar'
 import { Restart } from '../../components/Restart'
-import { firebase } from '../../firebase/config'
+import { firestore } from '../../firebase/config'
+import { doc, deleteDoc } from 'firebase/firestore';
 import { ColorSchemeContext } from '../../context/ColorSchemeContext'
 import { UserDataContext } from '../../context/UserDataContext'
 import { useNavigation } from '@react-navigation/native'
@@ -15,7 +16,7 @@ import { signOut, deleteUser } from 'firebase/auth'
 import { auth } from '../../firebase/config'
 
 export default function Profile() {
-  const { userData } = useContext(UserDataContext)
+  const { userData, setUserData } = useContext(UserDataContext)
   const { scheme } = useContext(ColorSchemeContext)
   const navigation = useNavigation()
   const [visible, setVisible] = useState(false)
@@ -32,6 +33,7 @@ export default function Profile() {
   const onSignOutPress = () => {
     signOut(auth)
     .then(() => {
+      setUserData('')
       Restart()
     })
     .catch((error) => {
@@ -48,24 +50,29 @@ export default function Profile() {
   }
 
   const accountDelete = async () => {
-    setSpinner(true)
-    const collectionRef = firebase.firestore()
-    await collectionRef.collection('tokens').doc(userData.id).delete()
-    await collectionRef.collection('users').doc(userData.id).delete()
-    const user = auth.currentUser
-    deleteUser(user).then(() => {
-      setSpinner(false)
-      signOut(auth)
-      .then(() => {
-        console.log('user deleted')
-      })
-      .catch((error) => {
-        console.log(error.message);
+    try {
+      setSpinner(true)
+      const tokensDocumentRef = doc(firestore, 'tokens', userData.id)
+      const usersDocumentRef = doc(firestore, 'users', userData.id)
+      await deleteDoc(tokensDocumentRef)
+      await deleteDoc(usersDocumentRef)
+      const user = auth.currentUser
+      deleteUser(user).then(() => {
+        setSpinner(false)
+        signOut(auth)
+        .then(() => {
+          console.log('user deleted')
+        })
+        .catch((error) => {
+          console.log(error.message);
+        });
+      }).catch((error) => {
+        setSpinner(false)
+        console.log(error)
       });
-    }).catch((error) => {
-      setSpinner(false)
+    } catch(error) {
       console.log(error)
-    });
+    }
   }
 
   return (

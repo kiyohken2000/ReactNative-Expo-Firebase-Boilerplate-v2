@@ -4,7 +4,8 @@ import { authenticate } from 'slices/app.slice'
 import { Text, View } from "react-native";
 import { UserDataContext } from '../../context/UserDataContext';
 import { ColorSchemeContext } from '../../context/ColorSchemeContext'
-import { firebase } from '../../firebase/config';
+import { firestore } from '../../firebase/config';
+import { doc, onSnapshot } from 'firebase/firestore';
 import styles from '../../globalStyles'
 import { decode, encode } from 'base-64'
 import { colors } from 'theme'
@@ -20,15 +21,13 @@ export default function Initial() {
 
   useEffect(() => {
     onAuthStateChanged(auth, (user) => {
-      const usersRef = firebase.firestore().collection('users');
       if (user) {
-        usersRef
-          .doc(user.uid)
-          .onSnapshot(function(document) {
-            const userData = document.data()
-            setUserData(userData)
-            dispatch(authenticate({ loggedIn: true, checked: true }))
-          })
+        const usersRef = doc(firestore, 'users', user.uid)
+        onSnapshot(usersRef, (querySnapshot) => {
+          const userData = querySnapshot.data()
+          setUserData(userData)
+          dispatch(authenticate({ loggedIn: true, checked: true }))
+        })
       } else {
         dispatch(authenticate({ loggedIn: false, checked: true }))
       }

@@ -2,7 +2,8 @@ import React, { useState, useEffect, useContext } from 'react'
 import { Text, View, TextInput, TouchableOpacity, StyleSheet } from 'react-native'
 import styles from '../../globalStyles'
 import SafareaBar from '../../components/SafareaBar'
-import { firebase } from '../../firebase/config'
+import { firebase, firestore } from '../../firebase/config'
+import { doc, updateDoc } from 'firebase/firestore';
 import { Avatar } from 'react-native-elements'
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 import * as ImagePicker from 'expo-image-picker'
@@ -71,15 +72,15 @@ export default function Edit() {
     }
   }
 
-  const profileUpdate = () => {
+  const profileUpdate = async() => {
     const data = {
       id: userData.id,
       email: userData.email,
       fullName: fullName,
       avatar: avatar,
     }
-    const userRef = firebase.firestore().collection('users').doc(userData.id)
-    userRef.update(data)
+    const usersRef = doc(firestore, 'users', userData.id);
+    await updateDoc(usersRef, data)
     navigation.goBack()
   }
 

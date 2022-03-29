@@ -3,7 +3,8 @@ import { Image, Text, TextInput, TouchableOpacity, View, Linking } from 'react-n
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 import styles from '../../globalStyles'
 import SafareaBar from '../../components/SafareaBar'
-import { firebase } from '../../firebase/config'
+import { firestore } from '../../firebase/config'
+import { setDoc, doc } from 'firebase/firestore';
 import Spinner from 'react-native-loading-spinner-overlay'
 import { useNavigation } from '@react-navigation/native'
 import { colors } from 'theme'
@@ -29,36 +30,27 @@ export default function Registration() {
     navigation.navigate('Login')
   }
 
-  const onRegisterPress = () => {
+  const onRegisterPress = async() => {
     if (password !== confirmPassword) {
       alert("Passwords don't match.")
       return
     }
-    setSpinner(true)
-      createUserWithEmailAndPassword(auth, email, password)
-      .then((response) => {
-        const uid = response.user.uid
-        const data = {
-          id: uid,
-          email,
-          fullName,
-          avatar: defaultAvatar,
-        };
-        const usersRef = firebase.firestore().collection('users')
-        usersRef
-          .doc(uid)
-          .set(data)
-          .then(() => {
-          })
-          .catch((error) => {
-            setSpinner(false)
-            alert(error)
-          });
-      })
-      .catch((error) => {
-        setSpinner(false)
-        alert(error)
-    });
+    try {
+      setSpinner(true)
+      const response = await createUserWithEmailAndPassword(auth, email, password)
+      const uid = response.user.uid
+      const data = {
+        id: uid,
+        email,
+        fullName,
+        avatar: defaultAvatar,
+      };
+      const usersRef = doc(firestore, 'users', uid);
+      await setDoc(usersRef, data)
+    } catch(e) {
+      setSpinner(false)
+      alert(e)
+    }
   }
 
   return (

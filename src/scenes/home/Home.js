@@ -4,7 +4,8 @@ import { useNavigation } from '@react-navigation/native'
 import { IconButton, Colors } from 'react-native-paper'
 import SafareaBar from '../../components/SafareaBar'
 import styles from '../../globalStyles'
-import { firebase } from '../../firebase/config'
+import { firestore } from '../../firebase/config'
+import { doc, onSnapshot } from 'firebase/firestore';
 import { colors } from 'theme'
 import { UserDataContext } from '../../context/UserDataContext'
 import { ColorSchemeContext } from '../../context/ColorSchemeContext'
@@ -33,17 +34,15 @@ export default function Home() {
   }
 
   useEffect(() => {
-    const tokenListner = firebase.firestore()
-      .collection('tokens')
-      .doc(userData.id)
-      .onSnapshot(function (doc) {
-        if (doc.exists) {
-          const data = doc.data()
-          setToken(data)
-        } else {
-          console.log("No such document!");
-        }
-      })
+    const tokensRef = doc(firestore, 'tokens', userData.id);
+    const tokenListner = onSnapshot(tokensRef, (querySnapshot) => {
+      if (querySnapshot.exists) {
+        const data = querySnapshot.data()
+        setToken(data)
+      } else {
+        console.log("No such document!");
+      }
+    })
     return () => tokenListner()
   }, [])
 
