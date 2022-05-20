@@ -1,8 +1,8 @@
 import React, { useState, useEffect, useContext } from 'react'
-import { Text, View, TextInput, TouchableOpacity, StyleSheet, Platform } from 'react-native'
-import styles from '../../globalStyles'
+import { Text, View, StyleSheet, Platform } from 'react-native'
 import ScreenTemplate from '../../components/ScreenTemplate'
 import Button from '../../components/Button'
+import TextInputBox from '../../components/TextInputBox'
 import { firestore, storage } from '../../firebase/config'
 import { doc, updateDoc } from 'firebase/firestore';
 import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
@@ -11,7 +11,7 @@ import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view
 import * as ImagePicker from 'expo-image-picker'
 import * as ImageManipulator from 'expo-image-manipulator'
 import { useNavigation } from '@react-navigation/native'
-import { colors } from 'theme'
+import { colors, fontSize } from 'theme'
 import { UserDataContext } from '../../context/UserDataContext'
 import { ColorSchemeContext } from '../../context/ColorSchemeContext'
 
@@ -25,7 +25,7 @@ export default function Edit() {
   const isDark = scheme === 'dark'
   const colorScheme = {
     text: isDark? colors.white : colors.primaryText,
-    progress: isDark? style.darkprogress : style.progress,
+    progress: isDark? styles.darkprogress : styles.progress,
     field: isDark? styles.darkfield : styles.field,
     input: isDark? colors.darkInput: colors.white
   }
@@ -102,50 +102,62 @@ export default function Edit() {
 
   return (
     <ScreenTemplate>
-      <View style={styles.container}>
-        <KeyboardAwareScrollView
-          style={styles.main}
-          keyboardShouldPersistTaps="always"
-        >
-          <View style={styles.avatar}>
-            <Avatar
-              size="xlarge"
-              rounded
-              title="NI"
-              onPress={ImageChoiceAndUpload}
-              source={{ uri: avatar }}
-            />
-          </View>
-          <Text style={colorScheme.progress}>{progress}</Text>
-          <Text style={colorScheme.field}>Name:</Text>
-          <TextInput
-            style={[styles.input, {backgroundColor: colorScheme.input, color: colorScheme.text }]}
-            placeholder={fullName}
-            placeholderTextColor={colors.grayLight}
-            onChangeText={(text) => setFullName(text)}
-            value={fullName}
-            underlineColorAndroid="transparent"
-            autoCapitalize="none"
+      <KeyboardAwareScrollView
+        style={styles.main}
+        keyboardShouldPersistTaps="always"
+      >
+        <View style={styles.avatar}>
+          <Avatar
+            size="xlarge"
+            rounded
+            title="NI"
+            onPress={ImageChoiceAndUpload}
+            source={{ uri: avatar }}
           />
-          <Text style={[styles.field, {color: colorScheme.text}]}>Mail:</Text>
-          <Text style={[styles.title, {color: colorScheme.text}]}>{userData.email}</Text>
-          <Button
-            label='Update'
-            color={colors.primary}
-            onPress={profileUpdate}
-          />
-        </KeyboardAwareScrollView>
-      </View>
+        </View>
+        <Text style={colorScheme.progress}>{progress}</Text>
+        <Text style={[styles.field, {color: colorScheme.text}]}>Name:</Text>
+        <TextInputBox
+          placeholder={fullName}
+          onChangeText={(text) => setFullName(text)}
+          value={fullName}
+          autoCapitalize="none"
+        />
+        <Text style={[styles.field, {color: colorScheme.text}]}>Mail:</Text>
+        <Text style={[styles.title, {color: colorScheme.text}]}>{userData.email}</Text>
+        <Button
+          label='Update'
+          color={colors.primary}
+          onPress={profileUpdate}
+        />
+      </KeyboardAwareScrollView>
     </ScreenTemplate>
   )
 }
 
-const style = StyleSheet.create({
+const styles = StyleSheet.create({
   progress: {
     alignSelf: 'center',
   },
   darkprogress: {
     alignSelf: 'center',
     color: 'white',
+  },
+  main: {
+    flex: 1,
+    width: '100%',
+  },
+  title: {
+    fontSize: fontSize.xxxLarge,
+    marginBottom: 20,
+    textAlign: 'center'
+  },
+  field: {
+    fontSize: fontSize.middle,
+    textAlign: 'center',
+  },
+  avatar: {
+    margin: 30,
+    alignSelf: "center",
   },
 })

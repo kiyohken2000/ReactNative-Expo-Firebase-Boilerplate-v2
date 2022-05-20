@@ -1,8 +1,7 @@
 import React, { useEffect, useContext } from 'react'
-import { Text, View } from 'react-native'
-import styles from '../../globalStyles'
+import { Text, View, StyleSheet } from 'react-native'
 import ScreenTemplate from '../../components/ScreenTemplate'
-import { colors } from 'theme'
+import { colors, fontSize } from 'theme'
 import { ColorSchemeContext } from '../../context/ColorSchemeContext'
 
 export default function Follower() {
@@ -24,3 +23,15 @@ export default function Follower() {
     </ScreenTemplate>
   )
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  field: {
+    fontSize: fontSize.middle,
+    textAlign: 'center',
+  },
+})

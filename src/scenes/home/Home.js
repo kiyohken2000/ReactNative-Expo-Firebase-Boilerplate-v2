@@ -3,13 +3,12 @@ import { Text, View, ScrollView, StyleSheet } from 'react-native'
 import { useNavigation } from '@react-navigation/native'
 import { IconButton, Colors } from 'react-native-paper'
 import ScreenTemplate from '../../components/ScreenTemplate'
-import styles from '../../globalStyles'
+import Button from '../../components/Button'
 import { firestore } from '../../firebase/config'
 import { doc, onSnapshot } from 'firebase/firestore';
-import { colors } from 'theme'
+import { colors, fontSize } from 'theme'
 import { UserDataContext } from '../../context/UserDataContext'
 import { ColorSchemeContext } from '../../context/ColorSchemeContext'
-import Button from '../../components/Button'
 
 export default function Home() {
   const navigation = useNavigation()
@@ -18,7 +17,7 @@ export default function Home() {
   const { scheme } = useContext(ColorSchemeContext)
   const isDark = scheme === 'dark'
   const colorScheme = {
-    content: isDark? style.darkContent : style.lightContent,
+    content: isDark? styles.darkContent : styles.lightContent,
     text: isDark? colors.white : colors.primaryText
   }
 
@@ -54,43 +53,41 @@ export default function Home() {
 
   return (
     <ScreenTemplate>
-      <View style={styles.container}>
-        <ScrollView style={styles.main}>
-          <View style={colorScheme.content}>
-            <Text style={[styles.field, { color: colorScheme.text }]}>Mail:</Text>
-            <Text style={[styles.title, { color: colorScheme.text }]}>{userData.email}</Text>
-            {token ?
-              <>
-                <Text style={[styles.field, { color: colorScheme.text }]}>Expo push token:</Text>
-                <Text style={[styles.title, { color: colorScheme.text }]}>{token.token}</Text>
-              </> : null
-            }
-          </View>
-          <Button
-            label='Go to Detail'
-            color={colors.primary}
-            onPress={() => navigation.navigate('Detail', { userData: userData, from: 'Home', title: userData.email })}
-          />
-          <Button
-            label='Open Modal'
-            color={colors.tertiary}
-            onPress={() => {
-              navigation.navigate('ModalStacks', {
-                screen: 'Post',
-                params: {
-                  data: userData,
-                  from: 'Home screen'
-                }
-              })
-            }}
-          />
-        </ScrollView>
-      </View>
+      <ScrollView style={styles.main}>
+        <View style={colorScheme.content}>
+          <Text style={[styles.field, { color: colorScheme.text }]}>Mail:</Text>
+          <Text style={[styles.title, { color: colorScheme.text }]}>{userData.email}</Text>
+          {token ?
+            <>
+              <Text style={[styles.field, { color: colorScheme.text }]}>Expo push token:</Text>
+              <Text style={[styles.title, { color: colorScheme.text }]}>{token.token}</Text>
+            </> : null
+          }
+        </View>
+        <Button
+          label='Go to Detail'
+          color={colors.primary}
+          onPress={() => navigation.navigate('Detail', { userData: userData, from: 'Home', title: userData.email })}
+        />
+        <Button
+          label='Open Modal'
+          color={colors.tertiary}
+          onPress={() => {
+            navigation.navigate('ModalStacks', {
+              screen: 'Post',
+              params: {
+                data: userData,
+                from: 'Home screen'
+              }
+            })
+          }}
+        />
+      </ScrollView>
     </ScreenTemplate>
   )
 }
 
-const style = StyleSheet.create({
+const styles = StyleSheet.create({
   lightContent: {
     backgroundColor: colors.lightyellow,
     padding: 20,
@@ -106,5 +103,18 @@ const style = StyleSheet.create({
     marginTop: 30,
     marginLeft: 30,
     marginRight: 30,
+  },
+  main: {
+    flex: 1,
+    width: '100%',
+  },
+  title: {
+    fontSize: fontSize.xxxLarge,
+    marginBottom: 20,
+    textAlign: 'center'
+  },
+  field: {
+    fontSize: fontSize.middle,
+    textAlign: 'center',
   },
 })

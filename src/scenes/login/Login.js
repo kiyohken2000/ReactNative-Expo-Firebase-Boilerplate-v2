@@ -1,14 +1,14 @@
 import React, { useState, useContext, useEffect } from 'react'
-import { Text, View, Image, TextInput, TouchableOpacity } from 'react-native'
+import { Text, View, Image, StyleSheet } from 'react-native'
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
-import styles from '../../globalStyles'
 import ScreenTemplate from '../../components/ScreenTemplate';
 import Button from '../../components/Button'
+import TextInputBox from '../../components/TextInputBox';
 import { firestore } from '../../firebase/config'
 import { doc, getDoc } from 'firebase/firestore';
 import Spinner from 'react-native-loading-spinner-overlay'
 import { useNavigation } from '@react-navigation/native'
-import { colors } from 'theme'
+import { colors, fontSize } from '../../theme';
 import { ColorSchemeContext } from '../../context/ColorSchemeContext'
 import { LogBox } from 'react-native';
 import { signInWithEmailAndPassword } from 'firebase/auth'
@@ -58,50 +58,71 @@ export default function Login() {
 
   return (
     <ScreenTemplate>
-      <View style={styles.container}>
-        <KeyboardAwareScrollView
-          style={styles.main}
-          keyboardShouldPersistTaps="always"
-        >
-          <Image
-            style={styles.logo}
-            source={require('../../../assets/icon.png')}
-          />
-          <TextInput
-            style={[styles.input, { backgroundColor: colorScheme.input, color: colorScheme.text }]}
-            placeholder='E-mail'
-            placeholderTextColor={colors.grayLight}
-            onChangeText={(text) => setEmail(text)}
-            value={email}
-            underlineColorAndroid="transparent"
-            autoCapitalize="none"
-            keyboardType={'email-address'}
-          />
-          <TextInput
-            style={[styles.input, { backgroundColor: colorScheme.input, color: colorScheme.text }]}
-            placeholderTextColor={colors.grayLight}
-            secureTextEntry
-            placeholder='Password'
-            onChangeText={(text) => setPassword(text)}
-            value={password}
-            underlineColorAndroid="transparent"
-            autoCapitalize="none"
-          />
-          <Button
-            label='Log in'
-            color={colors.primary}
-            onPress={() => onLoginPress()}
-          />
-          <View style={styles.footerView}>
-            <Text style={[styles.footerText, { color: colorScheme.text }]}>Don't have an account? <Text onPress={onFooterLinkPress} style={styles.footerLink}>Sign up</Text></Text>
-          </View>
-        </KeyboardAwareScrollView>
-        <Spinner
-          visible={spinner}
-          textStyle={{ color: colors.white }}
-          overlayColor="rgba(0,0,0,0.5)"
+      <KeyboardAwareScrollView
+        style={styles.main}
+        keyboardShouldPersistTaps="always"
+      >
+        <Image
+          style={styles.logo}
+          source={require('../../../assets/icon.png')}
         />
-      </View>
+        <TextInputBox
+          placeholder='E-mail'
+          onChangeText={(text) => setEmail(text)}
+          autoCapitalize="none"
+          value={email}
+          keyboardType={'email-address'}
+        />
+        <TextInputBox
+          secureTextEntry={true}
+          placeholder='Password'
+          onChangeText={(text) => setPassword(text)}
+          value={password}
+          autoCapitalize="none"
+        />
+        <Button
+          label='Log in'
+          color={colors.primary}
+          onPress={() => onLoginPress()}
+        />
+        <View style={styles.footerView}>
+          <Text style={[styles.footerText, { color: colorScheme.text }]}>Don't have an account? <Text onPress={onFooterLinkPress} style={styles.footerLink}>Sign up</Text></Text>
+        </View>
+      </KeyboardAwareScrollView>
+      <Spinner
+        visible={spinner}
+        textStyle={{ color: colors.white }}
+        overlayColor="rgba(0,0,0,0.5)"
+      />
     </ScreenTemplate>
   )
 }
+
+const styles = StyleSheet.create({
+  main: {
+    flex: 1,
+    width: '100%',
+  },
+  logo: {
+    flex: 1,
+    height: 180,
+    width: 180,
+    alignSelf: "center",
+    margin: 30,
+    borderRadius: 20
+  },
+  footerView: {
+    flex: 1,
+    alignItems: "center",
+    marginBottom: 20,
+    marginTop: 20
+  },
+  footerText: {
+    fontSize: fontSize.large,
+  },
+  footerLink: {
+    color: colors.blueLight,
+    fontWeight: "bold",
+    fontSize: fontSize.large
+  },
+})

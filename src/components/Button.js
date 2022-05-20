@@ -1,6 +1,6 @@
 import React from "react";
-import { View, TouchableOpacity, Text } from "react-native";
-import styles from '../globalStyles'
+import { StyleSheet, TouchableOpacity, Text } from "react-native";
+import { fontSize, colors } from "../theme";
 
 export default function Button(props) {
   const { label, onPress, color } = props
@@ -14,3 +14,19 @@ export default function Button(props) {
     </TouchableOpacity>
   )
 }
+
+const styles = StyleSheet.create({
+  button: {
+    marginLeft: 30,
+    marginRight: 30,
+    marginTop: 20,
+    height: 48,
+    borderRadius: 5,
+    alignItems: "center",
+    justifyContent: 'center'
+  },
+  buttonText: {
+    color: colors.white,
+    fontSize: fontSize.large
+  },
+})

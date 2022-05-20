@@ -1,14 +1,14 @@
 import React, { useState, useContext, useEffect } from 'react'
-import { Image, Text, TextInput, TouchableOpacity, View, Linking } from 'react-native'
+import { Image, Text, StyleSheet, View, Linking } from 'react-native'
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
-import styles from '../../globalStyles'
 import ScreenTemplate from '../../components/ScreenTemplate';
+import TextInputBox from '../../components/TextInputBox';
 import Button from '../../components/Button';
 import { firestore } from '../../firebase/config'
 import { setDoc, doc } from 'firebase/firestore';
 import Spinner from 'react-native-loading-spinner-overlay'
 import { useNavigation } from '@react-navigation/native'
-import { colors } from 'theme'
+import { colors, fontSize } from '../../theme';
 import { ColorSchemeContext } from '../../context/ColorSchemeContext'
 import { defaultAvatar, eulaLink } from '../../config'
 import { createUserWithEmailAndPassword } from 'firebase/auth';
@@ -61,70 +61,85 @@ export default function Registration() {
 
   return (
     <ScreenTemplate>
-      <View style={styles.container}>
-        <KeyboardAwareScrollView
-          style={styles.main}
-          keyboardShouldPersistTaps="always"
-        >
-          <Image
-            style={styles.logo}
-            source={require('../../../assets/icon.png')}
-          />
-          <TextInput
-            style={[styles.input, { backgroundColor: colorScheme.input, color: colorScheme.text }]}
-            placeholder='Your Name'
-            placeholderTextColor={colors.grayLight}
-            onChangeText={(text) => setFullName(text)}
-            value={fullName}
-            underlineColorAndroid="transparent"
-            autoCapitalize="none"
-          />
-          <TextInput
-            style={[styles.input, { backgroundColor: colorScheme.input, color: colorScheme.text }]}
-            placeholder='E-mail'
-            placeholderTextColor={colors.grayLight}
-            onChangeText={(text) => setEmail(text)}
-            value={email}
-            underlineColorAndroid="transparent"
-            autoCapitalize="none"
-            keyboardType={'email-address'}
-          />
-          <TextInput
-            style={[styles.input, { backgroundColor: colorScheme.input, color: colorScheme.text }]}
-            placeholderTextColor={colors.grayLight}
-            secureTextEntry
-            placeholder='Password'
-            onChangeText={(text) => setPassword(text)}
-            value={password}
-            underlineColorAndroid="transparent"
-            autoCapitalize="none"
-          />
-          <TextInput
-            style={[styles.input, { backgroundColor: colorScheme.input, color: colorScheme.text }]}
-            placeholderTextColor={colors.grayLight}
-            secureTextEntry
-            placeholder='Confirm Password'
-            onChangeText={(text) => setConfirmPassword(text)}
-            value={confirmPassword}
-            underlineColorAndroid="transparent"
-            autoCapitalize="none"
-          />
-          <Button
-            label='Agree and Create account'
-            color={colors.primary}
-            onPress={() => onRegisterPress()}
-          />
-          <View style={styles.footerView}>
-            <Text style={[styles.footerText, {color: colorScheme.text}]}>Already got an account? <Text onPress={onFooterLinkPress} style={styles.footerLink}>Log in</Text></Text>
-          </View>
-          <Text style={styles.link} onPress={ ()=>{ Linking.openURL(eulaLink)}}>Require agree EULA</Text>
-        </KeyboardAwareScrollView>
-        <Spinner
-          visible={spinner}
-          textStyle={{ color: "#fff" }}
-          overlayColor="rgba(0,0,0,0.5)"
+      <KeyboardAwareScrollView
+        style={styles.main}
+        keyboardShouldPersistTaps="always"
+      >
+        <Image
+          style={styles.logo}
+          source={require('../../../assets/icon.png')}
         />
-      </View>
+        <TextInputBox
+          placeholder='Your Name'
+          onChangeText={(text) => setFullName(text)}
+          value={fullName}
+          autoCapitalize="none"
+        />
+        <TextInputBox
+          placeholder='E-mail'
+          onChangeText={(text) => setEmail(text)}
+          value={email}
+          autoCapitalize="none"
+          keyboardType='email-address'
+        />
+        <TextInputBox
+          secureTextEntry={true}
+          placeholder='Password'
+          onChangeText={(text) => setPassword(text)}
+          value={password}
+          autoCapitalize="none"
+        />
+        <TextInputBox
+          secureTextEntry={true}
+          placeholder='Confirm Password'
+          onChangeText={(text) => setConfirmPassword(text)}
+          value={confirmPassword}
+          autoCapitalize="none"
+        />
+        <Button
+          label='Agree and Create account'
+          color={colors.primary}
+          onPress={() => onRegisterPress()}
+        />
+        <View style={styles.footerView}>
+          <Text style={[styles.footerText, {color: colorScheme.text}]}>Already got an account? <Text onPress={onFooterLinkPress} style={styles.footerLink}>Log in</Text></Text>
+        </View>
+        <Text style={styles.link} onPress={ ()=>{ Linking.openURL(eulaLink)}}>Require agree EULA</Text>
+      </KeyboardAwareScrollView>
+      <Spinner
+        visible={spinner}
+        textStyle={{ color: "#fff" }}
+        overlayColor="rgba(0,0,0,0.5)"
+      />
     </ScreenTemplate>
   )
 }
+
+const styles = StyleSheet.create({
+  main: {
+    flex: 1,
+    width: '100%',
+  },
+  logo: {
+    flex: 1,
+    height: 180,
+    width: 180,
+    alignSelf: "center",
+    margin: 30,
+    borderRadius: 20
+  },
+  footerView: {
+    flex: 1,
+    alignItems: "center",
+    marginBottom: 20,
+    marginTop: 20
+  },
+  footerText: {
+    fontSize: fontSize.large,
+  },
+  footerLink: {
+    color: colors.blueLight,
+    fontWeight: "bold",
+    fontSize: fontSize.large
+  },
+})

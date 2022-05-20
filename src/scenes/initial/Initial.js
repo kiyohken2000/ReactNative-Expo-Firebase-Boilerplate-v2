@@ -1,15 +1,14 @@
 import React, { useEffect, useContext } from 'react'
 import { useDispatch } from 'react-redux'
 import { authenticate } from 'slices/app.slice'
-import { Text, View } from "react-native";
+import { Text, View, StyleSheet } from "react-native";
 import { UserDataContext } from '../../context/UserDataContext';
 import { ColorSchemeContext } from '../../context/ColorSchemeContext'
 import ScreenTemplate from '../../components/ScreenTemplate';
 import { firestore } from '../../firebase/config';
 import { doc, onSnapshot } from 'firebase/firestore';
-import styles from '../../globalStyles'
 import { decode, encode } from 'base-64'
-import { colors } from 'theme'
+import { colors, fontSize } from '../../theme';
 import { onAuthStateChanged } from 'firebase/auth';
 import { auth } from '../../firebase/config';
 if (!global.btoa) { global.btoa = encode }
@@ -48,3 +47,16 @@ export default function Initial() {
     </ScreenTemplate>
   )
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  title: {
+    fontSize: 24,
+    marginBottom: 20,
+    textAlign: 'center'
+  },
+})

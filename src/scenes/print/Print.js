@@ -1,21 +1,13 @@
 import React, { useEffect, useContext, useState } from 'react'
 import { View, Text, StyleSheet, ScrollView } from "react-native";
-import styles from '../../globalStyles'
 import ScreenTemplate from '../../components/ScreenTemplate'
 import Loading from '../../components/Loading';
 import axios from 'axios'
-import { colors } from 'theme'
-import { ColorSchemeContext } from '../../context/ColorSchemeContext'
 import RenderItem from './RenderItem';
 
 export default function Print() {
   const [data, setData] = useState([])
   const [isLoading, setIsLoading] = useState(false)
-  const { scheme } = useContext(ColorSchemeContext)
-  const isDark = scheme === 'dark'
-  const colorScheme = {
-    text: isDark? colors.white : colors.primaryText
-  }
 
   useEffect(() => {
     fetchData()
@@ -39,9 +31,7 @@ export default function Print() {
         <ScrollView style={styles.main}>
           {data.map((item, i) => {
             return (
-              <View key={i}>
-                <RenderItem item={item} />
-              </View>
+              <RenderItem item={item} key={i} />
             )
           })}
         </ScrollView>
@@ -53,3 +43,15 @@ export default function Print() {
     </ScreenTemplate>
   )
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  main: {
+    flex: 1,
+    width: '100%',
+  },
+})

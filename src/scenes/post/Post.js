@@ -1,10 +1,9 @@
 import React, { useState, useEffect, useContext } from 'react'
-import { Text, View, StyleSheet, TouchableOpacity } from 'react-native'
-import styles from '../../globalStyles'
+import { Text, View, StyleSheet } from 'react-native'
 import ScreenTemplate from '../../components/ScreenTemplate'
 import Button from '../../components/Button'
 import { useRoute, useFocusEffect, useNavigation } from '@react-navigation/native'
-import { colors } from 'theme'
+import { colors, fontSize } from 'theme'
 import { ColorSchemeContext } from '../../context/ColorSchemeContext'
 import { HomeTitleContext } from '../../context/HomeTitleContext'
 import { storage } from '../../utils/Storage'
@@ -19,7 +18,7 @@ export default function Post() {
   const navigation = useNavigation()
   const isDark = scheme === 'dark'
   const colorScheme = {
-    content: isDark? style.darkContent:style.lightContent,
+    content: isDark? styles.darkContent:styles.lightContent,
     text: isDark? colors.white : colors.primaryText
   }
 
@@ -97,11 +96,25 @@ export default function Post() {
   )
 }
 
-const style = StyleSheet.create({
+const styles = StyleSheet.create({
   lightContent: {
     backgroundColor: '#e6e6fa'
   },
   darkContent: {
     backgroundColor: '#696969'
+  },
+  container: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  title: {
+    fontSize: fontSize.xxxLarge,
+    marginBottom: 20,
+    textAlign: 'center'
+  },
+  field: {
+    fontSize: fontSize.middle,
+    textAlign: 'center',
   },
 })
