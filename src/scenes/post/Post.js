@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useContext } from 'react'
 import { Text, View, StyleSheet, TouchableOpacity } from 'react-native'
 import styles from '../../globalStyles'
-import SafareaBar from '../../components/SafareaBar'
+import ScreenTemplate from '../../components/ScreenTemplate'
 import { useRoute, useFocusEffect, useNavigation } from '@react-navigation/native'
 import { colors } from 'theme'
 import { ColorSchemeContext } from '../../context/ColorSchemeContext'
@@ -66,35 +66,36 @@ export default function Post() {
   }
 
   return (
-    <View style={[styles.container, colorScheme.content ]}>
-      <SafareaBar />
-      <Text style={[styles.field, {color: colorScheme.text}]}>Post Screen</Text>
-      <Text style={[styles.title, {color: colorScheme.text}]}>{data.email}</Text>
-      <Text style={[styles.field, {color: colorScheme.text}]}>from</Text>
-      <Text style={[styles.title, {color: colorScheme.text}]}>{from}</Text>
-      <Text style={[styles.field, {color: colorScheme.text}]}>Latest save date</Text>
-      <Text style={[styles.title, {color: colorScheme.text}]}>{date.date}</Text>
-      <View style={{width:'100%'}}>
-        <TouchableOpacity
-          style={[styles.button, {backgroundColor:colors.primary}]}
-          onPress={() => onSavePress()}
-        >
-          <Text style={styles.buttonText}>Save Date</Text>
-        </TouchableOpacity>
-        <TouchableOpacity
-          style={[styles.button, {backgroundColor:colors.secondary}]}
-          onPress={() => onRemovePress()}
-        >
-          <Text style={styles.buttonText}>Remove Date</Text>
-        </TouchableOpacity>
-        <TouchableOpacity
-          style={[styles.button, {backgroundColor:colors.tertiary}]}
-          onPress={() => navigation.navigate('Print')}
-        >
-          <Text style={styles.buttonText}>Go to Print</Text>
-        </TouchableOpacity>
+    <ScreenTemplate>
+      <View style={[styles.container, colorScheme.content ]}>
+        <Text style={[styles.field, {color: colorScheme.text}]}>Post Screen</Text>
+        <Text style={[styles.title, {color: colorScheme.text}]}>{data.email}</Text>
+        <Text style={[styles.field, {color: colorScheme.text}]}>from</Text>
+        <Text style={[styles.title, {color: colorScheme.text}]}>{from}</Text>
+        <Text style={[styles.field, {color: colorScheme.text}]}>Latest save date</Text>
+        <Text style={[styles.title, {color: colorScheme.text}]}>{date.date}</Text>
+        <View style={{width:'100%'}}>
+          <TouchableOpacity
+            style={[styles.button, {backgroundColor:colors.primary}]}
+            onPress={() => onSavePress()}
+          >
+            <Text style={styles.buttonText}>Save Date</Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            style={[styles.button, {backgroundColor:colors.secondary}]}
+            onPress={() => onRemovePress()}
+          >
+            <Text style={styles.buttonText}>Remove Date</Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            style={[styles.button, {backgroundColor:colors.tertiary}]}
+            onPress={() => navigation.navigate('Print')}
+          >
+            <Text style={styles.buttonText}>Go to Print</Text>
+          </TouchableOpacity>
+        </View>
       </View>
-    </View>
+    </ScreenTemplate>
   )
 }
 

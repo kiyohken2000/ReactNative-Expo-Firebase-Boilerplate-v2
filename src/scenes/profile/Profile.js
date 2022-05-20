@@ -4,7 +4,7 @@ import { Avatar } from 'react-native-elements'
 import Dialog from "react-native-dialog"
 import Spinner from 'react-native-loading-spinner-overlay'
 import styles from '../../globalStyles'
-import SafareaBar from '../../components/SafareaBar'
+import ScreenTemplate from '../../components/ScreenTemplate'
 import { Restart } from '../../utils/Restart'
 import { firestore } from '../../firebase/config'
 import { doc, deleteDoc } from 'firebase/firestore';
@@ -80,64 +80,65 @@ export default function Profile() {
   }
 
   return (
-    <View style={styles.container}>
-      <SafareaBar />
-      <ScrollView style={styles.main}>
-        <View style={styles.avatar}>
-          <Avatar
-            size="xlarge"
-            rounded
-            title="NI"
-            source={{ uri: userData.avatar }}
-          />
-        </View>
-        <Text style={[styles.field, { color: colorScheme.text }]}>Name:</Text>
-        <Text style={[styles.title, { color: colorScheme.text }]}>{userData.fullName}</Text>
-        <Text style={[styles.field, { color: colorScheme.text }]}>Mail:</Text>
-        <Text style={[styles.title, { color: colorScheme.text }]}>{userData.email}</Text>
-        <TouchableOpacity
-          style={[styles.button, { backgroundColor: colors.primary }]}
-          onPress={goDetail}
-        >
-          <Text style={styles.buttonText}>Edit</Text>
-        </TouchableOpacity>
-        <TouchableOpacity
-          style={[styles.button, { backgroundColor: colors.tertiary }]}
-          onPress={() => {
-            navigation.navigate('ModalStacks', {
-              screen: 'Post',
-              params: {
-                data: userData,
-                from: 'Profile screen'
-              }
-            })
-          }}
-        >
-          <Text style={styles.buttonText}>Open Modal</Text>
-        </TouchableOpacity>
-        <TouchableOpacity
-          style={[styles.button, { backgroundColor: colors.secondary }]}
-          onPress={showDialog}
-        >
-          <Text style={styles.buttonText}>Account delete</Text>
-        </TouchableOpacity>
-        <View style={styles.footerView}>
-          <Text onPress={onSignOutPress} style={styles.footerLink}>Sign out</Text>
-        </View>
-      </ScrollView>
-      <Dialog.Container visible={visible}>
-        <Dialog.Title>Account delete</Dialog.Title>
-        <Dialog.Description>
-          Do you want to delete this account? You cannot undo this action.
-        </Dialog.Description>
-        <Dialog.Button label="Cancel" onPress={handleCancel} />
-        <Dialog.Button label="Delete" onPress={accountDelete} />
-      </Dialog.Container>
-      <Spinner
-        visible={spinner}
-        textStyle={{ color: "#fff" }}
-        overlayColor="rgba(0,0,0,0.5)"
-      />
-    </View>
+    <ScreenTemplate>
+      <View style={styles.container}>
+        <ScrollView style={styles.main}>
+          <View style={styles.avatar}>
+            <Avatar
+              size="xlarge"
+              rounded
+              title="NI"
+              source={{ uri: userData.avatar }}
+            />
+          </View>
+          <Text style={[styles.field, { color: colorScheme.text }]}>Name:</Text>
+          <Text style={[styles.title, { color: colorScheme.text }]}>{userData.fullName}</Text>
+          <Text style={[styles.field, { color: colorScheme.text }]}>Mail:</Text>
+          <Text style={[styles.title, { color: colorScheme.text }]}>{userData.email}</Text>
+          <TouchableOpacity
+            style={[styles.button, { backgroundColor: colors.primary }]}
+            onPress={goDetail}
+          >
+            <Text style={styles.buttonText}>Edit</Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            style={[styles.button, { backgroundColor: colors.tertiary }]}
+            onPress={() => {
+              navigation.navigate('ModalStacks', {
+                screen: 'Post',
+                params: {
+                  data: userData,
+                  from: 'Profile screen'
+                }
+              })
+            }}
+          >
+            <Text style={styles.buttonText}>Open Modal</Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            style={[styles.button, { backgroundColor: colors.secondary }]}
+            onPress={showDialog}
+          >
+            <Text style={styles.buttonText}>Account delete</Text>
+          </TouchableOpacity>
+          <View style={styles.footerView}>
+            <Text onPress={onSignOutPress} style={styles.footerLink}>Sign out</Text>
+          </View>
+        </ScrollView>
+        <Dialog.Container visible={visible}>
+          <Dialog.Title>Account delete</Dialog.Title>
+          <Dialog.Description>
+            Do you want to delete this account? You cannot undo this action.
+          </Dialog.Description>
+          <Dialog.Button label="Cancel" onPress={handleCancel} />
+          <Dialog.Button label="Delete" onPress={accountDelete} />
+        </Dialog.Container>
+        <Spinner
+          visible={spinner}
+          textStyle={{ color: "#fff" }}
+          overlayColor="rgba(0,0,0,0.5)"
+        />
+      </View>
+    </ScreenTemplate>
   )
 }

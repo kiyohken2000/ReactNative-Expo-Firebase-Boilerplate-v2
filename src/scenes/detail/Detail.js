@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useContext } from 'react'
 import { Text, View, ScrollView, StyleSheet, TouchableOpacity } from 'react-native'
 import styles from '../../globalStyles'
-import SafareaBar from '../../components/SafareaBar'
+import ScreenTemplate from '../../components/ScreenTemplate'
 import { useNavigation } from '@react-navigation/native'
 import { useRoute } from '@react-navigation/native'
 import { colors } from 'theme'
@@ -30,8 +30,8 @@ export default function Detail() {
   }, [])
 
   return (
-    <View style={styles.container}>
-      <SafareaBar />
+    <ScreenTemplate>
+      <View style={styles.container}>
         <ScrollView style={styles.main}>
           <View style={colorScheme.content}>
             <Text style={[styles.field, {color: colorScheme.text}]}>{userData.id}</Text>
@@ -46,7 +46,8 @@ export default function Detail() {
             <Text style={styles.buttonText}>Back to {from}</Text>
           </TouchableOpacity>
         </ScrollView>
-    </View>
+      </View>
+    </ScreenTemplate>
   )
 }
 

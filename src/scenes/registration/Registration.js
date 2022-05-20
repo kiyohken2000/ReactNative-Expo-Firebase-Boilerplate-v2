@@ -2,7 +2,7 @@ import React, { useState, useContext, useEffect } from 'react'
 import { Image, Text, TextInput, TouchableOpacity, View, Linking } from 'react-native'
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 import styles from '../../globalStyles'
-import SafareaBar from '../../components/SafareaBar'
+import ScreenTemplate from '../../components/ScreenTemplate';
 import { firestore } from '../../firebase/config'
 import { setDoc, doc } from 'firebase/firestore';
 import Spinner from 'react-native-loading-spinner-overlay'
@@ -59,70 +59,71 @@ export default function Registration() {
   }
 
   return (
-    <View style={styles.container}>
-      <SafareaBar />
-      <KeyboardAwareScrollView
-        style={styles.main}
-        keyboardShouldPersistTaps="always"
-      >
-        <Image
-          style={styles.logo}
-          source={require('../../../assets/icon.png')}
+    <ScreenTemplate>
+      <View style={styles.container}>
+        <KeyboardAwareScrollView
+          style={styles.main}
+          keyboardShouldPersistTaps="always"
+        >
+          <Image
+            style={styles.logo}
+            source={require('../../../assets/icon.png')}
+          />
+          <TextInput
+            style={[styles.input, { backgroundColor: colorScheme.input, color: colorScheme.text }]}
+            placeholder='Your Name'
+            placeholderTextColor={colors.grayLight}
+            onChangeText={(text) => setFullName(text)}
+            value={fullName}
+            underlineColorAndroid="transparent"
+            autoCapitalize="none"
+          />
+          <TextInput
+            style={[styles.input, { backgroundColor: colorScheme.input, color: colorScheme.text }]}
+            placeholder='E-mail'
+            placeholderTextColor={colors.grayLight}
+            onChangeText={(text) => setEmail(text)}
+            value={email}
+            underlineColorAndroid="transparent"
+            autoCapitalize="none"
+            keyboardType={'email-address'}
+          />
+          <TextInput
+            style={[styles.input, { backgroundColor: colorScheme.input, color: colorScheme.text }]}
+            placeholderTextColor={colors.grayLight}
+            secureTextEntry
+            placeholder='Password'
+            onChangeText={(text) => setPassword(text)}
+            value={password}
+            underlineColorAndroid="transparent"
+            autoCapitalize="none"
+          />
+          <TextInput
+            style={[styles.input, { backgroundColor: colorScheme.input, color: colorScheme.text }]}
+            placeholderTextColor={colors.grayLight}
+            secureTextEntry
+            placeholder='Confirm Password'
+            onChangeText={(text) => setConfirmPassword(text)}
+            value={confirmPassword}
+            underlineColorAndroid="transparent"
+            autoCapitalize="none"
+          />
+          <TouchableOpacity
+            style={[styles.button, {backgroundColor:colors.primary}]}
+            onPress={() => onRegisterPress()}>
+            <Text style={styles.buttonText}>Agree and Create account</Text>
+          </TouchableOpacity>
+          <View style={styles.footerView}>
+            <Text style={[styles.footerText, {color: colorScheme.text}]}>Already got an account? <Text onPress={onFooterLinkPress} style={styles.footerLink}>Log in</Text></Text>
+          </View>
+          <Text style={styles.link} onPress={ ()=>{ Linking.openURL(eulaLink)}}>Require agree EULA</Text>
+        </KeyboardAwareScrollView>
+        <Spinner
+          visible={spinner}
+          textStyle={{ color: "#fff" }}
+          overlayColor="rgba(0,0,0,0.5)"
         />
-        <TextInput
-          style={[styles.input, { backgroundColor: colorScheme.input, color: colorScheme.text }]}
-          placeholder='Your Name'
-          placeholderTextColor="#aaaaaa"
-          onChangeText={(text) => setFullName(text)}
-          value={fullName}
-          underlineColorAndroid="transparent"
-          autoCapitalize="none"
-        />
-        <TextInput
-          style={[styles.input, { backgroundColor: colorScheme.input, color: colorScheme.text }]}
-          placeholder='E-mail'
-          placeholderTextColor="#aaaaaa"
-          onChangeText={(text) => setEmail(text)}
-          value={email}
-          underlineColorAndroid="transparent"
-          autoCapitalize="none"
-          keyboardType={'email-address'}
-        />
-        <TextInput
-          style={[styles.input, { backgroundColor: colorScheme.input, color: colorScheme.text }]}
-          placeholderTextColor="#aaaaaa"
-          secureTextEntry
-          placeholder='Password'
-          onChangeText={(text) => setPassword(text)}
-          value={password}
-          underlineColorAndroid="transparent"
-          autoCapitalize="none"
-        />
-        <TextInput
-          style={[styles.input, { backgroundColor: colorScheme.input, color: colorScheme.text }]}
-          placeholderTextColor="#aaaaaa"
-          secureTextEntry
-          placeholder='Confirm Password'
-          onChangeText={(text) => setConfirmPassword(text)}
-          value={confirmPassword}
-          underlineColorAndroid="transparent"
-          autoCapitalize="none"
-        />
-        <TouchableOpacity
-          style={[styles.button, {backgroundColor:colors.primary}]}
-          onPress={() => onRegisterPress()}>
-          <Text style={styles.buttonText}>Agree and Create account</Text>
-        </TouchableOpacity>
-        <View style={styles.footerView}>
-          <Text style={[styles.footerText, {color: colorScheme.text}]}>Already got an account? <Text onPress={onFooterLinkPress} style={styles.footerLink}>Log in</Text></Text>
-        </View>
-        <Text style={styles.link} onPress={ ()=>{ Linking.openURL(eulaLink)}}>Require agree EULA</Text>
-      </KeyboardAwareScrollView>
-      <Spinner
-        visible={spinner}
-        textStyle={{ color: "#fff" }}
-        overlayColor="rgba(0,0,0,0.5)"
-      />
-    </View>
+      </View>
+    </ScreenTemplate>
   )
 }

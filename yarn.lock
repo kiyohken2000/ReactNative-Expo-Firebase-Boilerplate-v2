@@ -9078,6 +9078,11 @@ expo-pwa@0.0.45:
     fs-extra "9.0.0"
     update-check "1.5.3"
 
+expo-status-bar@~1.3.0:
+  version "1.3.0"
+  resolved "https://registry.yarnpkg.com/expo-status-bar/-/expo-status-bar-1.3.0.tgz#d71fd0b880ea201905f5dd8abcd18db7476c9f03"
+  integrity sha512-UszYUsT8A8jSUebrXht095Iwv5VIdg61LPuyNNoC5gFP0E9G+8LgX68deqR4zhJOlbsgSH2cixxKhrGW+1HPZg==
+
 expo-structured-headers@~2.2.0:
   version "2.2.1"
   resolved "https://registry.yarnpkg.com/expo-structured-headers/-/expo-structured-headers-2.2.1.tgz#739f969101de6bead921eee59e5899399ad67715"

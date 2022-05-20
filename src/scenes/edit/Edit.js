@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useContext } from 'react'
 import { Text, View, TextInput, TouchableOpacity, StyleSheet, Platform } from 'react-native'
 import styles from '../../globalStyles'
-import SafareaBar from '../../components/SafareaBar'
+import ScreenTemplate from '../../components/ScreenTemplate'
 import { firestore, storage } from '../../firebase/config'
 import { doc, updateDoc } from 'firebase/firestore';
 import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
@@ -100,12 +100,12 @@ export default function Edit() {
   }
 
   return (
-    <View style={styles.container}>
-      <KeyboardAwareScrollView
-        style={styles.main}
-        keyboardShouldPersistTaps="always"
-      >
-        <SafareaBar />
+    <ScreenTemplate>
+      <View style={styles.container}>
+        <KeyboardAwareScrollView
+          style={styles.main}
+          keyboardShouldPersistTaps="always"
+        >
           <View style={styles.avatar}>
             <Avatar
               size="xlarge"
@@ -120,7 +120,7 @@ export default function Edit() {
           <TextInput
             style={[styles.input, {backgroundColor: colorScheme.input, color: colorScheme.text }]}
             placeholder={fullName}
-            placeholderTextColor="#aaaaaa"
+            placeholderTextColor={colors.grayLight}
             onChangeText={(text) => setFullName(text)}
             value={fullName}
             underlineColorAndroid="transparent"
@@ -134,8 +134,9 @@ export default function Edit() {
           >
             <Text style={styles.buttonText}>Update</Text>
           </TouchableOpacity>
-      </KeyboardAwareScrollView>
-    </View>
+        </KeyboardAwareScrollView>
+      </View>
+    </ScreenTemplate>
   )
 }
 

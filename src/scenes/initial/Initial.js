@@ -4,6 +4,7 @@ import { authenticate } from 'slices/app.slice'
 import { Text, View } from "react-native";
 import { UserDataContext } from '../../context/UserDataContext';
 import { ColorSchemeContext } from '../../context/ColorSchemeContext'
+import ScreenTemplate from '../../components/ScreenTemplate';
 import { firestore } from '../../firebase/config';
 import { doc, onSnapshot } from 'firebase/firestore';
 import styles from '../../globalStyles'
@@ -40,8 +41,10 @@ export default function Initial() {
   }, []);
 
   return (
-    <View style={[styles.container, {backgroundColor: colorScheme.container}]}>
-      <Text style={[styles.title, {color: colorScheme.text}]}>loading</Text>
-    </View>
+    <ScreenTemplate>
+      <View style={[styles.container, {backgroundColor: colorScheme.container}]}>
+        <Text style={[styles.title, {color: colorScheme.text}]}>loading</Text>
+      </View>
+    </ScreenTemplate>
   )
 }

@@ -2,7 +2,7 @@ import React, { useState, useContext, useEffect } from 'react'
 import { Text, View, Image, TextInput, TouchableOpacity } from 'react-native'
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 import styles from '../../globalStyles'
-import SafareaBar from '../../components/SafareaBar'
+import ScreenTemplate from '../../components/ScreenTemplate';
 import { firestore } from '../../firebase/config'
 import { doc, getDoc } from 'firebase/firestore';
 import Spinner from 'react-native-loading-spinner-overlay'
@@ -56,50 +56,51 @@ export default function Login() {
   }
 
   return (
-    <View style={styles.container}>
-      <SafareaBar />
-      <KeyboardAwareScrollView
-        style={styles.main}
-        keyboardShouldPersistTaps="always"
-      >
-        <Image
-          style={styles.logo}
-          source={require('../../../assets/icon.png')}
+    <ScreenTemplate>
+      <View style={styles.container}>
+        <KeyboardAwareScrollView
+          style={styles.main}
+          keyboardShouldPersistTaps="always"
+        >
+          <Image
+            style={styles.logo}
+            source={require('../../../assets/icon.png')}
+          />
+          <TextInput
+            style={[styles.input, { backgroundColor: colorScheme.input, color: colorScheme.text }]}
+            placeholder='E-mail'
+            placeholderTextColor={colors.grayLight}
+            onChangeText={(text) => setEmail(text)}
+            value={email}
+            underlineColorAndroid="transparent"
+            autoCapitalize="none"
+            keyboardType={'email-address'}
+          />
+          <TextInput
+            style={[styles.input, { backgroundColor: colorScheme.input, color: colorScheme.text }]}
+            placeholderTextColor={colors.grayLight}
+            secureTextEntry
+            placeholder='Password'
+            onChangeText={(text) => setPassword(text)}
+            value={password}
+            underlineColorAndroid="transparent"
+            autoCapitalize="none"
+          />
+          <TouchableOpacity
+            style={[styles.button, { backgroundColor: colors.primary }]}
+            onPress={() => onLoginPress()}>
+            <Text style={styles.buttonText}>Log in</Text>
+          </TouchableOpacity>
+          <View style={styles.footerView}>
+            <Text style={[styles.footerText, { color: colorScheme.text }]}>Don't have an account? <Text onPress={onFooterLinkPress} style={styles.footerLink}>Sign up</Text></Text>
+          </View>
+        </KeyboardAwareScrollView>
+        <Spinner
+          visible={spinner}
+          textStyle={{ color: colors.white }}
+          overlayColor="rgba(0,0,0,0.5)"
         />
-        <TextInput
-          style={[styles.input, { backgroundColor: colorScheme.input, color: colorScheme.text }]}
-          placeholder='E-mail'
-          placeholderTextColor="#aaaaaa"
-          onChangeText={(text) => setEmail(text)}
-          value={email}
-          underlineColorAndroid="transparent"
-          autoCapitalize="none"
-          keyboardType={'email-address'}
-        />
-        <TextInput
-          style={[styles.input, { backgroundColor: colorScheme.input, color: colorScheme.text }]}
-          placeholderTextColor="#aaaaaa"
-          secureTextEntry
-          placeholder='Password'
-          onChangeText={(text) => setPassword(text)}
-          value={password}
-          underlineColorAndroid="transparent"
-          autoCapitalize="none"
-        />
-        <TouchableOpacity
-          style={[styles.button, { backgroundColor: colors.primary }]}
-          onPress={() => onLoginPress()}>
-          <Text style={styles.buttonText}>Log in</Text>
-        </TouchableOpacity>
-        <View style={styles.footerView}>
-          <Text style={[styles.footerText, { color: colorScheme.text }]}>Don't have an account? <Text onPress={onFooterLinkPress} style={styles.footerLink}>Sign up</Text></Text>
-        </View>
-      </KeyboardAwareScrollView>
-      <Spinner
-        visible={spinner}
-        textStyle={{ color: "#fff" }}
-        overlayColor="rgba(0,0,0,0.5)"
-      />
-    </View>
+      </View>
+    </ScreenTemplate>
   )
 }
