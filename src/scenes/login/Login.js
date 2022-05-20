@@ -23,6 +23,11 @@ export default function Login() {
   const [spinner, setSpinner] = useState(false)
   const navigation = useNavigation()
   const { scheme } = useContext(ColorSchemeContext)
+  const isDark = scheme === 'dark'
+  const colorScheme = {
+    input: isDark? colors.darkInput : colors.white,
+    text: isDark? colors.white : colors.primaryText
+  }
 
   const onFooterLinkPress = () => {
     navigation.navigate('Registration')
@@ -62,7 +67,7 @@ export default function Login() {
           source={require('../../../assets/icon.png')}
         />
         <TextInput
-          style={[styles.input, { backgroundColor: scheme === 'dark' ? colors.darkInput : colors.white, color: scheme === 'dark' ? colors.white : colors.primaryText }]}
+          style={[styles.input, { backgroundColor: colorScheme.input, color: colorScheme.text }]}
           placeholder='E-mail'
           placeholderTextColor="#aaaaaa"
           onChangeText={(text) => setEmail(text)}
@@ -72,7 +77,7 @@ export default function Login() {
           keyboardType={'email-address'}
         />
         <TextInput
-          style={[styles.input, { backgroundColor: scheme === 'dark' ? colors.darkInput : colors.white, color: scheme === 'dark' ? colors.white : colors.primaryText }]}
+          style={[styles.input, { backgroundColor: colorScheme.input, color: colorScheme.text }]}
           placeholderTextColor="#aaaaaa"
           secureTextEntry
           placeholder='Password'
@@ -87,7 +92,7 @@ export default function Login() {
           <Text style={styles.buttonText}>Log in</Text>
         </TouchableOpacity>
         <View style={styles.footerView}>
-          <Text style={[styles.footerText, { color: scheme === 'dark' ? colors.white : colors.primaryText }]}>Don't have an account? <Text onPress={onFooterLinkPress} style={styles.footerLink}>Sign up</Text></Text>
+          <Text style={[styles.footerText, { color: colorScheme.text }]}>Don't have an account? <Text onPress={onFooterLinkPress} style={styles.footerLink}>Sign up</Text></Text>
         </View>
       </KeyboardAwareScrollView>
       <Spinner

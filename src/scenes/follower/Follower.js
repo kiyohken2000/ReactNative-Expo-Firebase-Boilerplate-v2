@@ -7,6 +7,10 @@ import { ColorSchemeContext } from '../../context/ColorSchemeContext'
 
 export default function Follower() {
   const { scheme } = useContext(ColorSchemeContext)
+  const isDark = scheme === 'dark'
+  const colorScheme = {
+    text: isDark? colors.white : colors.primaryText
+  }
 
   useEffect(() => {
     console.log('Follower screen')
@@ -15,7 +19,7 @@ export default function Follower() {
   return (
     <View style={styles.container}>
       <SafareaBar />
-      <Text style={[styles.field, {color: scheme === 'dark'? colors.white: colors.primaryText}]}>Follower Screen</Text>
+      <Text style={[styles.field, {color: colorScheme.text}]}>Follower Screen</Text>
     </View>
   )
 }

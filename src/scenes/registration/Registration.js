@@ -21,6 +21,11 @@ export default function Registration() {
   const [spinner, setSpinner] = useState(false)
   const navigation = useNavigation()
   const { scheme } = useContext(ColorSchemeContext)
+  const isDark = scheme === 'dark'
+  const colorScheme = {
+    input: isDark? colors.darkInput : colors.white,
+    text: isDark? colors.white : colors.primaryText
+  }
 
   useEffect(() => {
     console.log('Registration screen')
@@ -65,7 +70,7 @@ export default function Registration() {
           source={require('../../../assets/icon.png')}
         />
         <TextInput
-          style={[styles.input, {backgroundColor: scheme === 'dark'? colors.darkInput: colors.white, color: scheme === 'dark'? colors.white: colors.primaryText }]}
+          style={[styles.input, { backgroundColor: colorScheme.input, color: colorScheme.text }]}
           placeholder='Your Name'
           placeholderTextColor="#aaaaaa"
           onChangeText={(text) => setFullName(text)}
@@ -74,7 +79,7 @@ export default function Registration() {
           autoCapitalize="none"
         />
         <TextInput
-          style={[styles.input, {backgroundColor: scheme === 'dark'? colors.darkInput: colors.white, color: scheme === 'dark'? colors.white: colors.primaryText }]}
+          style={[styles.input, { backgroundColor: colorScheme.input, color: colorScheme.text }]}
           placeholder='E-mail'
           placeholderTextColor="#aaaaaa"
           onChangeText={(text) => setEmail(text)}
@@ -84,7 +89,7 @@ export default function Registration() {
           keyboardType={'email-address'}
         />
         <TextInput
-          style={[styles.input, {backgroundColor: scheme === 'dark'? colors.darkInput: colors.white, color: scheme === 'dark'? colors.white: colors.primaryText }]}
+          style={[styles.input, { backgroundColor: colorScheme.input, color: colorScheme.text }]}
           placeholderTextColor="#aaaaaa"
           secureTextEntry
           placeholder='Password'
@@ -94,7 +99,7 @@ export default function Registration() {
           autoCapitalize="none"
         />
         <TextInput
-          style={[styles.input, {backgroundColor: scheme === 'dark'? colors.darkInput: colors.white, color: scheme === 'dark'? colors.white: colors.primaryText }]}
+          style={[styles.input, { backgroundColor: colorScheme.input, color: colorScheme.text }]}
           placeholderTextColor="#aaaaaa"
           secureTextEntry
           placeholder='Confirm Password'
@@ -109,7 +114,7 @@ export default function Registration() {
           <Text style={styles.buttonText}>Agree and Create account</Text>
         </TouchableOpacity>
         <View style={styles.footerView}>
-          <Text style={[styles.footerText, {color: scheme === 'dark'? colors.white: colors.primaryText}]}>Already got an account? <Text onPress={onFooterLinkPress} style={styles.footerLink}>Log in</Text></Text>
+          <Text style={[styles.footerText, {color: colorScheme.text}]}>Already got an account? <Text onPress={onFooterLinkPress} style={styles.footerLink}>Log in</Text></Text>
         </View>
         <Text style={styles.link} onPress={ ()=>{ Linking.openURL(eulaLink)}}>Require agree EULA</Text>
       </KeyboardAwareScrollView>

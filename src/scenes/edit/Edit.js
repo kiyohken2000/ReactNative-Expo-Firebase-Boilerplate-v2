@@ -21,6 +21,13 @@ export default function Edit() {
   const [fullName, setFullName] = useState('')
   const [progress, setProgress] = useState('')
   const [avatar, setAvatar] = useState(userData.avatar)
+  const isDark = scheme === 'dark'
+  const colorScheme = {
+    text: isDark? colors.white : colors.primaryText,
+    progress: isDark? style.darkprogress : style.progress,
+    field: isDark? styles.darkfield : styles.field,
+    input: isDark? colors.darkInput: colors.white
+  }
 
   useEffect(() => {
     console.log('Edit screen')
@@ -108,10 +115,10 @@ export default function Edit() {
               source={{ uri: avatar }}
             />
           </View>
-          <Text style={scheme === 'dark' ? style.darkprogress : style.progress}>{progress}</Text>
-          <Text style={scheme === 'dark' ? styles.darkfield : styles.field}>Name:</Text>
+          <Text style={colorScheme.progress}>{progress}</Text>
+          <Text style={colorScheme.field}>Name:</Text>
           <TextInput
-            style={[styles.input, {backgroundColor: scheme === 'dark'? colors.darkInput: colors.white, color: scheme === 'dark'? colors.white: colors.primaryText }]}
+            style={[styles.input, {backgroundColor: colorScheme.input, color: colorScheme.text }]}
             placeholder={fullName}
             placeholderTextColor="#aaaaaa"
             onChangeText={(text) => setFullName(text)}
@@ -119,8 +126,8 @@ export default function Edit() {
             underlineColorAndroid="transparent"
             autoCapitalize="none"
           />
-          <Text style={[styles.field, {color: scheme === 'dark'? colors.white: colors.primaryText}]}>Mail:</Text>
-          <Text style={[styles.title, {color: scheme === 'dark'? colors.white: colors.primaryText}]}>{userData.email}</Text>
+          <Text style={[styles.field, {color: colorScheme.text}]}>Mail:</Text>
+          <Text style={[styles.title, {color: colorScheme.text}]}>{userData.email}</Text>
           <TouchableOpacity
             style={[styles.button, {backgroundColor:colors.primary}]}
             onPress={profileUpdate}

@@ -6,7 +6,7 @@ import { useRoute, useFocusEffect, useNavigation } from '@react-navigation/nativ
 import { colors } from 'theme'
 import { ColorSchemeContext } from '../../context/ColorSchemeContext'
 import { HomeTitleContext } from '../../context/HomeTitleContext'
-import { storage } from '../../components/Storage'
+import { storage } from '../../utils/Storage'
 import moment from 'moment'
 
 export default function Post() {
@@ -16,6 +16,11 @@ export default function Post() {
   const [date, setDate] = useState('')
   const { setTitle } = useContext(HomeTitleContext)
   const navigation = useNavigation()
+  const isDark = scheme === 'dark'
+  const colorScheme = {
+    content: isDark? style.darkContent:style.lightContent,
+    text: isDark? colors.white : colors.primaryText
+  }
 
   useEffect(() => {
     console.log('Post screen')
@@ -61,14 +66,14 @@ export default function Post() {
   }
 
   return (
-    <View style={[styles.container, scheme === 'dark'?style.darkContent:style.lightContent, ]}>
+    <View style={[styles.container, colorScheme.content ]}>
       <SafareaBar />
-      <Text style={[styles.field, {color: scheme === 'dark'? colors.white: colors.primaryText}]}>Post Screen</Text>
-      <Text style={[styles.title, {color: scheme === 'dark'? colors.white: colors.primaryText}]}>{data.email}</Text>
-      <Text style={[styles.field, {color: scheme === 'dark'? colors.white: colors.primaryText}]}>from</Text>
-      <Text style={[styles.title, {color: scheme === 'dark'? colors.white: colors.primaryText}]}>{from}</Text>
-      <Text style={[styles.field, {color: scheme === 'dark'? colors.white: colors.primaryText}]}>Latest save date</Text>
-      <Text style={[styles.title, {color: scheme === 'dark'? colors.white: colors.primaryText}]}>{date.date}</Text>
+      <Text style={[styles.field, {color: colorScheme.text}]}>Post Screen</Text>
+      <Text style={[styles.title, {color: colorScheme.text}]}>{data.email}</Text>
+      <Text style={[styles.field, {color: colorScheme.text}]}>from</Text>
+      <Text style={[styles.title, {color: colorScheme.text}]}>{from}</Text>
+      <Text style={[styles.field, {color: colorScheme.text}]}>Latest save date</Text>
+      <Text style={[styles.title, {color: colorScheme.text}]}>{date.date}</Text>
       <View style={{width:'100%'}}>
         <TouchableOpacity
           style={[styles.button, {backgroundColor:colors.primary}]}

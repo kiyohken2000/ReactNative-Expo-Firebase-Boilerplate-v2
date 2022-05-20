@@ -15,6 +15,11 @@ export default function Home() {
   const [token, setToken] = useState('')
   const { userData } = useContext(UserDataContext)
   const { scheme } = useContext(ColorSchemeContext)
+  const isDark = scheme === 'dark'
+  const colorScheme = {
+    content: isDark? style.darkContent : style.lightContent,
+    text: isDark? colors.white : colors.primaryText
+  }
 
   useLayoutEffect(() => {
     navigation.setOptions({
@@ -50,13 +55,13 @@ export default function Home() {
     <View style={styles.container}>
       <SafareaBar />
       <ScrollView style={styles.main}>
-        <View style={scheme === 'dark' ? style.darkContent : style.lightContent}>
-          <Text style={[styles.field, { color: scheme === 'dark' ? colors.white : colors.primaryText }]}>Mail:</Text>
-          <Text style={[styles.title, { color: scheme === 'dark' ? colors.white : colors.primaryText }]}>{userData.email}</Text>
+        <View style={colorScheme.content}>
+          <Text style={[styles.field, { color: colorScheme.text }]}>Mail:</Text>
+          <Text style={[styles.title, { color: colorScheme.text }]}>{userData.email}</Text>
           {token ?
             <>
-              <Text style={[styles.field, { color: scheme === 'dark' ? colors.white : colors.primaryText }]}>Expo push token:</Text>
-              <Text style={[styles.title, { color: scheme === 'dark' ? colors.white : colors.primaryText }]}>{token.token}</Text>
+              <Text style={[styles.field, { color: colorScheme.text }]}>Expo push token:</Text>
+              <Text style={[styles.title, { color: colorScheme.text }]}>{token.token}</Text>
             </> : null
           }
         </View>

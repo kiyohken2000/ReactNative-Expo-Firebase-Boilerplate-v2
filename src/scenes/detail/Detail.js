@@ -15,6 +15,11 @@ export default function Detail() {
   const { from, userData, title } = route.params
   const { setTitle } = useContext(HomeTitleContext)
   const { scheme } = useContext(ColorSchemeContext)
+  const isDark = scheme === 'dark'
+  const colorScheme = {
+    content: isDark? style.darkContent : style.lightContent,
+    text: isDark? colors.white : colors.primaryText
+  }
 
   useFocusEffect(() => {
     setTitle(title)
@@ -28,11 +33,11 @@ export default function Detail() {
     <View style={styles.container}>
       <SafareaBar />
         <ScrollView style={styles.main}>
-          <View style={scheme === 'dark'?style.darkContent: style.lightContent}>
-            <Text style={[styles.field, {color: scheme === 'dark'? colors.white: colors.primaryText}]}>{userData.id}</Text>
-            <Text style={[styles.field, {color: scheme === 'dark'? colors.white: colors.primaryText}]}>{userData.fullName}</Text>
-            <Text style={[styles.field, {color: scheme === 'dark'? colors.white: colors.primaryText}]}>{userData.email}</Text>
-            <Text style={[styles.field, {color: scheme === 'dark'? colors.white: colors.primaryText}]}>{userData.avatar}</Text>
+          <View style={colorScheme.content}>
+            <Text style={[styles.field, {color: colorScheme.text}]}>{userData.id}</Text>
+            <Text style={[styles.field, {color: colorScheme.text}]}>{userData.fullName}</Text>
+            <Text style={[styles.field, {color: colorScheme.text}]}>{userData.email}</Text>
+            <Text style={[styles.field, {color: colorScheme.text}]}>{userData.avatar}</Text>
           </View>
           <TouchableOpacity
             style={[styles.button, {backgroundColor:colors.primary}]}

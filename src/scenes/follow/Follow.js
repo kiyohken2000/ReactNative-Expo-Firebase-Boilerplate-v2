@@ -9,8 +9,12 @@ import { useNavigation } from '@react-navigation/native'
 
 export default function Follow() {
   const navigation = useNavigation()
-  const { scheme } = useContext(ColorSchemeContext)
   const { userData } = useContext(UserDataContext)
+  const { scheme } = useContext(ColorSchemeContext)
+  const isDark = scheme === 'dark'
+  const colorScheme = {
+    text: isDark? colors.white : colors.primaryText
+  }
 
   useEffect(() => {
     console.log('Follow screen')
@@ -20,7 +24,7 @@ export default function Follow() {
     <View style={styles.container}>
       <SafareaBar />
       <View style={{width:'100%'}}>
-        <Text style={[styles.field, {color: scheme === 'dark'? colors.white: colors.primaryText}]}>Follow Screen</Text>
+        <Text style={[styles.field, {color: colorScheme.text}]}>Follow Screen</Text>
         <TouchableOpacity
           style={[styles.button, {backgroundColor:colors.tertiary}]}
           onPress={() => {

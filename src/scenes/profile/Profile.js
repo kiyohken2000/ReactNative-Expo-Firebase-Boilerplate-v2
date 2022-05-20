@@ -5,7 +5,7 @@ import Dialog from "react-native-dialog"
 import Spinner from 'react-native-loading-spinner-overlay'
 import styles from '../../globalStyles'
 import SafareaBar from '../../components/SafareaBar'
-import { Restart } from '../../components/Restart'
+import { Restart } from '../../utils/Restart'
 import { firestore } from '../../firebase/config'
 import { doc, deleteDoc } from 'firebase/firestore';
 import { ColorSchemeContext } from '../../context/ColorSchemeContext'
@@ -17,10 +17,14 @@ import { auth } from '../../firebase/config'
 
 export default function Profile() {
   const { userData, setUserData } = useContext(UserDataContext)
-  const { scheme } = useContext(ColorSchemeContext)
   const navigation = useNavigation()
   const [visible, setVisible] = useState(false)
   const [spinner, setSpinner] = useState(false)
+  const { scheme } = useContext(ColorSchemeContext)
+  const isDark = scheme === 'dark'
+  const colorScheme = {
+    text: isDark? colors.white : colors.primaryText
+  }
 
   useEffect(() => {
     console.log('Profile screen')
@@ -87,10 +91,10 @@ export default function Profile() {
             source={{ uri: userData.avatar }}
           />
         </View>
-        <Text style={[styles.field, { color: scheme === 'dark' ? colors.white : colors.primaryText }]}>Name:</Text>
-        <Text style={[styles.title, { color: scheme === 'dark' ? colors.white : colors.primaryText }]}>{userData.fullName}</Text>
-        <Text style={[styles.field, { color: scheme === 'dark' ? colors.white : colors.primaryText }]}>Mail:</Text>
-        <Text style={[styles.title, { color: scheme === 'dark' ? colors.white : colors.primaryText }]}>{userData.email}</Text>
+        <Text style={[styles.field, { color: colorScheme.text }]}>Name:</Text>
+        <Text style={[styles.title, { color: colorScheme.text }]}>{userData.fullName}</Text>
+        <Text style={[styles.field, { color: colorScheme.text }]}>Mail:</Text>
+        <Text style={[styles.title, { color: colorScheme.text }]}>{userData.email}</Text>
         <TouchableOpacity
           style={[styles.button, { backgroundColor: colors.primary }]}
           onPress={goDetail}

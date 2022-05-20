@@ -18,6 +18,11 @@ export default function Initial() {
   const dispatch = useDispatch()
   const { setUserData } = useContext(UserDataContext)
   const { scheme } = useContext(ColorSchemeContext)
+  const isDark = scheme === 'dark'
+  const colorScheme = {
+    container: isDark? colors.dark: colors.white,
+    text: isDark? colors.white : colors.primaryText
+  }
 
   useEffect(() => {
     onAuthStateChanged(auth, (user) => {
@@ -35,8 +40,8 @@ export default function Initial() {
   }, []);
 
   return (
-    <View style={[styles.container, {backgroundColor: scheme === 'dark'? colors.dark: colors.white}]}>
-      <Text style={[styles.title, {color: scheme === 'dark'? colors.white: colors.primaryText}]}>loading</Text>
+    <View style={[styles.container, {backgroundColor: colorScheme.container}]}>
+      <Text style={[styles.title, {color: colorScheme.text}]}>loading</Text>
     </View>
   )
 }
