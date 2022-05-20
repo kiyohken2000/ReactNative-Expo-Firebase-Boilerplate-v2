@@ -2,6 +2,7 @@ import React, { useEffect, useState, useContext } from 'react'
 import { Text, View, ScrollView, StyleSheet, TouchableOpacity } from 'react-native'
 import styles from '../../globalStyles'
 import ScreenTemplate from '../../components/ScreenTemplate'
+import Button from '../../components/Button'
 import { useNavigation } from '@react-navigation/native'
 import { useRoute } from '@react-navigation/native'
 import { colors } from 'theme'
@@ -39,12 +40,11 @@ export default function Detail() {
             <Text style={[styles.field, {color: colorScheme.text}]}>{userData.email}</Text>
             <Text style={[styles.field, {color: colorScheme.text}]}>{userData.avatar}</Text>
           </View>
-          <TouchableOpacity
-            style={[styles.button, {backgroundColor:colors.primary}]}
+          <Button
+            label={`Back to ${from}`}
+            color={colors.primary}
             onPress={() => navigation.goBack()}
-          >
-            <Text style={styles.buttonText}>Back to {from}</Text>
-          </TouchableOpacity>
+          />
         </ScrollView>
       </View>
     </ScreenTemplate>

@@ -5,6 +5,7 @@ import Dialog from "react-native-dialog"
 import Spinner from 'react-native-loading-spinner-overlay'
 import styles from '../../globalStyles'
 import ScreenTemplate from '../../components/ScreenTemplate'
+import Button from '../../components/Button'
 import { Restart } from '../../utils/Restart'
 import { firestore } from '../../firebase/config'
 import { doc, deleteDoc } from 'firebase/firestore';
@@ -95,14 +96,14 @@ export default function Profile() {
           <Text style={[styles.title, { color: colorScheme.text }]}>{userData.fullName}</Text>
           <Text style={[styles.field, { color: colorScheme.text }]}>Mail:</Text>
           <Text style={[styles.title, { color: colorScheme.text }]}>{userData.email}</Text>
-          <TouchableOpacity
-            style={[styles.button, { backgroundColor: colors.primary }]}
+          <Button
+            label='Edit'
+            color={colors.primary}
             onPress={goDetail}
-          >
-            <Text style={styles.buttonText}>Edit</Text>
-          </TouchableOpacity>
-          <TouchableOpacity
-            style={[styles.button, { backgroundColor: colors.tertiary }]}
+          />
+          <Button
+            label='Open Modal'
+            color={colors.tertiary}
             onPress={() => {
               navigation.navigate('ModalStacks', {
                 screen: 'Post',
@@ -112,15 +113,12 @@ export default function Profile() {
                 }
               })
             }}
-          >
-            <Text style={styles.buttonText}>Open Modal</Text>
-          </TouchableOpacity>
-          <TouchableOpacity
-            style={[styles.button, { backgroundColor: colors.secondary }]}
+          />
+          <Button
+            label='Account delete'
+            color={colors.secondary}
             onPress={showDialog}
-          >
-            <Text style={styles.buttonText}>Account delete</Text>
-          </TouchableOpacity>
+          />
           <View style={styles.footerView}>
             <Text onPress={onSignOutPress} style={styles.footerLink}>Sign out</Text>
           </View>

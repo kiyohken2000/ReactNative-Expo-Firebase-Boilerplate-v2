@@ -3,6 +3,7 @@ import { Image, Text, TextInput, TouchableOpacity, View, Linking } from 'react-n
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 import styles from '../../globalStyles'
 import ScreenTemplate from '../../components/ScreenTemplate';
+import Button from '../../components/Button';
 import { firestore } from '../../firebase/config'
 import { setDoc, doc } from 'firebase/firestore';
 import Spinner from 'react-native-loading-spinner-overlay'
@@ -108,11 +109,11 @@ export default function Registration() {
             underlineColorAndroid="transparent"
             autoCapitalize="none"
           />
-          <TouchableOpacity
-            style={[styles.button, {backgroundColor:colors.primary}]}
-            onPress={() => onRegisterPress()}>
-            <Text style={styles.buttonText}>Agree and Create account</Text>
-          </TouchableOpacity>
+          <Button
+            label='Agree and Create account'
+            color={colors.primary}
+            onPress={() => onRegisterPress()}
+          />
           <View style={styles.footerView}>
             <Text style={[styles.footerText, {color: colorScheme.text}]}>Already got an account? <Text onPress={onFooterLinkPress} style={styles.footerLink}>Log in</Text></Text>
           </View>

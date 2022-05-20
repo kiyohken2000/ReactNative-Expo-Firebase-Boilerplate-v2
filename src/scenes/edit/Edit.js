@@ -2,6 +2,7 @@ import React, { useState, useEffect, useContext } from 'react'
 import { Text, View, TextInput, TouchableOpacity, StyleSheet, Platform } from 'react-native'
 import styles from '../../globalStyles'
 import ScreenTemplate from '../../components/ScreenTemplate'
+import Button from '../../components/Button'
 import { firestore, storage } from '../../firebase/config'
 import { doc, updateDoc } from 'firebase/firestore';
 import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
@@ -128,12 +129,11 @@ export default function Edit() {
           />
           <Text style={[styles.field, {color: colorScheme.text}]}>Mail:</Text>
           <Text style={[styles.title, {color: colorScheme.text}]}>{userData.email}</Text>
-          <TouchableOpacity
-            style={[styles.button, {backgroundColor:colors.primary}]}
+          <Button
+            label='Update'
+            color={colors.primary}
             onPress={profileUpdate}
-          >
-            <Text style={styles.buttonText}>Update</Text>
-          </TouchableOpacity>
+          />
         </KeyboardAwareScrollView>
       </View>
     </ScreenTemplate>

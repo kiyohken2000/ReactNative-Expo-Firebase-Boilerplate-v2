@@ -2,6 +2,7 @@ import React, { useEffect, useContext } from 'react'
 import { Text, View, TouchableOpacity, ScrollView } from 'react-native'
 import styles from '../../globalStyles'
 import ScreenTemplate from '../../components/ScreenTemplate'
+import Button from '../../components/Button'
 import { colors } from 'theme'
 import { ColorSchemeContext } from '../../context/ColorSchemeContext'
 import { UserDataContext } from '../../context/UserDataContext'
@@ -25,8 +26,9 @@ export default function Follow() {
       <View style={[styles.container]}>
         <View style={{width:'100%'}}>
           <Text style={[styles.field, {color: colorScheme.text}]}>Follow Screen</Text>
-          <TouchableOpacity
-            style={[styles.button, {backgroundColor:colors.tertiary}]}
+          <Button
+            label='Opne Modal'
+            color={colors.tertiary}
             onPress={() => {
               navigation.navigate('ModalStacks', {
                 screen: 'Post',
@@ -36,9 +38,7 @@ export default function Follow() {
                 }
               })
             }}
-          >
-            <Text style={styles.buttonText}>Opne Modal</Text>
-          </TouchableOpacity>
+          />
         </View>
       </View>
     </ScreenTemplate>

@@ -2,6 +2,7 @@ import React, { useState, useEffect, useContext } from 'react'
 import { Text, View, StyleSheet, TouchableOpacity } from 'react-native'
 import styles from '../../globalStyles'
 import ScreenTemplate from '../../components/ScreenTemplate'
+import Button from '../../components/Button'
 import { useRoute, useFocusEffect, useNavigation } from '@react-navigation/native'
 import { colors } from 'theme'
 import { ColorSchemeContext } from '../../context/ColorSchemeContext'
@@ -75,24 +76,21 @@ export default function Post() {
         <Text style={[styles.field, {color: colorScheme.text}]}>Latest save date</Text>
         <Text style={[styles.title, {color: colorScheme.text}]}>{date.date}</Text>
         <View style={{width:'100%'}}>
-          <TouchableOpacity
-            style={[styles.button, {backgroundColor:colors.primary}]}
+          <Button
+            label='Save Date'
+            color={colors.primary}
             onPress={() => onSavePress()}
-          >
-            <Text style={styles.buttonText}>Save Date</Text>
-          </TouchableOpacity>
-          <TouchableOpacity
-            style={[styles.button, {backgroundColor:colors.secondary}]}
+          />
+          <Button
+            label='Remove Date'
+            color={colors.secondary}
             onPress={() => onRemovePress()}
-          >
-            <Text style={styles.buttonText}>Remove Date</Text>
-          </TouchableOpacity>
-          <TouchableOpacity
-            style={[styles.button, {backgroundColor:colors.tertiary}]}
+          />
+          <Button
+            label='Go to Print'
+            color={colors.tertiary}
             onPress={() => navigation.navigate('Print')}
-          >
-            <Text style={styles.buttonText}>Go to Print</Text>
-          </TouchableOpacity>
+          />
         </View>
       </View>
     </ScreenTemplate>

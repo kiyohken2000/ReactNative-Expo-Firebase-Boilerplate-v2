@@ -3,6 +3,7 @@ import { Text, View, Image, TextInput, TouchableOpacity } from 'react-native'
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 import styles from '../../globalStyles'
 import ScreenTemplate from '../../components/ScreenTemplate';
+import Button from '../../components/Button'
 import { firestore } from '../../firebase/config'
 import { doc, getDoc } from 'firebase/firestore';
 import Spinner from 'react-native-loading-spinner-overlay'
@@ -86,11 +87,11 @@ export default function Login() {
             underlineColorAndroid="transparent"
             autoCapitalize="none"
           />
-          <TouchableOpacity
-            style={[styles.button, { backgroundColor: colors.primary }]}
-            onPress={() => onLoginPress()}>
-            <Text style={styles.buttonText}>Log in</Text>
-          </TouchableOpacity>
+          <Button
+            label='Log in'
+            color={colors.primary}
+            onPress={() => onLoginPress()}
+          />
           <View style={styles.footerView}>
             <Text style={[styles.footerText, { color: colorScheme.text }]}>Don't have an account? <Text onPress={onFooterLinkPress} style={styles.footerLink}>Sign up</Text></Text>
           </View>

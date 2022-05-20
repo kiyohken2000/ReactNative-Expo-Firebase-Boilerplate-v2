@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useContext, useLayoutEffect } from 'react'
-import { Text, View, ScrollView, StyleSheet, TouchableOpacity } from 'react-native'
+import { Text, View, ScrollView, StyleSheet } from 'react-native'
 import { useNavigation } from '@react-navigation/native'
 import { IconButton, Colors } from 'react-native-paper'
 import ScreenTemplate from '../../components/ScreenTemplate'
@@ -9,6 +9,7 @@ import { doc, onSnapshot } from 'firebase/firestore';
 import { colors } from 'theme'
 import { UserDataContext } from '../../context/UserDataContext'
 import { ColorSchemeContext } from '../../context/ColorSchemeContext'
+import Button from '../../components/Button'
 
 export default function Home() {
   const navigation = useNavigation()
@@ -65,14 +66,14 @@ export default function Home() {
               </> : null
             }
           </View>
-          <TouchableOpacity
-            style={[styles.button, { backgroundColor: colors.primary }]}
+          <Button
+            label='Go to Detail'
+            color={colors.primary}
             onPress={() => navigation.navigate('Detail', { userData: userData, from: 'Home', title: userData.email })}
-          >
-            <Text style={styles.buttonText}>Go to Detail</Text>
-          </TouchableOpacity>
-          <TouchableOpacity
-            style={[styles.button, { backgroundColor: colors.tertiary }]}
+          />
+          <Button
+            label='Open Modal'
+            color={colors.tertiary}
             onPress={() => {
               navigation.navigate('ModalStacks', {
                 screen: 'Post',
@@ -82,9 +83,7 @@ export default function Home() {
                 }
               })
             }}
-          >
-            <Text style={styles.buttonText}>Open Modal</Text>
-          </TouchableOpacity>
+          />
         </ScrollView>
       </View>
     </ScreenTemplate>
