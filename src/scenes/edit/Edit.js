@@ -125,6 +125,7 @@ export default function Edit() {
           label='Update'
           color={colors.primary}
           onPress={profileUpdate}
+          disable={!fullName}
         />
       </KeyboardAwareScrollView>
     </ScreenTemplate>

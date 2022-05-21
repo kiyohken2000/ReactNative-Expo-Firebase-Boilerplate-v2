@@ -1,9 +1,19 @@
 import React from "react";
-import { StyleSheet, TouchableOpacity, Text } from "react-native";
+import { StyleSheet, TouchableOpacity, Text, View } from "react-native";
 import { fontSize, colors } from "../theme";
 
 export default function Button(props) {
-  const { label, onPress, color } = props
+  const { label, onPress, color, disable } = props
+
+  if(disable) {
+    return (
+      <View
+        style={[styles.button, { backgroundColor: color, opacity: 0.3 }]}
+      >
+        <Text style={styles.buttonText}>{label}</Text>
+      </View>
+    )
+  }
   
   return (
     <TouchableOpacity
