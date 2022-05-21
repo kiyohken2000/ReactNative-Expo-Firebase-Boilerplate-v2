@@ -11,7 +11,6 @@ export default function Logo() {
 }
 
 const styles = StyleSheet.create({
-  
   logo: {
     flex: 1,
     height: 180,
