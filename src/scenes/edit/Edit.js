@@ -19,22 +19,18 @@ export default function Edit() {
   const { userData } = useContext(UserDataContext)
   const { scheme } = useContext(ColorSchemeContext)
   const navigation = useNavigation()
-  const [fullName, setFullName] = useState('')
+  const [fullName, setFullName] = useState(userData.fullName)
   const [progress, setProgress] = useState('')
   const [avatar, setAvatar] = useState(userData.avatar)
   const isDark = scheme === 'dark'
   const colorScheme = {
     text: isDark? colors.white : colors.primaryText,
     progress: isDark? styles.darkprogress : styles.progress,
-    field: isDark? styles.darkfield : styles.field,
-    input: isDark? colors.darkInput: colors.white
   }
 
   useEffect(() => {
     console.log('Edit screen')
-    setAvatar(userData.avatar)
-    setFullName(userData.fullName)
-  },[])
+  }, [])
 
   const ImageChoiceAndUpload = async () => {
     try {

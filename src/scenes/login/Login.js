@@ -1,9 +1,10 @@
 import React, { useState, useContext, useEffect } from 'react'
-import { Text, View, Image, StyleSheet } from 'react-native'
+import { Text, View, StyleSheet } from 'react-native'
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 import ScreenTemplate from '../../components/ScreenTemplate';
 import Button from '../../components/Button'
 import TextInputBox from '../../components/TextInputBox';
+import Logo from '../../components/Logo';
 import { firestore } from '../../firebase/config'
 import { doc, getDoc } from 'firebase/firestore';
 import Spinner from 'react-native-loading-spinner-overlay'
@@ -26,7 +27,6 @@ export default function Login() {
   const { scheme } = useContext(ColorSchemeContext)
   const isDark = scheme === 'dark'
   const colorScheme = {
-    input: isDark? colors.darkInput : colors.white,
     text: isDark? colors.white : colors.primaryText
   }
 
@@ -62,10 +62,7 @@ export default function Login() {
         style={styles.main}
         keyboardShouldPersistTaps="always"
       >
-        <Image
-          style={styles.logo}
-          source={require('../../../assets/icon.png')}
-        />
+        <Logo />
         <TextInputBox
           placeholder='E-mail'
           onChangeText={(text) => setEmail(text)}
@@ -102,14 +99,6 @@ const styles = StyleSheet.create({
   main: {
     flex: 1,
     width: '100%',
-  },
-  logo: {
-    flex: 1,
-    height: 180,
-    width: 180,
-    alignSelf: "center",
-    margin: 30,
-    borderRadius: 20
   },
   footerView: {
     flex: 1,

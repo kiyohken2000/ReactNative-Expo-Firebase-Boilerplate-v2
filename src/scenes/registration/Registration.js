@@ -1,9 +1,10 @@
 import React, { useState, useContext, useEffect } from 'react'
-import { Image, Text, StyleSheet, View, Linking } from 'react-native'
+import { Text, StyleSheet, View, Linking } from 'react-native'
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 import ScreenTemplate from '../../components/ScreenTemplate';
 import TextInputBox from '../../components/TextInputBox';
 import Button from '../../components/Button';
+import Logo from '../../components/Logo';
 import { firestore } from '../../firebase/config'
 import { setDoc, doc } from 'firebase/firestore';
 import Spinner from 'react-native-loading-spinner-overlay'
@@ -24,7 +25,6 @@ export default function Registration() {
   const { scheme } = useContext(ColorSchemeContext)
   const isDark = scheme === 'dark'
   const colorScheme = {
-    input: isDark? colors.darkInput : colors.white,
     text: isDark? colors.white : colors.primaryText
   }
 
@@ -65,10 +65,7 @@ export default function Registration() {
         style={styles.main}
         keyboardShouldPersistTaps="always"
       >
-        <Image
-          style={styles.logo}
-          source={require('../../../assets/icon.png')}
-        />
+        <Logo />
         <TextInputBox
           placeholder='Your Name'
           onChangeText={(text) => setFullName(text)}
@@ -108,7 +105,7 @@ export default function Registration() {
       </KeyboardAwareScrollView>
       <Spinner
         visible={spinner}
-        textStyle={{ color: "#fff" }}
+        textStyle={{ color: colors.white }}
         overlayColor="rgba(0,0,0,0.5)"
       />
     </ScreenTemplate>
@@ -119,14 +116,6 @@ const styles = StyleSheet.create({
   main: {
     flex: 1,
     width: '100%',
-  },
-  logo: {
-    flex: 1,
-    height: 180,
-    width: 180,
-    alignSelf: "center",
-    margin: 30,
-    borderRadius: 20
   },
   footerView: {
     flex: 1,

@@ -26,7 +26,7 @@ export default function Follow() {
         <View style={{width:'100%'}}>
           <Text style={[styles.field, {color: colorScheme.text}]}>Follow Screen</Text>
           <Button
-            label='Opne Modal'
+            label='Open Modal'
             color={colors.tertiary}
             onPress={() => {
               navigation.navigate('ModalStacks', {
