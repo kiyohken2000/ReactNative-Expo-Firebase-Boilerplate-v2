@@ -131,7 +131,7 @@ export default function Profile() {
       </Dialog.Container>
       <Spinner
         visible={spinner}
-        textStyle={{ color: "#fff" }}
+        textStyle={{ color: colors.white }}
         overlayColor="rgba(0,0,0,0.5)"
       />
     </ScreenTemplate>

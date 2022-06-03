@@ -11,7 +11,7 @@ import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view
 import * as ImagePicker from 'expo-image-picker'
 import * as ImageManipulator from 'expo-image-manipulator'
 import { useNavigation } from '@react-navigation/native'
-import { colors, fontSize } from 'theme'
+import { colors, fontSize } from '../../theme'
 import { UserDataContext } from '../../context/UserDataContext'
 import { ColorSchemeContext } from '../../context/ColorSchemeContext'
 
@@ -138,7 +138,7 @@ const styles = StyleSheet.create({
   },
   darkprogress: {
     alignSelf: 'center',
-    color: 'white',
+    color: colors.white,
   },
   main: {
     flex: 1,
