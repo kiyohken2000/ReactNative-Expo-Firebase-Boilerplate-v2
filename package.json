@@ -6,6 +6,8 @@
     "android": "npx expo start --android",
     "ios": "npx expo start --ios",
     "eject": "expo eject",
+    "postinstall": "patch-package",
+    "publish": "npx expo publish",
     "lint": "node_modules/.bin/eslint src/ --fix src/ --fix",
     "test": "node_modules/.bin/jest --passWithNoTests"
   },
