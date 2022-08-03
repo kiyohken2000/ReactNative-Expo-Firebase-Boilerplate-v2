@@ -101,7 +101,7 @@ export default function Registration() {
         <View style={styles.footerView}>
           <Text style={[styles.footerText, {color: colorScheme.text}]}>Already got an account? <Text onPress={onFooterLinkPress} style={styles.footerLink}>Log in</Text></Text>
         </View>
-        <Text style={styles.link} onPress={ ()=>{ Linking.openURL(eulaLink)}}>Require agree EULA</Text>
+        <Text style={[styles.link, {color: colorScheme.text}]} onPress={ ()=>{ Linking.openURL(eulaLink)}}>Require agree <Text style={styles.eulaLink}>EULA</Text></Text>
       </KeyboardAwareScrollView>
       <Spinner
         visible={spinner}
@@ -131,4 +131,11 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     fontSize: fontSize.large
   },
+  link: {
+    textAlign: 'center'
+  },
+  eulaLink: {
+    color: colors.blueLight,
+    fontSize: fontSize.middle
+  }
 })

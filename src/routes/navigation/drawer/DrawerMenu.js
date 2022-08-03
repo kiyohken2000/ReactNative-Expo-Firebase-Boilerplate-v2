@@ -1,5 +1,4 @@
 import React from 'react'
-import PropTypes from 'prop-types'
 import { View, SafeAreaView, Text } from 'react-native'
 
 import { DrawerActions } from '@react-navigation/native'
@@ -42,17 +41,5 @@ const DrawerMenu = (props) => (
     </View>
   </SafeAreaView>
 )
-
-DrawerMenu.propTypes = {
-  navigation: PropTypes.shape({
-    dispatch: PropTypes.func,
-  }),
-}
-
-DrawerMenu.defaultProps = {
-  navigation: {
-    dispatch: () => null,
-  },
-}
 
 export default DrawerMenu

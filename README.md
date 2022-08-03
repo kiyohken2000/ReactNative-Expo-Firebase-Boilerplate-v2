@@ -169,7 +169,7 @@ const defaultAvatar = 'Your default icon URL'
 ### 4. Run Your App
 
 ```
-expo start
+yarn start
 ```
 
 ## Licence
