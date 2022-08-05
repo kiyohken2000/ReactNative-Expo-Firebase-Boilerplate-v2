@@ -3,6 +3,9 @@ import { Text, View, StyleSheet } from 'react-native'
 import ScreenTemplate from '../../components/ScreenTemplate'
 import { colors, fontSize } from 'theme'
 import { ColorSchemeContext } from '../../context/ColorSchemeContext'
+import { UserDataContext } from '../../context/UserDataContext'
+import Button from '../../components/Button'
+import { showToast } from '../../utils/ShowToast'
 
 export default function Follower() {
   const { scheme } = useContext(ColorSchemeContext)
@@ -15,10 +18,21 @@ export default function Follower() {
     console.log('Follower screen')
   }, [])
 
+  const onShowToastPress = () => {
+    showToast({title: 'Hello', body: 'This is some something 👋'})
+  }
+
   return (
     <ScreenTemplate>
       <View style={styles.container}>
-        <Text style={[styles.field, {color: colorScheme.text}]}>Follower Screen</Text>
+        <View style={{width:'100%'}}>
+          <Text style={[styles.field, {color: colorScheme.text}]}>Follower Screen</Text>
+          <Button
+            label='Show Toast'
+            color={colors.lightPurple}
+            onPress={() => onShowToastPress()}
+          />
+        </View>
       </View>
     </ScreenTemplate>
   )

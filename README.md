@@ -172,6 +172,90 @@ const defaultAvatar = 'Your default icon URL'
 yarn start
 ```
 
+## How to use utils
+
+- ### Reload app
+
+```javascript
+import { Restart } from '../../utils/Restart'
+
+const ourFunc = () => {
+  Restart()
+}
+```
+
+- ### Storage
+
+```javascript
+import { storage } from '../../utils/Storage'
+
+const saveStorage = async() => {
+  const today = moment().toString()
+  await storage.save({
+    key: 'date',
+    data: {
+      'date': today
+    }
+  })
+}
+
+const loadStorage = async() => {
+  try {
+    const result = await storage.load({key: 'date'})
+  } catch (e) {
+    console.log(e)
+  }
+}
+
+const removeStorage = async() => {
+  await storage.remove({ key: 'date' })
+}
+```
+
+- ### Toast & Notification
+
+<img src='https://github.com/kiyohken2000/ReactNative-Expo-Firebase-Boilerplate-v2/blob/master/__DELELE_ME__/img7.jpg' width='80%'>
+
+```javascript
+// Send Notification
+import { sendNotification } from '../../utils/SendNotification'
+
+const onNotificationPress = async() => {
+  const res = await sendNotification({
+    title: 'Hello',
+    body: 'This is some something 👋',
+    data: 'something data',
+    token: token.token //e.g. ExponentPushToken[WGSdXiJ5rLHAK53DRPq2x-]
+  })
+  console.log(res)
+}
+
+// Toast
+import { showToast } from '../../utils/ShowToast'
+
+const onShowToastPress = () => {
+  showToast({title: 'Hello', body: 'This is some something 👋'})
+}
+```
+
+## Note
+
+- ### getExpoPushTokenAsync()
+
+The experienceId is required to get the push token using getExpoPushTokenAsync in the EAS build.
+
+```javascript
+const token = await Notifications.getExpoPushTokenAsync({
+  experienceId: '@username/projectSlug'
+});
+```
+
+- ### .easignore
+
+If you want to use environment variables in EAS build, create .easignore.
+
+[How projects are uploaded to EAS Build](https://github.com/expo/fyi/blob/main/eas-build-archive.md)
+
 ## Licence
 
 This project is available under the MIT license. See the [LICENSE](https://github.com/kiyohken2000/ReactNative-Expo-Firebase-Boilerplate-v2/blob/master/LICENSE) file for more info.

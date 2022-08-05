@@ -9,6 +9,7 @@ import { doc, onSnapshot } from 'firebase/firestore';
 import { colors, fontSize } from 'theme'
 import { UserDataContext } from '../../context/UserDataContext'
 import { ColorSchemeContext } from '../../context/ColorSchemeContext'
+import { sendNotification } from '../../utils/SendNotification'
 
 export default function Home() {
   const navigation = useNavigation()
@@ -51,6 +52,16 @@ export default function Home() {
     return () => tokenListner()
   }, [])
 
+  const onNotificationPress = async() => {
+    const res = await sendNotification({
+      title: 'Hello',
+      body: 'This is some something 👋',
+      data: 'something data',
+      token: token.token
+    })
+    console.log(res)
+  }
+
   return (
     <ScreenTemplate>
       <ScrollView style={styles.main}>
@@ -81,6 +92,12 @@ export default function Home() {
               }
             })
           }}
+        />
+        <Button
+          label='Send Notification'
+          color={colors.pink}
+          onPress={() => onNotificationPress()}
+          disable={!token}
         />
       </ScrollView>
     </ScreenTemplate>

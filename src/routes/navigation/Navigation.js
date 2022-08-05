@@ -4,6 +4,7 @@ import { NavigationContainer } from '@react-navigation/native'
 import { DefaultTheme, DarkTheme } from '@react-navigation/native'
 import { ColorSchemeContext } from '../../context/ColorSchemeContext'
 import { UserDataContext } from '../../context/UserDataContext'
+import Toast from 'react-native-toast-message'
 
 import { LoginNavigator } from './stacks'
 import RootStack from './rootstack/RootStack'
@@ -13,12 +14,15 @@ export default function App() {
   const { userData } = useContext(UserDataContext)
 
   return (
-    <NavigationContainer theme={scheme === 'dark' ? DarkTheme : DefaultTheme}>
-      {userData?
-        <RootStack/>
-        :
-        <LoginNavigator/>
-      }
-    </NavigationContainer>
+    <>
+      <NavigationContainer theme={scheme === 'dark' ? DarkTheme : DefaultTheme}>
+        {userData?
+          <RootStack/>
+          :
+          <LoginNavigator/>
+        }
+      </NavigationContainer>
+      <Toast />
+    </>
   )
 }

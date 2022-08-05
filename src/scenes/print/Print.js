@@ -31,7 +31,7 @@ export default function Print() {
         <ScrollView style={styles.main}>
           {data.map((item, i) => {
             return (
-              <RenderItem item={item} key={i} />
+              <RenderItem item={item} key={i} index={i} />
             )
           })}
         </ScrollView>
