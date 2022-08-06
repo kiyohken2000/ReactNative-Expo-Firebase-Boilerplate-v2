@@ -1,13 +1,13 @@
 import Toast, { BaseToast, ErrorToast } from 'react-native-toast-message';
 import { fontSize, colors } from '../theme';
 
-const showToast = ({title, body, scheme}) => {
+const showToast = ({title, body, isDark}) => {
   Toast.show({
     type: 'success',
     text1: title,
     text2: body,
     props: {
-      scheme
+      isDark
     }
   });
 }
@@ -18,7 +18,7 @@ const toastConfig = {
     by modifying the existing `BaseToast` component
   */
   success: (props) => {
-    const isDark = props.props.scheme === 'dark'
+    const { isDark } = props.props
     const styles = {
       backgroundColor: isDark?colors.darkInput: colors.white,
       text1Color: isDark?colors.white: colors.black,

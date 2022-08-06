@@ -3,7 +3,6 @@ import { Text, View, StyleSheet } from 'react-native'
 import ScreenTemplate from '../../components/ScreenTemplate'
 import { colors, fontSize } from 'theme'
 import { ColorSchemeContext } from '../../context/ColorSchemeContext'
-import { UserDataContext } from '../../context/UserDataContext'
 import Button from '../../components/Button'
 import { showToast } from '../../utils/ShowToast'
 
@@ -22,7 +21,7 @@ export default function Follower() {
     showToast({
       title: 'Hello',
       body: 'This is some something 👋',
-      scheme
+      isDark
     })
   }
 

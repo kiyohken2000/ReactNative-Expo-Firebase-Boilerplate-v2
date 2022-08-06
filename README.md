@@ -224,7 +224,7 @@ const onShowToastPress = () => {
   showToast({
     title: 'Hello',
     body: 'This is some something 👋',
-    scheme
+    isDark // true or false
   })
 }
 
