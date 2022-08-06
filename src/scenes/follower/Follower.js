@@ -19,7 +19,11 @@ export default function Follower() {
   }, [])
 
   const onShowToastPress = () => {
-    showToast({title: 'Hello', body: 'This is some something 👋'})
+    showToast({
+      title: 'Hello',
+      body: 'This is some something 👋',
+      scheme
+    })
   }
 
   return (

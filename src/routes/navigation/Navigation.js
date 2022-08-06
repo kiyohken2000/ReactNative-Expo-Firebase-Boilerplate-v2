@@ -5,6 +5,7 @@ import { DefaultTheme, DarkTheme } from '@react-navigation/native'
 import { ColorSchemeContext } from '../../context/ColorSchemeContext'
 import { UserDataContext } from '../../context/UserDataContext'
 import Toast from 'react-native-toast-message'
+import { toastConfig } from '../../utils/ShowToast'
 
 import { LoginNavigator } from './stacks'
 import RootStack from './rootstack/RootStack'
@@ -22,7 +23,7 @@ export default function App() {
           <LoginNavigator/>
         }
       </NavigationContainer>
-      <Toast />
+      <Toast config={toastConfig} />
     </>
   )
 }

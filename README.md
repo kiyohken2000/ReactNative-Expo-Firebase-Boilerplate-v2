@@ -217,6 +217,17 @@ const removeStorage = async() => {
 <img src='https://github.com/kiyohken2000/ReactNative-Expo-Firebase-Boilerplate-v2/blob/master/__DELELE_ME__/img7.jpg' width='80%'>
 
 ```javascript
+// Toast
+import { showToast } from '../../utils/ShowToast'
+
+const onShowToastPress = () => {
+  showToast({
+    title: 'Hello',
+    body: 'This is some something 👋',
+    scheme
+  })
+}
+
 // Send Notification
 import { sendNotification } from '../../utils/SendNotification'
 
@@ -228,13 +239,6 @@ const onNotificationPress = async() => {
     token: token.token //e.g. ExponentPushToken[WGSdXiJ5rLHAK53DRPq2x-]
   })
   console.log(res)
-}
-
-// Toast
-import { showToast } from '../../utils/ShowToast'
-
-const onShowToastPress = () => {
-  showToast({title: 'Hello', body: 'This is some something 👋'})
 }
 ```
 
