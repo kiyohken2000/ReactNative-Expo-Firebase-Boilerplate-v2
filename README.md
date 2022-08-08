@@ -34,6 +34,7 @@
 - BottomTab, TopTab, Modal and Stack navigation
 - Registration with E-mail & Password
 - Login with E-mail and Password
+- Change password
 - Deleting an account
 - Handling persisted login credentials
 - Writing to Firestore Database

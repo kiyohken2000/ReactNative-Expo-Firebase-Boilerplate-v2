@@ -14,6 +14,10 @@ import { useNavigation } from '@react-navigation/native'
 import { colors, fontSize } from '../../theme'
 import { UserDataContext } from '../../context/UserDataContext'
 import { ColorSchemeContext } from '../../context/ColorSchemeContext'
+import { updatePassword, EmailAuthProvider, reauthenticateWithCredential } from 'firebase/auth'
+import { auth } from '../../firebase/config'
+import { showToast } from '../../utils/ShowToast'
+import Spinner from 'react-native-loading-spinner-overlay'
 
 export default function Edit() {
   const { userData } = useContext(UserDataContext)
@@ -22,6 +26,10 @@ export default function Edit() {
   const [fullName, setFullName] = useState(userData.fullName)
   const [progress, setProgress] = useState('')
   const [avatar, setAvatar] = useState(userData.avatar)
+  const [currentPassword, setCurrentPassword] = useState('')
+  const [password, setPassword] = useState('')
+  const [confirmPassword, setConfirmPassword] = useState('')
+  const [spinner, setSpinner] = useState(false)
   const isDark = scheme === 'dark'
   const colorScheme = {
     text: isDark? colors.white : colors.primaryText,
@@ -96,6 +104,33 @@ export default function Edit() {
     }
   }
 
+  const onUpdatePassword = async() => {
+    if (password !== confirmPassword) {
+      alert("Passwords don't match.")
+      return
+    }
+    try {
+      setSpinner(true)
+      const user = auth.currentUser
+      const credential = EmailAuthProvider.credential(user.email, currentPassword)
+      await reauthenticateWithCredential(user, credential)
+      await updatePassword(user, password)
+      showToast({
+        title: 'Password changed',
+        body: 'Your password has changed.',
+        isDark
+      })
+      setCurrentPassword('')
+      setPassword('')
+      setConfirmPassword('')
+    } catch(e) {
+      console.log(e)
+      alert(e)
+    } finally {
+      setSpinner(false)
+    }
+  }
+
   return (
     <ScreenTemplate>
       <KeyboardAwareScrollView
@@ -127,7 +162,42 @@ export default function Edit() {
           onPress={profileUpdate}
           disable={!fullName}
         />
+        <View style={styles.changePasswordContainer}>
+          <Text style={[styles.field, {color: colorScheme.text}]}>Change Password:</Text>
+          <TextInputBox
+            secureTextEntry={true}
+            placeholder='Current Password'
+            onChangeText={(text) => setCurrentPassword(text)}
+            value={currentPassword}
+            autoCapitalize="none"
+          />
+          <TextInputBox
+            secureTextEntry={true}
+            placeholder='New Password'
+            onChangeText={(text) => setPassword(text)}
+            value={password}
+            autoCapitalize="none"
+          />
+          <TextInputBox
+            secureTextEntry={true}
+            placeholder='Confirm New Password'
+            onChangeText={(text) => setConfirmPassword(text)}
+            value={confirmPassword}
+            autoCapitalize="none"
+          />
+          <Button
+            label='Change Password'
+            color={colors.pink}
+            onPress={onUpdatePassword}
+            disable={!currentPassword || !password || !confirmPassword}
+          />
+        </View>
       </KeyboardAwareScrollView>
+      <Spinner
+        visible={spinner}
+        textStyle={{ color: colors.white }}
+        overlayColor="rgba(0,0,0,0.5)"
+      />
     </ScreenTemplate>
   )
 }
@@ -157,4 +227,7 @@ const styles = StyleSheet.create({
     margin: 30,
     alignSelf: "center",
   },
+  changePasswordContainer: {
+    paddingVertical: 30
+  }
 })
