@@ -28,6 +28,8 @@
 - react-native-paper
 - react-native-svg
 - react-native-vector-icons
+- [jotai](https://jotai.org)
+- moment
 
 ## Features
 
@@ -44,6 +46,7 @@
 - Dynamic switching of dark themes by device appearance
 - Dynamic header title
 - Retrieving Expo push tokens and saving them to Firestore
+- State management by Jotai
 
 ## Difference from v1
 

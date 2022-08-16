@@ -1,6 +1,4 @@
 import React, { useEffect, useContext } from 'react'
-import { useDispatch } from 'react-redux'
-import { authenticate } from 'slices/app.slice'
 import { Text, View, StyleSheet } from "react-native";
 import { UserDataContext } from '../../context/UserDataContext';
 import { ColorSchemeContext } from '../../context/ColorSchemeContext'
@@ -11,11 +9,14 @@ import { decode, encode } from 'base-64'
 import { colors, fontSize } from '../../theme';
 import { onAuthStateChanged } from 'firebase/auth';
 import { auth } from '../../firebase/config';
+import { useAtom } from 'jotai'
+import { checkedAtom, loggedInAtom } from '../../utils/atom';
 if (!global.btoa) { global.btoa = encode }
 if (!global.atob) { global.atob = decode }
 
 export default function Initial() {
-  const dispatch = useDispatch()
+  const [checked, setCehecked] = useAtom(checkedAtom)
+  const [loggedIn, setLoggedIn] = useAtom(loggedInAtom)
   const { setUserData } = useContext(UserDataContext)
   const { scheme } = useContext(ColorSchemeContext)
   const isDark = scheme === 'dark'
@@ -31,10 +32,12 @@ export default function Initial() {
         onSnapshot(usersRef, (querySnapshot) => {
           const userData = querySnapshot.data()
           setUserData(userData)
-          dispatch(authenticate({ loggedIn: true, checked: true }))
+          setLoggedIn(true)
+          setCehecked(true)
         })
       } else {
-        dispatch(authenticate({ loggedIn: false, checked: true }))
+        setLoggedIn(false)
+        setCehecked(true)
       }
     });
   }, []);

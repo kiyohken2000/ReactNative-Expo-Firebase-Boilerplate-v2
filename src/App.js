@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { View } from 'react-native'
-import { Provider } from 'react-redux'
-import store from 'utils/store'
+import { Provider } from 'jotai'
 import 'utils/ignore'
 import { ColorSchemeContextProvider } from './context/ColorSchemeContext'
 import { UserDataContextProvider } from './context/UserDataContext'
@@ -30,7 +29,7 @@ const App = () => {
   // rendering
   if (!didLoad) return <View />
   return (
-    <Provider store={store}>
+    <Provider>
       <ColorSchemeContextProvider>
         <UserDataContextProvider>
           <Router />
