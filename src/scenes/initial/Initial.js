@@ -15,8 +15,8 @@ if (!global.btoa) { global.btoa = encode }
 if (!global.atob) { global.atob = decode }
 
 export default function Initial() {
-  const [checked, setCehecked] = useAtom(checkedAtom)
-  const [loggedIn, setLoggedIn] = useAtom(loggedInAtom)
+  const [, setCehecked] = useAtom(checkedAtom)
+  const [, setLoggedIn] = useAtom(loggedInAtom)
   const { setUserData } = useContext(UserDataContext)
   const { scheme } = useContext(ColorSchemeContext)
   const isDark = scheme === 'dark'
@@ -45,7 +45,7 @@ export default function Initial() {
   return (
     <ScreenTemplate>
       <View style={[styles.container, {backgroundColor: colorScheme.container}]}>
-        <Text style={[styles.title, {color: colorScheme.text}]}>loading</Text>
+        <Text style={[styles.title, {color: colorScheme.text}]}>loading...</Text>
       </View>
     </ScreenTemplate>
   )
