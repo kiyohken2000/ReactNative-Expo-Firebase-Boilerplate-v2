@@ -46,6 +46,13 @@ export default function RootStack() {
     })();
   }, [userData])
 
+  useEffect(() => {
+    const subscription = Notifications.addNotificationReceivedListener(notification => {
+      console.log(notification.request.content)
+    });
+    return () => subscription.remove();
+  }, []);
+
   return (
     <Stack.Navigator
       screenOptions={{
