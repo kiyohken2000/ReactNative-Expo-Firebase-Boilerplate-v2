@@ -1,4 +1,5 @@
 import React, { useState, useContext, useEffect } from "react";
+import { Platform } from "react-native";
 import { createStackNavigator, TransitionPresets } from '@react-navigation/stack'
 import TabNavigator from "../tabs/Tabs";
 import { ModalStacks } from "../stacks/ModalStacks/ModalStacks";
@@ -20,6 +21,7 @@ Notifications.setNotificationHandler({
 
 export default function RootStack() {
   const { userData } = useContext(UserDataContext)
+  const isIos = Platform.OS === 'ios'
 
   useEffect(() => {
     (async () => {
@@ -61,6 +63,7 @@ export default function RootStack() {
           gestureEnabled: true,
           cardOverlayEnabled: true,
           ...TransitionPresets.ModalPresentationIOS,
+          gestureEnabled: isIos
         }}
       >
         <Stack.Screen
