@@ -250,8 +250,6 @@ const onNotificationPress = async() => {
 
 <img src='https://github.com/kiyohken2000/ReactNative-Expo-Firebase-Boilerplate-v2/blob/master/__DELELE_ME__/img8.jpg' width='80%'>
 
-## Note
-
 ```javascript
 export default function Print() {
   const [data, setData] = useState([])
@@ -284,6 +282,8 @@ export default function Print() {
   )
 }
 ```
+
+## Note
 
 - ### getExpoPushTokenAsync()
 
