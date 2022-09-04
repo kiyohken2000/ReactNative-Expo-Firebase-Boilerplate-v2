@@ -246,7 +246,44 @@ const onNotificationPress = async() => {
 }
 ```
 
+- ### Data fetch, Loading, Error
+
+<img src='https://github.com/kiyohken2000/ReactNative-Expo-Firebase-Boilerplate-v2/blob/master/__DELELE_ME__/img8.jpg' width='80%'>
+
 ## Note
+
+```javascript
+export default function Print() {
+  const [data, setData] = useState([])
+  const [isLoading, setIsLoading] = useState(false) // Create loading flag
+  const [isError, setIsError] = useState(false) // Create error flag
+
+  const fetchData = async() => {
+    try {
+      setIsLoading(true) // Set flag
+      const { data } = await axios.get('https://jsonplaceholder.typicode.com/posts')
+      setData(data)
+    } catch(e) {
+      console.log('error', e)
+      setIsError(true) // Set flag
+    } finally {
+      setIsLoading(false) // Set flag
+    }
+  }
+
+  return (
+    <ScreenTemplate isLoading={isLoading} isError={isError}> {/* Pass flag to ScreenTemplate component */}
+      <ScrollView style={styles.main}>
+        {data.map((item, i) => {
+          return (
+            <RenderItem item={item} key={i} index={i} />
+          )
+        })}
+      </ScrollView>
+    </ScreenTemplate>
+  )
+}
+```
 
 - ### getExpoPushTokenAsync()
 
