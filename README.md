@@ -301,6 +301,122 @@ If you want to use environment variables in EAS build, create .easignore.
 
 [How projects are uploaded to EAS Build](https://github.com/expo/fyi/blob/main/eas-build-archive.md)
 
+## Migrate to EAS
+
+- [Official Document](https://docs.expo.dev/development/getting-started/)
+
+SDK47 and later do not support classic build. You must use EAS build to build your application.
+
+### Requirements
+
+- expo account
+- eas-cli
+
+### 1. Install `expo-dev-client`
+
+```
+npx expo install expo-dev-client
+```
+
+### 2. Create `eas.json` and update `eas.json`
+
+```
+eas build:configure
+```
+
+*example*
+
+ `eas.json`
+
+```
+{
+  "cli": {
+    "version": ">= 0.56.0"
+  },
+  "build": {
+    "development": {
+      "developmentClient": true,
+      "distribution": "internal",
+      "releaseChannel": "development",
+      "ios": {
+        "simulator": false
+      }
+    },
+    "preview": {
+      "distribution": "internal",
+      "releaseChannel": "internal"
+    },
+    "production": {
+      "releaseChannel": "production"
+    }
+  },
+  "submit": {
+    "production": {}
+  }
+}
+```
+
+### 3. Update `package.json`
+
+```
+"scripts": {
+  "start": "npx expo start --dev-client", // <= this
+  "android": "npx expo start --android",
+  "ios": "npx expo start --ios",
+  "eject": "expo eject",
+  "postinstall": "patch-package",
+  "expopublish": "npx expo publish",
+  "lint": "node_modules/.bin/eslint src/ --fix src/ --fix",
+  "test": "node_modules/.bin/jest --passWithNoTests"
+},
+```
+
+### 4. Register iPhone in Ad Hoc and install profile on iPhone
+
+```
+eas device:create
+```
+
+### 5. Build your App and Install your App on your device
+
+```
+eas build --profile development --platform ios
+eas build --profile development --platform android
+```
+
+### 6. Run
+
+```
+yarn start
+```
+
+Scan the QR code above with Expo Go (Android) or the Camera app (iOS)
+
+### 7. Commands
+
+```
+// build: develop
+eas build --profile development --platform ios
+eas build --profile development --platform android
+
+// build: internal
+eas build --profile preview --platform ios
+eas build --profile preview --platform android
+
+// build: production
+eas build --profile production --platform ios
+eas build --profile production --platform android
+
+// OTA update
+expo publish --release-channel internal
+expo publish --release-channel production
+
+// iOS: Setting up ad hoc provisioning
+eas device:create
+// list all registered devices for your account
+eas device:list
+```
+
 ## Licence
 
 This project is available under the MIT license. See the [LICENSE](https://github.com/kiyohken2000/ReactNative-Expo-Firebase-Boilerplate-v2/blob/master/LICENSE) file for more info.
