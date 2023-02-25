@@ -6,7 +6,6 @@
     "android": "npx expo start --android",
     "ios": "npx expo start --ios",
     "eject": "expo eject",
-    "postinstall": "patch-package",
     "expopublish": "npx expo publish",
     "lint": "node_modules/.bin/eslint src/ --fix src/ --fix",
     "test": "node_modules/.bin/jest --passWithNoTests"
@@ -21,7 +20,6 @@
     "@react-navigation/stack": "^6.0.11",
     "axios": "^0.27.2",
     "base-64": "^1.0.0",
-    "deprecated-react-native-prop-types": "^2.3.0",
     "expo": "^48.0.0",
     "expo-asset": "~8.9.0",
     "expo-cli": "^6.3.2",
