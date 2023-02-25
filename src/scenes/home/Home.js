@@ -1,12 +1,12 @@
 import React, { useEffect, useState, useContext, useLayoutEffect } from 'react'
 import { Text, View, ScrollView, StyleSheet } from 'react-native'
 import { useNavigation } from '@react-navigation/native'
-import { IconButton, Colors } from 'react-native-paper'
+import IconButton from '../../components/IconButton'
 import ScreenTemplate from '../../components/ScreenTemplate'
 import Button from '../../components/Button'
 import { firestore } from '../../firebase/config'
 import { doc, onSnapshot } from 'firebase/firestore';
-import { colors, fontSize } from 'theme'
+import { colors, fontSize } from '../../theme'
 import { UserDataContext } from '../../context/UserDataContext'
 import { ColorSchemeContext } from '../../context/ColorSchemeContext'
 import { sendNotification } from '../../utils/SendNotification'
@@ -26,10 +26,11 @@ export default function Home() {
     navigation.setOptions({
       headerRight: () => (
         <IconButton
-          icon="cast"
-          color={Colors.blue500}
+          icon="align-right"
+          color={colors.lightPurple}
           size={24}
           onPress={() => headerButtonPress()}
+          containerStyle={{paddingRight: 15}}
         />
       ),
     });

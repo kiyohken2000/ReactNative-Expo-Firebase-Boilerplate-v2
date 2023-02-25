@@ -6,7 +6,7 @@ import TextInputBox from '../../components/TextInputBox'
 import { firestore, storage } from '../../firebase/config'
 import { doc, updateDoc } from 'firebase/firestore';
 import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
-import { Avatar } from 'react-native-elements'
+import { Avatar } from '@rneui/themed';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 import * as ImagePicker from 'expo-image-picker'
 import * as ImageManipulator from 'expo-image-manipulator'

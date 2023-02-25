@@ -1,6 +1,6 @@
 import React, { useState, useContext, useEffect } from 'react'
 import { Text, View, StyleSheet, ScrollView } from 'react-native'
-import { Avatar } from 'react-native-elements'
+import { Avatar } from '@rneui/themed';
 import Dialog from "react-native-dialog"
 import Spinner from 'react-native-loading-spinner-overlay'
 import ScreenTemplate from '../../components/ScreenTemplate'
