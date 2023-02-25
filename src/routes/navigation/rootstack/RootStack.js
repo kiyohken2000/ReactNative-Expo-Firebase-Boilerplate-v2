@@ -8,6 +8,7 @@ import { firestore } from "../../../firebase/config";
 import { setDoc, doc } from 'firebase/firestore';
 import { UserDataContext } from "../../../context/UserDataContext";
 import * as Device from 'expo-device';
+import { expoProjectId } from "../../../config";
 
 const Stack = createStackNavigator()
 
@@ -37,7 +38,9 @@ export default function RootStack() {
       if (finalStatus !== "granted") {
         return;
       }
-      const token = await Notifications.getExpoPushTokenAsync();
+      const token = await Notifications.getExpoPushTokenAsync({
+        projectId: expoProjectId
+      });
       const tokensRef = doc(firestore, 'tokens', userData.id);
       await setDoc(tokensRef, {
         token: token.data,
