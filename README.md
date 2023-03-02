@@ -10,6 +10,13 @@
 
 <img src='https://github.com/kiyohken2000/ReactNative-Expo-Firebase-Boilerplate-v2/blob/master/__DELELE_ME__/img6.jpg' width='80%'>
 
+## Requirements
+
+- Node 16
+- Yarn 1.22.x
+- expo-cli
+- eas-cli
+
 ## Infrastructure
 
 - React Native 
@@ -60,6 +67,8 @@
 ## How to use
 
 ### 1. Install
+
+Download zip or click "Use this template"
 
 ```
 git clone https://github.com/kiyohken2000/ReactNative-Expo-Firebase-Boilerplate-v2.git
