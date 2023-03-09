@@ -25,7 +25,7 @@
 
 ## Libraries
 
-- Expo
+- expo
 - firebase
 - axios
 - react-navigation
@@ -69,6 +69,8 @@
 ### 1. Install
 
 Download zip or click "Use this template"
+
+or
 
 ```
 git clone https://github.com/kiyohken2000/ReactNative-Expo-Firebase-Boilerplate-v2.git
@@ -255,6 +257,59 @@ const onNotificationPress = async() => {
   })
   console.log(res)
 }
+```
+
+- ### Snackbar
+
+<img src='https://github.com/kiyohken2000/ReactNative-Expo-Firebase-Boilerplate-v2/blob/master/__DELELE_ME__/img9.png' width='80%'>
+
+```javascript
+import React, { useState } from 'react'
+import { View, StyleSheet } from 'react-native'
+import ScreenTemplate from '../../components/ScreenTemplate'
+import Button from '../../components/Button'
+import ShowSnackbar from '../../components/ShowSnackbar' // import snackbar component
+
+export default function Follower() {
+  const [visible, setVisible] = useState(false) // create snackbar state
+
+  const onDismissSnackBar = () => setVisible(false) // create hide snackbar function
+
+  const onShowSnackbarPress = () => { // create show snackbar function
+    setVisible(true)
+  }
+
+  return (
+    <>
+    <ScreenTemplate>
+      <View style={styles.container}>
+        <View style={{width:'100%'}}>
+          <Button
+            label='Show Snackbar'
+            color={colors.purple}
+            onPress={onShowSnackbarPress}
+          />
+        </View>
+      </View>
+    </ScreenTemplate>
+    {/* Pass props to snackbar component */}
+    <ShowSnackbar
+      visible={visible}
+      onDismissSnackBar={onDismissSnackBar}
+      title='Hello 👋'
+      duration={3000}
+    />
+    </>
+  )
+}
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+})
 ```
 
 - ### Data fetch, Loading, Error

@@ -1,13 +1,15 @@
-import React, { useEffect, useContext } from 'react'
+import React, { useEffect, useContext, useState } from 'react'
 import { Text, View, StyleSheet } from 'react-native'
 import ScreenTemplate from '../../components/ScreenTemplate'
-import { colors, fontSize } from 'theme'
+import { colors, fontSize } from '../../theme'
 import { ColorSchemeContext } from '../../context/ColorSchemeContext'
 import Button from '../../components/Button'
 import { showToast } from '../../utils/ShowToast'
+import ShowSnackbar from '../../components/ShowSnackbar'
 
 export default function Follower() {
   const { scheme } = useContext(ColorSchemeContext)
+  const [visible, setVisible] = useState(false)
   const isDark = scheme === 'dark'
   const colorScheme = {
     text: isDark? colors.white : colors.primaryText
@@ -17,6 +19,8 @@ export default function Follower() {
     console.log('Follower screen')
   }, [])
 
+  const onDismissSnackBar = () => setVisible(false)
+
   const onShowToastPress = () => {
     showToast({
       title: 'Hello',
@@ -25,7 +29,12 @@ export default function Follower() {
     })
   }
 
+  const onShowSnackbarPress = () => {
+    setVisible(true)
+  }
+
   return (
+    <>
     <ScreenTemplate>
       <View style={styles.container}>
         <View style={{width:'100%'}}>
@@ -33,11 +42,23 @@ export default function Follower() {
           <Button
             label='Show Toast'
             color={colors.lightPurple}
-            onPress={() => onShowToastPress()}
+            onPress={onShowToastPress}
+          />
+          <Button
+            label='Show Snackbar'
+            color={colors.purple}
+            onPress={onShowSnackbarPress}
           />
         </View>
       </View>
     </ScreenTemplate>
+    <ShowSnackbar
+      visible={visible}
+      onDismissSnackBar={onDismissSnackBar}
+      title='Hello 👋'
+      duration={3000}
+    />
+    </>
   )
 }
 
