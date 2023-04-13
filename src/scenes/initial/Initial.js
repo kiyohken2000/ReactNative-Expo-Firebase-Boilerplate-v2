@@ -15,7 +15,7 @@ if (!global.btoa) { global.btoa = encode }
 if (!global.atob) { global.atob = decode }
 
 export default function Initial() {
-  const [, setCehecked] = useAtom(checkedAtom)
+  const [, setChecked] = useAtom(checkedAtom)
   const [, setLoggedIn] = useAtom(loggedInAtom)
   const { setUserData } = useContext(UserDataContext)
   const { scheme } = useContext(ColorSchemeContext)
@@ -33,11 +33,11 @@ export default function Initial() {
           const userData = querySnapshot.data()
           setUserData(userData)
           setLoggedIn(true)
-          setCehecked(true)
+          setChecked(true)
         })
       } else {
         setLoggedIn(false)
-        setCehecked(true)
+        setChecked(true)
       }
     });
   }, []);
