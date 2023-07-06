@@ -387,6 +387,10 @@ npx expo install expo-dev-client
 ### 2. Create `eas.json` and update `eas.json`
 
 ```
+eas update:configure
+```
+
+```
 eas build:configure
 ```
 
