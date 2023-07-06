@@ -49,7 +49,11 @@ export default function Edit() {
           return;
         }
       }
-      const result = await ImagePicker.launchImageLibraryAsync();
+      const result = await ImagePicker.launchImageLibraryAsync({
+        allowsEditing: false,
+        mediaTypes: ImagePicker.MediaTypeOptions.Images,
+        allowsMultipleSelection: false
+      });
         if (!result.canceled) {
           let actions = [];
           actions.push({ resize: { width: 300 } });
