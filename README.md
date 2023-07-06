@@ -397,23 +397,23 @@ eas build:configure
 ```
 {
   "cli": {
-    "version": ">= 0.56.0"
+    "version": ">= 3.15.0"
   },
   "build": {
     "development": {
       "developmentClient": true,
       "distribution": "internal",
-      "releaseChannel": "development",
+      "channel": "development",
       "ios": {
         "simulator": false
       }
     },
     "preview": {
       "distribution": "internal",
-      "releaseChannel": "internal"
+      "channel": "internal"
     },
     "production": {
-      "releaseChannel": "production"
+      "channel": "production"
     }
   },
   "submit": {
@@ -474,8 +474,8 @@ eas build --profile production --platform ios
 eas build --profile production --platform android
 
 // OTA update
-expo publish --release-channel internal
-expo publish --release-channel production
+eas update --channel internal
+eas update --channel production
 
 // iOS: Setting up ad hoc provisioning
 eas device:create
