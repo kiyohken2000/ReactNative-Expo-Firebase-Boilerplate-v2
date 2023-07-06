@@ -349,7 +349,7 @@ export default function Print() {
 }
 ```
 
-## Note
+## NOTES
 
 - ### getExpoPushTokenAsync()
 
@@ -426,35 +426,20 @@ eas build:configure
 }
 ```
 
-### 3. Update `package.json`
-
-```
-"scripts": {
-  "start": "npx expo start --dev-client", // <= this
-  "android": "npx expo start --android",
-  "ios": "npx expo start --ios",
-  "eject": "expo eject",
-  "postinstall": "patch-package",
-  "expopublish": "npx expo publish",
-  "lint": "node_modules/.bin/eslint src/ --fix src/ --fix",
-  "test": "node_modules/.bin/jest --passWithNoTests"
-},
-```
-
-### 4. Register iPhone in Ad Hoc and install profile on iPhone
+### 3. Register iPhone in Ad Hoc and install profile on iPhone
 
 ```
 eas device:create
 ```
 
-### 5. Build your App and Install your App on your device
+### 4. Build your App and Install your App on your device
 
 ```
 eas build --profile development --platform ios
 eas build --profile development --platform android
 ```
 
-### 6. Run
+### 5. Run
 
 ```
 yarn start
@@ -462,7 +447,7 @@ yarn start
 
 Scan the QR code above with Expo Go (Android) or the Camera app (iOS)
 
-### 7. Commands
+### 8. Commands
 
 ```
 // build: develop
@@ -478,8 +463,8 @@ eas build --profile production --platform ios
 eas build --profile production --platform android
 
 // OTA update
-eas update --channel internal
-eas update --channel production
+eas update --channel internal --message "Updating the app"
+eas update --channel production --message "Updating the app"
 
 // iOS: Setting up ad hoc provisioning
 eas device:create
