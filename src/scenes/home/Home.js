@@ -10,6 +10,7 @@ import { colors, fontSize } from '../../theme'
 import { UserDataContext } from '../../context/UserDataContext'
 import { ColorSchemeContext } from '../../context/ColorSchemeContext'
 import { sendNotification } from '../../utils/SendNotification'
+import { getKilobyteSize } from '../../utils/functions'
 
 export default function Home() {
   const navigation = useNavigation()
@@ -21,6 +22,27 @@ export default function Home() {
     content: isDark? styles.darkContent : styles.lightContent,
     text: isDark? colors.white : colors.primaryText
   }
+
+  useEffect(() => {
+    const str = "Hello, こんにちは!";
+    const kilobyteSize = getKilobyteSize({str: str});
+    console.log({str, kilobyteSize});
+  }, [])
+
+  useEffect(() => {
+    const obj = {
+      name: 'name1',
+      age: 15,
+    }
+    const kilobyteSize = getKilobyteSize({str: obj});
+    console.log({obj, kilobyteSize});
+  }, [])
+
+  useEffect(() => {
+    const array = ['name1', 'name2', 'name3']
+    const kilobyteSize = getKilobyteSize({str: array});
+    console.log({array, kilobyteSize});
+  }, [])
 
   useLayoutEffect(() => {
     navigation.setOptions({
