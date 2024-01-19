@@ -86,7 +86,6 @@ export default function Profile() {
           <Avatar
             size="xlarge"
             rounded
-            title="NI"
             source={{ uri: userData.avatar }}
           />
         </View>
@@ -113,7 +112,7 @@ export default function Profile() {
           }}
         />
         <Button
-          label='Account delete'
+          label='Delete account'
           color={colors.secondary}
           onPress={showDialog}
         />
@@ -122,7 +121,7 @@ export default function Profile() {
         </View>
       </ScrollView>
       <Dialog.Container visible={visible}>
-        <Dialog.Title>Account delete</Dialog.Title>
+        <Dialog.Title>Delete account</Dialog.Title>
         <Dialog.Description>
           Do you want to delete this account? You cannot undo this action.
         </Dialog.Description>

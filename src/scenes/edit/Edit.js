@@ -145,7 +145,6 @@ export default function Edit() {
           <Avatar
             size="xlarge"
             rounded
-            title="NI"
             onPress={ImageChoiceAndUpload}
             source={{ uri: avatar }}
           />

@@ -17,7 +17,7 @@
     },
     "updates": {
       "enabled": true,
-      "fallbackToCacheTimeout": 10000,
+      "fallbackToCacheTimeout": 10000
     },
     "assetBundlePatterns": [
       "**/*"
@@ -50,6 +50,9 @@
         "tsx"
       ]
     },
-    "description": ""
+    "description": "",
+    "plugins": [
+      "expo-font"
+    ]
   }
 }

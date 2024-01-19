@@ -12,9 +12,8 @@
 
 ## Requirements
 
-- Node 16
+- Node 18
 - Yarn 1.22.x
-- expo-cli
 - eas-cli
 
 ## Infrastructure
