@@ -167,19 +167,43 @@ const firebaseKey = {
 };
 ```
 
-### 3. Update app.json and default avatar
+### 3. Update app.json and app config
 
 Replace the name and Slug with yours.
 
 ```
 "name": "your-app-name",
-"slug": "your-app-name",
+"slug": "your-app-slug",
+```
+
+Remove `expo.updates.url`
+
+```
+"updates": {
+  "enabled": true,
+  "fallbackToCacheTimeout": 10000,
+  "url": "https://u.expo.dev/1650611b-a5b8-4420-9656-60c06429edd4"
+},
+```
+
+Remove `expo.extra` and `expo.runtimeVersion`
+
+```
+"extra": {
+  "eas": {
+    "projectId": "1650611b-a5b8-4420-9656-60c06429edd4"
+  }
+},
+"runtimeVersion": {
+  "policy": "appVersion"
+}
 ```
 
 `src\config.js`
 
 ```javascript
 const defaultAvatar = 'Your default icon URL'
+const expoProjectId = 'Your project id'
 ```
 
 ### 4. Run Your App
@@ -356,7 +380,7 @@ The experienceId is required to get the push token using getExpoPushTokenAsync i
 
 ```javascript
 const token = await Notifications.getExpoPushTokenAsync({
-  experienceId: '@username/projectSlug'
+  projectId: 'your project id'
 });
 ```
 

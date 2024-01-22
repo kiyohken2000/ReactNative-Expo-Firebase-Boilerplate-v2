@@ -17,7 +17,8 @@
     },
     "updates": {
       "enabled": true,
-      "fallbackToCacheTimeout": 10000
+      "fallbackToCacheTimeout": 10000,
+      "url": "https://u.expo.dev/1650611b-a5b8-4420-9656-60c06429edd4"
     },
     "assetBundlePatterns": [
       "**/*"
@@ -53,6 +54,14 @@
     "description": "",
     "plugins": [
       "expo-font"
-    ]
+    ],
+    "extra": {
+      "eas": {
+        "projectId": "1650611b-a5b8-4420-9656-60c06429edd4"
+      }
+    },
+    "runtimeVersion": {
+      "policy": "appVersion"
+    }
   }
 }
