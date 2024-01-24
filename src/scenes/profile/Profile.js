@@ -13,13 +13,10 @@ import { useNavigation } from '@react-navigation/native'
 import { colors, fontSize } from '../../theme'
 import { signOut, deleteUser } from 'firebase/auth'
 import { auth } from '../../firebase/config'
-import { useAtom } from 'jotai'
-import { checkedAtom, loggedInAtom } from '../../utils/atom';
+import { Restart } from '../../utils/Restart';
 
 export default function Profile() {
   const { userData, setUserData } = useContext(UserDataContext)
-  const [, setChecked] = useAtom(checkedAtom)
-  const [, setLoggedIn] = useAtom(loggedInAtom)
   const navigation = useNavigation()
   const [visible, setVisible] = useState(false)
   const [spinner, setSpinner] = useState(false)
@@ -39,10 +36,8 @@ export default function Profile() {
 
   const onSignOutPress = () => {
     signOut(auth)
-    .then(() => {
-      setUserData('')
-      setLoggedIn(false)
-      setChecked(false)
+    .then(async() => {
+      await Restart()
     })
     .catch((error) => {
       console.log(error.message);

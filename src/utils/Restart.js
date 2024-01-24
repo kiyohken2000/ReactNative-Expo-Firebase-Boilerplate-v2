@@ -1,7 +1,7 @@
 import * as Updates from 'expo-updates'
 
-const Restart = () => {
-  Updates.reloadAsync()
+const Restart = async() => {
+  await Updates.reloadAsync()
 }
 
 export { Restart }
