@@ -5,7 +5,6 @@ import Dialog from "react-native-dialog"
 import Spinner from 'react-native-loading-spinner-overlay'
 import ScreenTemplate from '../../components/ScreenTemplate'
 import Button from '../../components/Button'
-import { Restart } from '../../utils/Restart'
 import { firestore } from '../../firebase/config'
 import { doc, deleteDoc } from 'firebase/firestore';
 import { ColorSchemeContext } from '../../context/ColorSchemeContext'
@@ -14,9 +13,13 @@ import { useNavigation } from '@react-navigation/native'
 import { colors, fontSize } from '../../theme'
 import { signOut, deleteUser } from 'firebase/auth'
 import { auth } from '../../firebase/config'
+import { useAtom } from 'jotai'
+import { checkedAtom, loggedInAtom } from '../../utils/atom';
 
 export default function Profile() {
   const { userData, setUserData } = useContext(UserDataContext)
+  const [, setChecked] = useAtom(checkedAtom)
+  const [, setLoggedIn] = useAtom(loggedInAtom)
   const navigation = useNavigation()
   const [visible, setVisible] = useState(false)
   const [spinner, setSpinner] = useState(false)
@@ -38,7 +41,8 @@ export default function Profile() {
     signOut(auth)
     .then(() => {
       setUserData('')
-      Restart()
+      setLoggedIn(false)
+      setChecked(false)
     })
     .catch((error) => {
       console.log(error.message);
