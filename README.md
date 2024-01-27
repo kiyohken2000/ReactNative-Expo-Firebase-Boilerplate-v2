@@ -63,7 +63,7 @@
 
 ## How to use
 
-**Video guide**
+**Video guide(Japanese)**
 
 [![How to start video](https://github.com/kiyohken2000/ReactNative-Expo-Firebase-Boilerplate-v2/blob/master/__DELELE_ME__/img10.png)](https://youtu.be/oQqvuh8kKCQ)
 
@@ -221,8 +221,8 @@ yarn start
 ```javascript
 import { Restart } from '../../utils/Restart'
 
-const ourFunc = () => {
-  Restart()
+const ourFunc = async() => {
+  await Restart()
 }
 ```
 
