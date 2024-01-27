@@ -63,6 +63,10 @@
 
 ## How to use
 
+**Video guide**
+
+[![How to start video](https://github.com/kiyohken2000/ReactNative-Expo-Firebase-Boilerplate-v2/blob/master/__DELELE_ME__/img10.png)](https://youtu.be/oQqvuh8kKCQ)
+
 ### 1. Install
 
 Download zip or click "Use this template"
