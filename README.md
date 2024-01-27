@@ -495,6 +495,10 @@ eas update --channel production --message "Updating the app"
 eas device:create
 // list all registered devices for your account
 eas device:list
+
+// Expo Settings
+eas build:configure
+eas update:configure
 ```
 
 ## Licence
