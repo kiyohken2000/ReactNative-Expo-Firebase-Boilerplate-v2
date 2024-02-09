@@ -8,11 +8,20 @@
 
 <img src='https://github.com/kiyohken2000/ReactNative-Expo-Firebase-Boilerplate-v2/blob/master/__DELELE_ME__/img6.jpg' width='80%'>
 
+## Demo
+
+Try with Expo Go on your device. SDK 50.
+
+<img src='https://github.com/kiyohken2000/ReactNative-Expo-Firebase-Boilerplate-v2/blob/master/__DELELE_ME__/img11.png'>
+
+<img src='https://github.com/kiyohken2000/ReactNative-Expo-Firebase-Boilerplate-v2/blob/master/__DELELE_ME__/img12.png'>
+
 ## Requirements
 
 - Node 18
 - Yarn 1.22.x
 - eas-cli
+- Expo Account
 
 ## Infrastructure
 
@@ -208,6 +217,14 @@ const defaultAvatar = 'Your default icon URL'
 const expoProjectId = 'Your project id'
 ```
 
+If you do not have an Expo Project ID, run this command.
+
+```
+eas build:configure
+```
+
+Then check the `expo.extra.projectId` in app.json.
+
 ### 4. Run Your App
 
 ```
@@ -392,11 +409,11 @@ If you want to use environment variables in EAS build, create .easignore.
 
 [How projects are uploaded to EAS Build](https://github.com/expo/fyi/blob/main/eas-build-archive.md)
 
-## Migrate to EAS
+## Migrate to development build
 
 - [Official Document](https://docs.expo.dev/development/getting-started/)
 
-SDK47 and later do not support classic build. You must use EAS build to build your application.
+If you want to use libraries that contain native code, you must use the development build.
 
 ### Requirements
 
