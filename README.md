@@ -12,9 +12,7 @@
 
 Try with Expo Go on your device. SDK 50.
 
-<img src='https://github.com/kiyohken2000/ReactNative-Expo-Firebase-Boilerplate-v2/blob/master/__DELELE_ME__/img11.png' width='40%'>
-
-<img src='https://github.com/kiyohken2000/ReactNative-Expo-Firebase-Boilerplate-v2/blob/master/__DELELE_ME__/img12.png' width='40%'>
+<img src='https://github.com/kiyohken2000/ReactNative-Expo-Firebase-Boilerplate-v2/blob/master/__DELELE_ME__/img13.png' width='40%'>
 
 ## Requirements
 
