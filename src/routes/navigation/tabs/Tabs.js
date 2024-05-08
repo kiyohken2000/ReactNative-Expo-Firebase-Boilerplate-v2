@@ -1,6 +1,6 @@
 import React from 'react'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
-import FontIcon from 'react-native-vector-icons/FontAwesome5'
+import FontIcon from 'react-native-vector-icons/FontAwesome'
 import { colors } from 'theme'
 
 // stack navigators

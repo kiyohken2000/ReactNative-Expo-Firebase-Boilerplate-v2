@@ -26,7 +26,7 @@
     "ios": {
       "supportsTablet": true,
       "bundleIdentifier": "reactnative.expo.firebase.boilerplate",
-      "buildNumber": "1.0.0",
+      "buildNumber": "1",
       "infoPlist": {
         "NSPhotoLibraryUsageDescription": "Use the photo library to change your avatar."
       },
@@ -53,7 +53,8 @@
     },
     "description": "",
     "plugins": [
-      "expo-font"
+      "expo-font",
+      "expo-asset"
     ],
     "extra": {
       "eas": {
