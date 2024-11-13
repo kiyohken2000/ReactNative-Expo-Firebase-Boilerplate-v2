@@ -15,6 +15,7 @@
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
+    "newArchEnabled": true,
     "updates": {
       "enabled": true,
       "fallbackToCacheTimeout": 10000,

@@ -10,13 +10,13 @@
 
 ## Demo
 
-Try with Expo Go on your device. SDK 51.
+Try with Expo Go on your device. SDK 52.
 
-<img src='https://github.com/kiyohken2000/ReactNative-Expo-Firebase-Boilerplate-v2/blob/master/__DELELE_ME__/img15.png' width='40%'>
+<img src='https://github.com/kiyohken2000/ReactNative-Expo-Firebase-Boilerplate-v2/blob/master/__DELELE_ME__/img16.png' width='40%'>
 
 ## Requirements
 
-- Node 18
+- Node 20
 - Yarn 1.22.x
 - eas-cli
 - Expo Account
