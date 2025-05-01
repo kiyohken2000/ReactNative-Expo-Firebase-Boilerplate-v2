@@ -10,9 +10,9 @@
 
 ## Demo
 
-Try with Expo Go on your device. SDK 52.
+Try with Expo Go on your device. SDK 53.
 
-<img src='https://github.com/kiyohken2000/ReactNative-Expo-Firebase-Boilerplate-v2/blob/master/__DELELE_ME__/img16.png' width='40%'>
+<img src='https://github.com/kiyohken2000/ReactNative-Expo-Firebase-Boilerplate-v2/blob/master/__DELELE_ME__/img17.png' width='40%'>
 
 ## Requirements
 
@@ -41,7 +41,6 @@ Try with Expo Go on your device. SDK 52.
 - react-native-paper
 - react-native-svg
 - react-native-vector-icons
-- [jotai](https://jotai.org)
 - moment
 
 ## Features
@@ -59,14 +58,6 @@ Try with Expo Go on your device. SDK 52.
 - Dynamic switching of dark themes by device appearance
 - Dynamic header title
 - Retrieving Expo push tokens and saving them to Firestore
-- State management by Jotai
-
-## Difference from v1
-
-[reactnative-expo-firebase-boilerplate v1](https://github.com/kiyohken2000/reactnative-expo-firebase-boilerplate)
-
-- use Context API
-- Adjustment style file
 
 ## How to use
 

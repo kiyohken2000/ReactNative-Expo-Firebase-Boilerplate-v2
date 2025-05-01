@@ -1,12 +1,10 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import Main from './navigation'
 import Initial from '../scenes/initial/Initial'
-import { useAtom } from 'jotai'
-import { checkedAtom, loggedInAtom } from '../utils/atom'
+import { AppContext } from '../context/AppContext'
 
 const Routes = () => {
-  const [checked] = useAtom(checkedAtom)
-  const [loggedIn] = useAtom(loggedInAtom)
+  const { checked, loggedIn } = useContext(AppContext)
 
   // TODO: switch router by loggedIn state
   console.log('[##] loggedIn', loggedIn)

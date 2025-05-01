@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react'
 import { View } from 'react-native'
-import { Provider } from 'jotai'
 import 'utils/ignore'
 import { ColorSchemeContextProvider } from './context/ColorSchemeContext'
 import { UserDataContextProvider } from './context/UserDataContext'
+import { AppContextProvider } from './context/AppContext'
 
 // assets
 import { imageAssets } from 'theme/images'
@@ -32,13 +32,13 @@ const App = () => {
   // rendering
   if (!didLoad) return <View />
   return (
-    <Provider>
+    <AppContextProvider>
       <ColorSchemeContextProvider>
         <UserDataContextProvider>
           <Router />
         </UserDataContextProvider>
       </ColorSchemeContextProvider>
-    </Provider>
+    </AppContextProvider>
   )
 }
 
