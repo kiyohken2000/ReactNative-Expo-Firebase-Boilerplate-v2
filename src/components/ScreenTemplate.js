@@ -22,10 +22,15 @@ export default function ScreenTemplate(props) {
   }
 
   return (
-    <View style={container}>
-      <StatusBar style='light' />
-        {props.children}
-    </View>
+    <SafeAreaView
+      style={styles.container}
+      edges={['right', 'left', 'bottom']}
+    >
+      <View style={container}>
+        <StatusBar style='light' />
+          {props.children}
+      </View>
+    </SafeAreaView>
   )
 }
 
