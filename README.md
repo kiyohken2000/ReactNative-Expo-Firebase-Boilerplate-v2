@@ -16,7 +16,7 @@ Try with Expo Go on your device. SDK 54.
 
 ## Requirements
 
-- Node 20
+- Node 22.19.0
 - Yarn 1.22.x
 - eas-cli
 - Expo Account
