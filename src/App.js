@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { View } from 'react-native'
+import { SafeAreaProvider } from 'react-native-safe-area-context';
 import 'utils/ignore'
 import { ColorSchemeContextProvider } from './context/ColorSchemeContext'
 import { UserDataContextProvider } from './context/UserDataContext'
@@ -32,13 +33,15 @@ const App = () => {
   // rendering
   if (!didLoad) return <View />
   return (
-    <AppContextProvider>
-      <ColorSchemeContextProvider>
-        <UserDataContextProvider>
-          <Router />
-        </UserDataContextProvider>
-      </ColorSchemeContextProvider>
-    </AppContextProvider>
+    <SafeAreaProvider>
+      <AppContextProvider>
+        <ColorSchemeContextProvider>
+          <UserDataContextProvider>
+            <Router />
+          </UserDataContextProvider>
+        </ColorSchemeContextProvider>
+      </AppContextProvider>
+    </SafeAreaProvider>
   )
 }
 

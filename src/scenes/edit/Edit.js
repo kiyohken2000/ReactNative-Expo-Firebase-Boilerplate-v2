@@ -51,7 +51,7 @@ export default function Edit() {
       }
       const result = await ImagePicker.launchImageLibraryAsync({
         allowsEditing: false,
-        mediaTypes: ImagePicker.MediaTypeOptions.Images,
+        mediaTypes: ['images'],
         allowsMultipleSelection: false
       });
         if (!result.canceled) {

@@ -1,5 +1,6 @@
 import React, { useContext } from "react";
-import { StyleSheet, SafeAreaView } from "react-native";
+import { StyleSheet, View } from "react-native";
+import { SafeAreaView } from 'react-native-safe-area-context';
 import { colors } from "../theme";
 import { StatusBar } from 'expo-status-bar';
 import { ColorSchemeContext } from "../context/ColorSchemeContext";
@@ -21,10 +22,10 @@ export default function ScreenTemplate(props) {
   }
 
   return (
-    <SafeAreaView style={container}>
+    <View style={container}>
       <StatusBar style='light' />
         {props.children}
-    </SafeAreaView>
+    </View>
   )
 }
 
