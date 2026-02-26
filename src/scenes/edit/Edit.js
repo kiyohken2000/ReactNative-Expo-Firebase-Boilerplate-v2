@@ -136,7 +136,7 @@ export default function Edit() {
   }
 
   return (
-    <ScreenTemplate>
+    <ScreenTemplate edges={['right', 'left']}>
       <KeyboardAwareScrollView
         style={styles.main}
         keyboardShouldPersistTaps="always"

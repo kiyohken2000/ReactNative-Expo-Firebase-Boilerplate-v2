@@ -24,20 +24,33 @@ export default function Initial() {
   }
 
   useEffect(() => {
-    onAuthStateChanged(auth, (user) => {
+    let unsubscribeSnapshot = null
+
+    const unsubscribeAuth = onAuthStateChanged(auth, (user) => {
       if (user) {
         const usersRef = doc(firestore, 'users', user.uid)
-        onSnapshot(usersRef, (querySnapshot) => {
+        unsubscribeSnapshot = onSnapshot(usersRef, (querySnapshot) => {
           const userData = querySnapshot.data()
           setUserData(userData)
           setLoggedIn(true)
           setChecked(true)
         })
       } else {
+        if (unsubscribeSnapshot) {
+          unsubscribeSnapshot()
+          unsubscribeSnapshot = null
+        }
+        setUserData('')
         setLoggedIn(false)
         setChecked(true)
       }
-    });
+    })
+
+    return () => {
+      if (unsubscribeSnapshot) {
+        unsubscribeSnapshot()
+      }
+    }
   }, []);
 
   return (

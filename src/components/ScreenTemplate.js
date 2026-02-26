@@ -8,7 +8,7 @@ import LoadingScreen from "./LoadingScreen";
 import ErrorScreen from "./ErrorScreen";
 
 export default function ScreenTemplate(props) {
-  const { isLoading, isError } = props
+  const { isLoading, isError, edges = ['right', 'left', 'bottom'] } = props
   const { scheme } = useContext(ColorSchemeContext)
   const isDark = scheme === 'dark'
   const container = isDark?styles.darkContainer: styles.container
@@ -24,7 +24,7 @@ export default function ScreenTemplate(props) {
   return (
     <SafeAreaView
       style={styles.container}
-      edges={['right', 'left', 'bottom']}
+      edges={edges}
     >
       <View style={container}>
         <StatusBar style='light' />

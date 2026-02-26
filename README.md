@@ -10,9 +10,9 @@
 
 ## Demo
 
-Try with Expo Go on your device. SDK 54.
+Try with Expo Go on your device. SDK 55.
 
-<img src='https://github.com/kiyohken2000/ReactNative-Expo-Firebase-Boilerplate-v2/blob/master/__DELELE_ME__/img18.png' width='40%'>
+<img src='https://github.com/kiyohken2000/ReactNative-Expo-Firebase-Boilerplate-v2/blob/master/__DELELE_ME__/img19.png' width='40%'>
 
 ## Requirements
 
@@ -33,7 +33,6 @@ Try with Expo Go on your device. SDK 54.
 - firebase
 - axios
 - react-navigation
-- expo-constants
 - expo-image-manipulator
 - expo-image-picker
 - expo-notifications
@@ -153,7 +152,7 @@ service firebase.storage {
 
 - Write the copied API Key in your app.
 
-`src\config.js`
+`src/config.js`
 
 ```javascript
 const firebaseKey = {
@@ -199,7 +198,7 @@ Remove `expo.extra` and `expo.runtimeVersion`
 }
 ```
 
-`src\config.js`
+`src/config.js`
 
 ```javascript
 const defaultAvatar = 'Your default icon URL'
