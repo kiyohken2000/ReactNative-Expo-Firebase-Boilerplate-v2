@@ -20,7 +20,7 @@ import { showToast } from '../../utils/ShowToast'
 import Spinner from 'react-native-loading-spinner-overlay'
 
 export default function Edit() {
-  const { userData } = useContext(UserDataContext)
+  const { userData, setUserData } = useContext(UserDataContext)
   const { scheme } = useContext(ColorSchemeContext)
   const navigation = useNavigation()
   const [fullName, setFullName] = useState(userData.fullName)
@@ -35,6 +35,15 @@ export default function Edit() {
     text: isDark? colors.white : colors.primaryText,
     progress: isDark? styles.darkprogress : styles.progress,
   }
+
+  const uriToBlob = (uri) => new Promise((resolve, reject) => {
+    const xhr = new XMLHttpRequest()
+    xhr.onload = () => resolve(xhr.response)
+    xhr.onerror = () => reject(new Error('Image conversion failed.'))
+    xhr.responseType = 'blob'
+    xhr.open('GET', uri, true)
+    xhr.send(null)
+  })
 
   useEffect(() => {
     console.log('Edit screen')
@@ -62,23 +71,30 @@ export default function Edit() {
             actions,
             {
               compress: 0.4,
+              format: ImageManipulator.SaveFormat.JPEG,
             },
           );
-          const localUri = await fetch(manipulatorResult.uri);
-          const localBlob = await localUri.blob();
-          const filename = userData.id + new Date().getTime()
+          const filename = userData.id + new Date().getTime() + '.jpg'
           const storageRef = ref(storage, `avatar/${userData.id}/` + filename)
-          const uploadTask = uploadBytesResumable(storageRef, localBlob)
+          const localBlob = await uriToBlob(manipulatorResult.uri)
+          const uploadTask = uploadBytesResumable(
+            storageRef,
+            localBlob,
+            { contentType: 'image/jpeg' },
+          )
           uploadTask.on('state_changed',
             (snapshot) => {
               let progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
               setProgress(parseInt(progress) + '%')
             },
             (error) => {
+              localBlob.close?.()
               console.log(error);
+              setProgress('')
               alert("Upload failed.");
             },
             () => {
+              localBlob.close?.()
               getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
                 setProgress('')
                 setAvatar(downloadURL)
@@ -88,6 +104,7 @@ export default function Edit() {
         }
     } catch (e) {
       console.log('error',e.message);
+      setProgress('')
       alert("The size may be too much.");
     }
   }
@@ -102,6 +119,7 @@ export default function Edit() {
       }
       const usersRef = doc(firestore, 'users', userData.id);
       await updateDoc(usersRef, data)
+      setUserData(data)
       navigation.goBack()
     } catch(e) {
       alert(e)

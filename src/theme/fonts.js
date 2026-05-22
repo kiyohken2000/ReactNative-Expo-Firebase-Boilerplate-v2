@@ -31,5 +31,26 @@ export const fontsAll = [
   {
     openSans_bold_italic: require('../../assets/fonts/OpenSans-BoldItalic.ttf'),
   },
+  {
+    FontAwesome: require('../../node_modules/react-native-vector-icons/Fonts/FontAwesome.ttf'),
+  },
+  {
+    'FontAwesome5Free-Regular': require('../../node_modules/react-native-vector-icons/Fonts/FontAwesome5_Regular.ttf'),
+  },
+  {
+    'FontAwesome5Free-Solid': require('../../node_modules/react-native-vector-icons/Fonts/FontAwesome5_Solid.ttf'),
+  },
+  {
+    'FontAwesome5Brands-Regular': require('../../node_modules/react-native-vector-icons/Fonts/FontAwesome5_Brands.ttf'),
+  },
+  {
+    FontAwesome5_Regular: require('../../node_modules/react-native-vector-icons/Fonts/FontAwesome5_Regular.ttf'),
+  },
+  {
+    FontAwesome5_Solid: require('../../node_modules/react-native-vector-icons/Fonts/FontAwesome5_Solid.ttf'),
+  },
+  {
+    FontAwesome5_Brands: require('../../node_modules/react-native-vector-icons/Fonts/FontAwesome5_Brands.ttf'),
+  },
 ]
 export const fontAssets = fontsAll.map((x) => Font.loadAsync(x))
