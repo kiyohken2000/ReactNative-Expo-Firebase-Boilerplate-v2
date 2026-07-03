@@ -2,7 +2,6 @@
   "expo": {
     "name": "reactnative-expo-firebase-boilerplate-v2",
     "slug": "reactnative-expo-firebase-boilerplate-v2",
-    "privacy": "public",
     "platforms": [
       "ios",
       "android"
@@ -10,12 +9,6 @@
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/logo-sm.png",
-    "splash": {
-      "image": "./assets/images/splash.png",
-      "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
-    },
-    "newArchEnabled": true,
     "updates": {
       "enabled": true,
       "fallbackToCacheTimeout": 10000,
@@ -42,21 +35,19 @@
         "CAMERA"
       ]
     },
-    "packagerOpts": {
-      "config": "metro.config.js",
-      "sourceExts": [
-        "js",
-        "jsx",
-        "svg",
-        "ts",
-        "tsx"
-      ]
-    },
     "description": "",
     "plugins": [
       "expo-font",
       "expo-asset",
-      "expo-status-bar"
+      "expo-status-bar",
+      [
+        "expo-splash-screen",
+        {
+          "image": "./assets/images/splash.png",
+          "resizeMode": "contain",
+          "backgroundColor": "#ffffff"
+        }
+      ]
     ],
     "extra": {
       "eas": {
