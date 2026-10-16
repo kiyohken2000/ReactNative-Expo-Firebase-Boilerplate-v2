@@ -10,9 +10,9 @@
 
 ## Demo
 
-Try with Expo Go on your device. SDK 57.
+Try with Expo Go on your device. SDK 58.
 
-<img src='https://github.com/kiyohken2000/ReactNative-Expo-Firebase-Boilerplate-v2/blob/master/__DELELE_ME__/img21.png' width='40%'>
+<img src='https://github.com/kiyohken2000/ReactNative-Expo-Firebase-Boilerplate-v2/blob/master/__DELELE_ME__/img22.png' width='40%'>
 
 ## Requirements
 

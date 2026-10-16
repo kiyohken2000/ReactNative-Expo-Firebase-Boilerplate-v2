@@ -61,7 +61,8 @@ export default function Edit() {
       const result = await ImagePicker.launchImageLibraryAsync({
         allowsEditing: false,
         mediaTypes: ['images'],
-        allowsMultipleSelection: false
+        allowsMultipleSelection: false,
+        selectionLimit: 1,
       });
         if (!result.canceled) {
           let actions = [];
